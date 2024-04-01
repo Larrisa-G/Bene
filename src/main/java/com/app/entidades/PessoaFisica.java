@@ -34,13 +34,6 @@ class PessoaFisica extends Pessoa {
        this.genero = genero;
        this.dataNascimento = dataNascimento;
    }
-   
-   
-   private Date formatatarData(String data) {
-       SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-       Date data = formato.parse(data);
-       return data;
-   }
 
    
 }
