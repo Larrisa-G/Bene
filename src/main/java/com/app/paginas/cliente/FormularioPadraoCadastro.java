@@ -230,11 +230,11 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(201, 201, 201)
+                .addGap(99, 99, 99)
                 .addComponent(jButton3)
-                .addGap(169, 169, 169)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(118, 118, 118))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,14 +328,14 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     protected javax.swing.JPanel jpOtherInfo;
-    private javax.swing.JTextField jtBairro;
-    private javax.swing.JTextField jtCep;
-    private javax.swing.JTextField jtCidade;
-    private javax.swing.JTextField jtComplemento;
-    private javax.swing.JTextField jtCpf;
-    private javax.swing.JTextField jtLogradouro;
-    private javax.swing.JTextField jtNome;
-    private javax.swing.JTextField jtNumero;
-    private javax.swing.JTextField jtUf;
+    protected javax.swing.JTextField jtBairro;
+    protected javax.swing.JTextField jtCep;
+    protected javax.swing.JTextField jtCidade;
+    protected javax.swing.JTextField jtComplemento;
+    protected javax.swing.JTextField jtCpf;
+    protected javax.swing.JTextField jtLogradouro;
+    protected javax.swing.JTextField jtNome;
+    protected javax.swing.JTextField jtNumero;
+    protected javax.swing.JTextField jtUf;
     // End of variables declaration//GEN-END:variables
 }
