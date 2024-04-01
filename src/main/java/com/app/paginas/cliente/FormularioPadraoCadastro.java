@@ -63,7 +63,7 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
 
         jLabel1.setText("Nome");
 
-        jLabel2.setText("Cpf");
+        jLabel2.setText("CPF");
 
         jtCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +71,7 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
             }
         });
 
-        jLabel3.setText("Cep");
+        jLabel3.setText("CEP");
 
         jLabel4.setText("Logradouro");
 

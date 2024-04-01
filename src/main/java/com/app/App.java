@@ -5,6 +5,7 @@
 package com.app;
 
 import com.app.paginas.cliente.FormularioCadastroPessoaFisica;
+import com.app.paginas.cliente.FormularioCadastroPessoaJuridica;
 import javax.swing.JFrame;
 
 /**
@@ -105,7 +106,9 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_jmcPessoaFisicaActionPerformed
 
     private void jmcPessoaJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaJuridicaActionPerformed
-        // TODO add your handling code here:
+        FormularioCadastroPessoaJuridica formularioCadastroPessoaJuridica = new FormularioCadastroPessoaJuridica();
+        jDesktop.add(formularioCadastroPessoaJuridica);
+        formularioCadastroPessoaJuridica.setVisible(true);
     }//GEN-LAST:event_jmcPessoaJuridicaActionPerformed
 
     /**
