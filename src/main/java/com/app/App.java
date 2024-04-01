@@ -4,6 +4,7 @@
  */
 package com.app;
 
+import com.app.paginas.cliente.Teste;
 import javax.swing.JFrame;
 
 /**
@@ -29,7 +30,7 @@ public class App extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jDesktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
         jmCadastrarCliente = new javax.swing.JMenuItem();
@@ -38,20 +39,25 @@ public class App extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jDesktopLayout = new javax.swing.GroupLayout(jDesktop);
+        jDesktop.setLayout(jDesktopLayout);
+        jDesktopLayout.setHorizontalGroup(
+            jDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jDesktopLayout.setVerticalGroup(
+            jDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 326, Short.MAX_VALUE)
         );
 
         jmClientes.setText("Clientes");
 
         jmCadastrarCliente.setText("Cadastrar");
+        jmCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCadastrarClienteActionPerformed(evt);
+            }
+        });
         jmClientes.add(jmCadastrarCliente);
 
         jmListarrCliente.setText("Listar");
@@ -68,15 +74,21 @@ public class App extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktop)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktop)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCadastrarClienteActionPerformed
+        Teste tela = new Teste();
+        jDesktop.add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jmCadastrarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,7 +126,7 @@ public class App extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane jDesktop;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jmCadastrarCliente;
     private javax.swing.JMenu jmClientes;

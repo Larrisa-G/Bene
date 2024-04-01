@@ -1,12 +1,10 @@
+package com.app.entidades;
+
+
 public class Main {
     public static void main(String[] args) {
-        Fisica pessoa = new Fisica("Ryan Ribeiro de Souza",87921065, "RyanRib@hotmail.com", 21963728, 98949657, 'm', "Diretor de fotografia", "Brasileiro", "Solteiro", 3469127);
-        System.out.println(pessoa.toString());
-
-        Juridica pessoa2 = new Juridica("RRB Produções",87921065, "RRBProduções@hotmail.com", 21963728, 98949657,"Ryan Ribeiro", 3469127);
-        System.out.println(pessoa2.toString());
-
-        System.out.println(pessoa.apresentacao());
+        PessoaFisica pf = new PessoaFisica("Gabreil", "1234567", "Rua", 0, "", "Bairro", "2345", "RJ'", "RJ", "F", "3434","12/03/12");
+        System.out.print(pf);
     }
 
 }
