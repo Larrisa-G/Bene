@@ -1,4 +1,4 @@
-package com.app.entidades;
+package com.app.entidades.pessoas;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
