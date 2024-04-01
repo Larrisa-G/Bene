@@ -4,7 +4,7 @@
  */
 package com.app;
 
-import com.app.paginas.cliente.Teste;
+import com.app.paginas.cliente.FormularioCadastroPessoaFisica;
 import javax.swing.JFrame;
 
 /**
@@ -33,7 +33,9 @@ public class App extends javax.swing.JFrame {
         jDesktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
-        jmCadastrarCliente = new javax.swing.JMenuItem();
+        jmCadastrar = new javax.swing.JMenu();
+        jmcPessoaFisica = new javax.swing.JMenuItem();
+        jmcPessoaJuridica = new javax.swing.JMenuItem();
         jmListarrCliente = new javax.swing.JMenuItem();
         jmContratos = new javax.swing.JMenu();
 
@@ -52,13 +54,25 @@ public class App extends javax.swing.JFrame {
 
         jmClientes.setText("Clientes");
 
-        jmCadastrarCliente.setText("Cadastrar");
-        jmCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
+        jmCadastrar.setText("Cadastrar");
+
+        jmcPessoaFisica.setText("Pessoa Física");
+        jmcPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmCadastrarClienteActionPerformed(evt);
+                jmcPessoaFisicaActionPerformed(evt);
             }
         });
-        jmClientes.add(jmCadastrarCliente);
+        jmCadastrar.add(jmcPessoaFisica);
+
+        jmcPessoaJuridica.setText("Pessoa Jurídica");
+        jmcPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPessoaJuridicaActionPerformed(evt);
+            }
+        });
+        jmCadastrar.add(jmcPessoaJuridica);
+
+        jmClientes.add(jmCadastrar);
 
         jmListarrCliente.setText("Listar");
         jmClientes.add(jmListarrCliente);
@@ -84,11 +98,15 @@ public class App extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCadastrarClienteActionPerformed
-        Teste tela = new Teste();
-        jDesktop.add(tela);
-        tela.setVisible(true);
-    }//GEN-LAST:event_jmCadastrarClienteActionPerformed
+    private void jmcPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaFisicaActionPerformed
+        FormularioCadastroPessoaFisica formularioCadastroPessoaFisica = new FormularioCadastroPessoaFisica();
+        jDesktop.add(formularioCadastroPessoaFisica);
+        formularioCadastroPessoaFisica.setVisible(true);
+    }//GEN-LAST:event_jmcPessoaFisicaActionPerformed
+
+    private void jmcPessoaJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaJuridicaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmcPessoaJuridicaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,9 +146,11 @@ public class App extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktop;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jmCadastrarCliente;
+    private javax.swing.JMenu jmCadastrar;
     private javax.swing.JMenu jmClientes;
     private javax.swing.JMenu jmContratos;
     private javax.swing.JMenuItem jmListarrCliente;
+    private javax.swing.JMenuItem jmcPessoaFisica;
+    private javax.swing.JMenuItem jmcPessoaJuridica;
     // End of variables declaration//GEN-END:variables
 }
