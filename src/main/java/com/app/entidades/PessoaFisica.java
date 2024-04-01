@@ -1,11 +1,10 @@
 
 package com.app.entidades;
         
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+
 
 @Getter
 @Setter
