@@ -1,5 +1,6 @@
 package com.app.entidades.pessoas;
 
+import com.app.entidades.endereco.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,12 +12,8 @@ import lombok.Setter;
 public abstract class Pessoa {
     private String nome;
     private String cpf;
-    private String logradouro;
-    private int numero;
-    private String complemento;
-    private String bairro;
-    private String cep;
-    private String cidade;
-    private String uf;
+    private Endereco endereco;
+    private Genero genero;
+    private EstadoCivil estadoCivil;
 
 }

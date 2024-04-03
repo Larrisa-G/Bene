@@ -1,6 +1,6 @@
 package com.app.paginas.cliente;
 
-import com.app.entidades.pessoas.GenerosPessoas;
+import com.app.entidades.pessoas.Genero;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,7 +17,7 @@ public class FormularioCadastroPessoaFisica extends FormularioPadraoCadastro {
     private JTextField jtData;
     
     private JLabel jlGenero;
-    private JComboBox<GenerosPessoas> jcbGenero;
+    private JComboBox<Genero> jcbGenero;
     
     public FormularioCadastroPessoaFisica() {
         setTitle("Cadastrar Pessoa Física");
@@ -61,7 +61,7 @@ public class FormularioCadastroPessoaFisica extends FormularioPadraoCadastro {
     }
     
     private String[] pegarGeneros() {
-        GenerosPessoas[]  generos = GenerosPessoas.values();
+        Genero[]  generos = Genero.values();
         String[] genderNames = new String[generos.length];
         for (int i = 0; i < generos.length; i++) {
             genderNames[i] = capitalizeString(generos[i].toString());

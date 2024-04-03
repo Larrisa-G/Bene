@@ -2,7 +2,7 @@
 package com.app.entidades.pessoas;
 
 
-public enum GenerosPessoas {
+public enum Genero {
     MASCULINO,
     FEMININO,
     OUTRO
