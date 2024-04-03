@@ -57,6 +57,7 @@ public class App extends javax.swing.JFrame {
 
         jmCadastrar.setText("Cadastrar");
 
+        jmcPessoaFisica.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmcPessoaFisica.setText("Pessoa Física");
         jmcPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,6 +66,7 @@ public class App extends javax.swing.JFrame {
         });
         jmCadastrar.add(jmcPessoaFisica);
 
+        jmcPessoaJuridica.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmcPessoaJuridica.setText("Pessoa Jurídica");
         jmcPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +77,7 @@ public class App extends javax.swing.JFrame {
 
         jmClientes.add(jmCadastrar);
 
+        jmListarrCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmListarrCliente.setText("Listar");
         jmClientes.add(jmListarrCliente);
 

@@ -43,16 +43,6 @@ public class FormularioCadastroPessoaFisica extends FormularioPadraoCadastro {
         jtData = new JTextField();
         jtData.setBounds(200,25,250,25);
         jpOtherInfo.add(jtData);
-        
-        jlGenero = new JLabel("Gênero");
-        jlGenero.setBounds(25,65,55,25);
-        jlGenero.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        jpOtherInfo.add(jlGenero);
-        
-        String[] genders = pegarGeneros();
-        jcbGenero = new JComboBox(genders);
-        jcbGenero.setBounds(75,65,105,25);
-        jpOtherInfo.add(jcbGenero);
     }
     
     @Override
@@ -60,15 +50,7 @@ public class FormularioCadastroPessoaFisica extends FormularioPadraoCadastro {
         JOptionPane.showMessageDialog(null, "Pessoa Salva");
     }
     
-    private String[] pegarGeneros() {
-        Genero[]  generos = Genero.values();
-        String[] genderNames = new String[generos.length];
-        for (int i = 0; i < generos.length; i++) {
-            genderNames[i] = capitalizeString(generos[i].toString());
-        }
-        
-        return genderNames;
-    }
+    
     private static String capitalizeString(String str) {
         // Verifica se a string não está vazia
         if (str == null || str.isEmpty()) {
