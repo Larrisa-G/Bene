@@ -4,16 +4,20 @@ package com.app.paginas.cliente;
 import com.app.entidades.pessoas.Genero;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.interfaces.InterfaceCadastroPessoas;
+import com.app.util.Validador;
 import com.app.util.ValoresEnum;
+import javax.swing.JOptionPane;
 
 public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFrame implements InterfaceCadastroPessoas {
-
+    
+    private Validador validador;
     
     public FormularioPadraoCadastro() {
         initComponents();
         initOtherComponents();
         habilitarBtns(true);
         habilitarCampos(false);
+        validador = new Validador();
     }
     
     private void habilitarBtns(boolean value) {
@@ -427,7 +431,14 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
     }//GEN-LAST:event_jcGeneroActionPerformed
 
     private void jbBuscaCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscaCepActionPerformed
-        // TODO add your handling code here:
+        String cep = jtCep.getText();
+        
+        try {
+            validador.validaCep(cep);
+            JOptionPane.showMessageDialog(null, "Cep Válido");
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Cep Inválido");
+        }
     }//GEN-LAST:event_jbBuscaCepActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
