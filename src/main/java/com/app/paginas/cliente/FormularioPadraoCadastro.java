@@ -1,11 +1,13 @@
 
 package com.app.paginas.cliente;
 
+import com.app.api.BuscaCep;
 import com.app.entidades.pessoas.Genero;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.interfaces.InterfaceCadastroPessoas;
 import com.app.util.Validador;
 import com.app.util.ValoresEnum;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFrame implements InterfaceCadastroPessoas {
@@ -435,9 +437,12 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
         
         try {
             validador.validaCep(cep);
-            JOptionPane.showMessageDialog(null, "Cep Válido");
+            String endereco =  BuscaCep.buscar(cep);
+            JOptionPane.showMessageDialog(null, endereco);
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Cep Inválido");
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jbBuscaCepActionPerformed
 
