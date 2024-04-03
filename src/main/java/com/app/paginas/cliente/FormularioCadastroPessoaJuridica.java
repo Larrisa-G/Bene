@@ -57,4 +57,11 @@ public class FormularioCadastroPessoaJuridica extends FormularioPadraoCadastro{
         //
     }
     
+    @Override
+    public void habilitarOutrosCampos(boolean value) {
+        jtCNPJ.setEnabled(value);
+        jtInscricaoEstadual.setEnabled(value);
+        jtFundacao.setEnabled(value);
+    }
+    
 }
