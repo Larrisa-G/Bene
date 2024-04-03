@@ -2,6 +2,7 @@
 package com.app.paginas.cliente;
 
 import com.app.api.BuscaCep;
+import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.Genero;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.interfaces.InterfaceCadastroPessoas;
@@ -372,7 +373,7 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
         );
         jpOtherInfoLayout.setVerticalGroup(
             jpOtherInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 117, Short.MAX_VALUE)
+            .addGap(0, 124, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -383,7 +384,7 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpOtherInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpOtherInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -391,10 +392,10 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpOtherInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -436,9 +437,15 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
         String cep = jtCep.getText();
         
         try {
-            validador.validaCep(cep);
-            String endereco =  BuscaCep.buscar(cep);
-            JOptionPane.showMessageDialog(null, endereco);
+            //validador.validaCep(cep);
+            Endereco endereco =  BuscaCep.buscar(cep);
+            
+            jtBairro.setText(endereco.getBairro());
+            jtCidade.setText(endereco.getCidade());
+            jtComplemento.setText(endereco.getComplemento());
+            jtLogradouro.setText(endereco.getLogradouro());
+            jtNumero.setText(String.valueOf(endereco.getNumero()));
+            jtUf.setText(endereco.getUf());
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         } catch (IOException e) {
