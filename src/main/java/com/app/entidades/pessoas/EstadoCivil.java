@@ -7,5 +7,10 @@ public enum EstadoCivil {
      CASADO, 
      SEPARADO, 
      DIVORCIADO,
-     VIUVO
+     VIUVO,
+     SOLTEIRA, 
+    CASADA, 
+    SEPARADA, 
+    DIVORCIADA,
+    VIUVA
 }

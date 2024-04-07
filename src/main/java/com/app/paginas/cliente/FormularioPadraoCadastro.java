@@ -9,6 +9,7 @@ import com.app.interfaces.InterfaceCadastroPessoas;
 import com.app.util.Validador;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFrame implements InterfaceCadastroPessoas {
@@ -175,8 +176,7 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
 
         jLabel11.setText("Estado Civil");
 
-        String[] estadosCivis = ValoresEnum.obterValoresEnum(EstadoCivil.class);
-        jcEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(estadosCivis));
+        jcEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"--Selecione--"}));
         jcEstadoCivil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcEstadoCivilActionPerformed(evt);
@@ -241,9 +241,9 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,7 +430,25 @@ public abstract class FormularioPadraoCadastro extends javax.swing.JInternalFram
     }//GEN-LAST:event_jtCpfActionPerformed
 
     private void jcGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcGeneroActionPerformed
-        // TODO add your handling code here:
+        
+        String selectedGenero = (String) jcGenero.getSelectedItem();
+        
+        switch(selectedGenero) {
+            case "FEMININO":
+                String[] generosFemininos = ValoresEnum.separarGenero(EstadoCivil.class,"a");
+                jcEstadoCivil.setModel(new DefaultComboBoxModel<>(generosFemininos));
+               
+                break;
+            case "--Selecione--":
+                jcEstadoCivil.setModel(new DefaultComboBoxModel<>(new String[] {"--Selecione--"}));
+                break;
+            default:
+                String[] generosMasculinos = ValoresEnum.separarGenero(EstadoCivil.class,"o");
+                jcEstadoCivil.setModel(new DefaultComboBoxModel<>(generosMasculinos));
+                break;
+        }
+           
+        
     }//GEN-LAST:event_jcGeneroActionPerformed
 
     private void jbBuscaCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscaCepActionPerformed
