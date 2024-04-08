@@ -1,10 +1,13 @@
 
 package com.app.paginas.cliente;
 
+import com.app.api.BuscaCep;
+import com.app.entidades.endereco.Endereco;
 import javax.swing.JOptionPane;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Genero;
 import com.app.util.ValoresEnum;
+import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
 public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
 
@@ -267,8 +270,8 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
                             .addGroup(jpInputsLayout.createSequentialGroup()
                                 .addGroup(jpInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlBairro)
-                                    .addComponent(jtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(68, 68, 68)
+                                    .addComponent(jtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(jpInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlCidade)
                                     .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -396,7 +399,26 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarPessoaActionPerformed
 
     private void jbBuscarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepActionPerformed
-         JOptionPane.showMessageDialog(null, "Buscando Cep");
+        try {
+            Endereco endereco = BuscaCep.buscar(jtCEP.getText().trim());
+            jtCEP.setText(endereco.getCep());
+        
+            jtLogradouro.setText(endereco.getLogradouro());
+            jtNumero.setText(String.valueOf(endereco.getNumero()));
+            jtComplemento.setText(endereco.getComplemento());
+
+            jtBairro.setText(endereco.getBairro());
+            jtCidade.setText(endereco.getCidade());
+            jtUF.setText(endereco.getUf());
+
+            jtEstado.setText(endereco.getEstado());
+            
+        } catch(IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } 
+        
+         
+         
     }//GEN-LAST:event_jbBuscarCepActionPerformed
 
     private void jcbGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbGeneroActionPerformed

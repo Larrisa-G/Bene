@@ -195,10 +195,10 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jlBairro" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jtBairro" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="jlBairro" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jtBairro" min="-2" pref="200" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jlCidade" min="-2" max="-2" attributes="0"/>
                                       <Component id="jtCidade" min="-2" pref="150" max="-2" attributes="0"/>
