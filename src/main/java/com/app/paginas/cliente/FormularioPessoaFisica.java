@@ -373,11 +373,21 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
         habilitarBotoes(true);
         habilitarInputs(true);
+        jtNome.requestFocus();
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
-        habilitarBotoes(true);
-        habilitarInputs(true);
+        habilitarBotoes(false);
+        habilitarInputs(false);
+        jbNovo.setEnabled(false);
+        jbAlterar.setEnabled(false);
+        jbCancelar.setEnabled(true);
+        jbBuscarPessoa.setEnabled(true);
+        jtCPF.setEnabled(true);
+        jtCPF.requestFocus();
+        
+        //Só alguns campos que poderam mudar
+        
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed

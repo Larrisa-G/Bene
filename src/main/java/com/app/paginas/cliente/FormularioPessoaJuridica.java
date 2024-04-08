@@ -226,8 +226,14 @@ public class FormularioPessoaJuridica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
-        habilitarBotoes(true);
-        habilitarInputs(true);
+        habilitarBotoes(false);
+        habilitarInputs(false);
+        jbNovo.setEnabled(false);
+        jbAlterar.setEnabled(false);
+        jbCancelar.setEnabled(true);
+        jbBuscarCNPJ.setEnabled(true);
+        jtCNPJ.setEnabled(true);
+        jtCNPJ.requestFocus();
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed
