@@ -2,7 +2,10 @@
 package com.app.paginas.cliente;
 
 import javax.swing.JOptionPane;
-
+import com.app.entidades.pessoas.EstadoCivil;
+import com.app.entidades.pessoas.Genero;
+import com.app.util.ValoresEnum;
+import javax.swing.DefaultComboBoxModel;
 public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
 
     
@@ -164,11 +167,16 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
 
         jlGenero.setText("Gênero");
 
-        jcbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(ValoresEnum.obterValoresEnum(Genero.class)));
+        jcbGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbGeneroActionPerformed(evt);
+            }
+        });
 
         jlEstadoCivil.setText("Estado Civil");
 
-        jcbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"--Selecione--"}));
 
         jlNacionalidade.setText("Nacionalidade");
 
@@ -361,6 +369,22 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
     private void jbBuscarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepActionPerformed
          JOptionPane.showMessageDialog(null, "Buscando Cep");
     }//GEN-LAST:event_jbBuscarCepActionPerformed
+
+    private void jcbGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbGeneroActionPerformed
+        String selectedValue = (String) jcbGenero.getSelectedItem();
+        
+        switch(selectedValue) {
+            case "--Selecione--":
+                jcbEstadoCivil.setModel(new DefaultComboBoxModel(new String[] {"--Selecione--"}));
+                break;
+            case "FEMININO":
+                 jcbEstadoCivil.setModel(new DefaultComboBoxModel(ValoresEnum.separarGenero(EstadoCivil.class,"a")));
+                break;
+            default:
+                 jcbEstadoCivil.setModel(new DefaultComboBoxModel(ValoresEnum.separarGenero(EstadoCivil.class,"o")));
+                break;
+        }
+    }//GEN-LAST:event_jcbGeneroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
