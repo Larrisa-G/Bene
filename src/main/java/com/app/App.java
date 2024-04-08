@@ -2,7 +2,7 @@
 package com.app;
 
 import com.app.paginas.cliente.FormularioPessoaFisica;
-//import com.app.paginas.cliente.FormularioCadastroPessoaJuridica;
+import com.app.paginas.cliente.FormularioPessoaJuridica;
 import com.app.paginas.cliente.FormularioListarClientes;
 import com.app.util.CentralizarForm;
 import javax.swing.JFrame;
@@ -99,8 +99,8 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_jmcPessoaFisicaActionPerformed
 
     private void jmcPessoaJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaJuridicaActionPerformed
-        //FormularioCadastroPessoaJuridica formularioCadastroPessoaJuridica;
-        //centralizarForm.abrirFormulario(formularioCadastroPessoaJuridica=new FormularioCadastroPessoaJuridica(), jDesktop);
+        FormularioPessoaJuridica formularioPessoaJuridica;
+        centralizarForm.abrirFormulario(formularioPessoaJuridica=new FormularioPessoaJuridica(), jDesktop);
     }//GEN-LAST:event_jmcPessoaJuridicaActionPerformed
 
     private void jmListarrClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarrClienteActionPerformed
