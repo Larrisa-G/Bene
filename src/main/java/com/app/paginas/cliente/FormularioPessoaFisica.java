@@ -12,10 +12,11 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
     public FormularioPessoaFisica() {
         initComponents();
         setTitle("Formulário Pessoa Física");
-        changeBtnEnable(false);
+        habilitarBotoes(false);
+        habilitarInputs(false);
     }
     
-    private void changeBtnEnable(boolean value) {
+    private void habilitarBotoes(boolean value) {
         jbNovo.setEnabled(!value);
         jbAlterar.setEnabled(!value);
         
@@ -23,6 +24,30 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
         jbCancelar.setEnabled(value);
         jbBuscarCep.setEnabled(value);
         jbBuscarPessoa.setEnabled(value);
+    }
+    
+    private void habilitarInputs(boolean value) {
+        jtNome.setEnabled(value);
+        jtCPF.setEnabled(value);
+        jtRG.setEnabled(value);
+        
+        jcbGenero.setEnabled(value);
+        jcbEstadoCivil.setEnabled(value);
+        jtNacionalidade.setEnabled(value);
+        
+        jtDataNascimento.setEnabled(value);
+        jtProfissao.setEnabled(value);
+        jtCEP.setEnabled(value);
+        
+        jtLogradouro.setEnabled(value);
+        jtNumero.setEnabled(value);
+        jtComplemento.setEnabled(value);
+        
+        jtBairro.setEnabled(value);
+        jtCidade.setEnabled(value);
+        jtUF.setEnabled(value);
+        
+        jtEstado.setEnabled(value);
     }
 
     @SuppressWarnings("unchecked")
@@ -343,11 +368,13 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
-        changeBtnEnable(true);
+        habilitarBotoes(true);
+        habilitarInputs(true);
     }//GEN-LAST:event_jbNovoActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
-        changeBtnEnable(true);
+        habilitarBotoes(true);
+        habilitarInputs(true);
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed
@@ -355,11 +382,13 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbFecharActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        changeBtnEnable(false);
+        habilitarBotoes(false);
+        habilitarInputs(false);
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        changeBtnEnable(false);
+        habilitarBotoes(false);
+        habilitarInputs(false);
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbBuscarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPessoaActionPerformed
