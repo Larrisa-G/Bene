@@ -182,30 +182,7 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        /*
         
-        try {
-            GeneratePDF generatePDF = new GeneratePDF(
-                FilePath.getPath("contract_tampletes/CARTA COMUNICANDO PERDA DE CARTÃO DE CRÉDITO.doc"),
-                FilePath.getPath("final/t.doc"));
-            if(jtMotivo.getText().isEmpty() || jtMotivo.getText() == null) {
-                throw new IllegalArgumentException("Campo motivo está vazio");
-            }
-            generatePDF.openWord();
-            generatePDF.modifyWord("CONTRATANTE", jtContratante.getText());
-            generatePDF.modifyWord("CONTRATADO", jtContratado.getText());
-            generatePDF.modifyWord(
-                    "(xxx) (Descrever as circunstâncias em que se deu a perda, indicando a existência de documento comprovando).",
-                    jtMotivo.getText());
-            generatePDF.modifyWord("Em (xxx)", String.format("Em %s", jtAssinoCartao.getText()));
-            generatePDF.modifyWord("no dia (xxx)", String.format("no dia %s", jtAssinoCartao.getText()));
-            generatePDF.saveWord();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } catch (IllegalArgumentException e){
-             JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-        */
     }//GEN-LAST:event_jbGerarActionPerformed
 
     private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed
