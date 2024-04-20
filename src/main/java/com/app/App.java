@@ -4,6 +4,7 @@ package com.app;
 import com.app.paginas.cliente.FormularioPessoaFisica;
 import com.app.paginas.cliente.FormularioPessoaJuridica;
 import com.app.paginas.cliente.FormularioListarClientes;
+import com.app.paginas.contratos.PerdaCartao;
 import com.app.util.CentralizarForm;
 import javax.swing.JFrame;
 
@@ -28,6 +29,7 @@ public class App extends javax.swing.JFrame {
         jmListarrCliente = new javax.swing.JMenuItem();
         jmcPessoaJuridica = new javax.swing.JMenuItem();
         jmContratos = new javax.swing.JMenu();
+        jmcPerdaCartao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +76,15 @@ public class App extends javax.swing.JFrame {
         jMenuBar1.add(jmClientes);
 
         jmContratos.setText("Contratos");
+
+        jmcPerdaCartao.setText("Perda Cartão");
+        jmcPerdaCartao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPerdaCartaoActionPerformed(evt);
+            }
+        });
+        jmContratos.add(jmcPerdaCartao);
+
         jMenuBar1.add(jmContratos);
 
         setJMenuBar(jMenuBar1);
@@ -107,6 +118,11 @@ public class App extends javax.swing.JFrame {
         FormularioListarClientes formularioListarClientes;
         centralizarForm.abrirFormulario(formularioListarClientes=new FormularioListarClientes(), jDesktop);
     }//GEN-LAST:event_jmListarrClienteActionPerformed
+
+    private void jmcPerdaCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPerdaCartaoActionPerformed
+        PerdaCartao perdaCartao;
+        centralizarForm.abrirFormulario(perdaCartao=new PerdaCartao(), jDesktop);
+    }//GEN-LAST:event_jmcPerdaCartaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,6 +165,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenu jmClientes;
     private javax.swing.JMenu jmContratos;
     private javax.swing.JMenuItem jmListarrCliente;
+    private javax.swing.JMenuItem jmcPerdaCartao;
     private javax.swing.JMenuItem jmcPessoaFisica;
     private javax.swing.JMenuItem jmcPessoaJuridica;
     // End of variables declaration//GEN-END:variables
