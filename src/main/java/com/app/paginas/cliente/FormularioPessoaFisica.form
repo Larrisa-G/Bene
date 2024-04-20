@@ -27,7 +27,17 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jpButoes" max="32767" attributes="0"/>
-          <Component id="jpInputs" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="jpEndereco" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="jpDadosPessoais" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -35,7 +45,10 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jpButoes" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jpInputs" max="32767" attributes="0"/>
+              <Component id="jpDadosPessoais" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jpEndereco" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -142,240 +155,108 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jpInputs">
+    <Container class="javax.swing.JPanel" name="jpEndereco">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jlNome" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jtNome" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jlCPF" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jtCPF" min="-2" pref="125" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jlGenero" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jcbGenero" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jlEstadoCivil" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jcbEstadoCivil" min="-2" pref="140" max="-2" attributes="0"/>
-                                              <Component id="jlProfissao" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="jlDataNascimento" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jtProfissao" alignment="1" min="-2" pref="167" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jtDataNascimento" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jlLogradouro" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jtLogradouro" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jlNumero" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jtNumero" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jlBairro" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jtBairro" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jlCidade" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jtCidade" min="-2" pref="150" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="jlCEP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtCEP" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jlUF" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jlComplemento" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlNacionalidade" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlRG" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jtRG" max="32767" attributes="0"/>
-                                  <Component id="jtNacionalidade" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jtCEP" max="32767" attributes="0"/>
-                                  <Component id="jlCEP" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jtComplemento" alignment="0" pref="140" max="32767" attributes="0"/>
+                              <Component id="jlLogradouro" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtLogradouro" min="-2" pref="225" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jlNumero" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtNumero" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                              <Component id="jtCidade" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="jlCidade" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jtComplemento" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
+                                      <Component id="jlComplemento" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jtBairro" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="jlBairro" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jtUF" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jtUF" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="jlUF" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jlEstado" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jtEstado" min="-2" pref="150" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <Component id="jlEstado" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtEstado" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlCPF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlRG" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtCPF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtRG" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlGenero" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlNacionalidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jcbGenero" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcbEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtNacionalidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlDataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlProfissao" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlCEP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtDataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtProfissao" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtCEP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlBairro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtBairro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlBairro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlUF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtBairro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtUF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="jlEstado" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jtEstado" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jlNome">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nome"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtNome">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlCPF">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="CPF"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtCPF">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlRG">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="RG"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtRG">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlGenero">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="G&#xea;nero"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="jcbGenero">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(ValoresEnum.obterValoresEnum(Genero.class))" type="code"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbGeneroActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlEstadoCivil">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Estado Civil"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="jcbEstadoCivil">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] {&quot;--Selecione--&quot;})" type="code"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlNacionalidade">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nacionalidade"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtNacionalidade">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlDataNascimento">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Data de Nascimento"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtDataNascimento">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlProfissao">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Profiss&#xe3;o"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtProfissao">
-        </Component>
         <Component class="javax.swing.JLabel" name="jlCEP">
           <Properties>
             <Property name="text" type="java.lang.String" value="CEP"/>
@@ -431,6 +312,185 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtEstado">
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jpDadosPessoais">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jlNome" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtNome" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
+                      <Component id="jlGenero" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlDataNascimento" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jtDataNascimento" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jcbGenero" alignment="0" pref="154" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jlCPF" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtCPF" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jtRG" max="32767" attributes="0"/>
+                              <Component id="jlRG" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jcbEstadoCivil" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="jlEstadoCivil" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jlNacionalidade" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jtNacionalidade" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jlProfissao" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtProfissao" min="-2" pref="167" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jlNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlCPF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlRG" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jtNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtCPF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtRG" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jlGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlNacionalidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jcbGenero" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcbEstadoCivil" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtNacionalidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jlDataNascimento" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="jlProfissao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jtDataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtProfissao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextField" name="jtNome">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlNome">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nome"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlCPF">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CPF"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtCPF">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlRG">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="RG"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtRG">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jcbGenero">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(ValoresEnum.obterValoresEnum(Genero.class))" type="code"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbGeneroActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlGenero">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="G&#xea;nero"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlEstadoCivil">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Estado Civil"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jcbEstadoCivil">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] {&quot;--Selecione--&quot;})" type="code"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtNacionalidade">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlNacionalidade">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nacionalidade"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtDataNascimento">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlDataNascimento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Data de Nascimento"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlProfissao">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Profiss&#xe3;o"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtProfissao">
         </Component>
       </SubComponents>
     </Container>
