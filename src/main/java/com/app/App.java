@@ -25,9 +25,9 @@ public class App extends javax.swing.JFrame {
         jDesktop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
+        jmcPessoaJuridica = new javax.swing.JMenuItem();
         jmcPessoaFisica = new javax.swing.JMenuItem();
         jmListarrCliente = new javax.swing.JMenuItem();
-        jmcPessoaJuridica = new javax.swing.JMenuItem();
         jmContratos = new javax.swing.JMenu();
         jmcPerdaCartao = new javax.swing.JMenuItem();
 
@@ -46,6 +46,15 @@ public class App extends javax.swing.JFrame {
 
         jmClientes.setText("Clientes");
 
+        jmcPessoaJuridica.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmcPessoaJuridica.setText("Pessoa Jurídica");
+        jmcPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPessoaJuridicaActionPerformed(evt);
+            }
+        });
+        jmClientes.add(jmcPessoaJuridica);
+
         jmcPessoaFisica.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmcPessoaFisica.setText("Pessoa Física");
         jmcPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
@@ -63,15 +72,6 @@ public class App extends javax.swing.JFrame {
             }
         });
         jmClientes.add(jmListarrCliente);
-
-        jmcPessoaJuridica.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmcPessoaJuridica.setText("Pessoa Jurídica");
-        jmcPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmcPessoaJuridicaActionPerformed(evt);
-            }
-        });
-        jmClientes.add(jmcPessoaJuridica);
 
         jMenuBar1.add(jmClientes);
 
@@ -103,26 +103,26 @@ public class App extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmcPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaFisicaActionPerformed
-        FormularioPessoaFisica formularioPessoaFisica;
-        centralizarForm.abrirFormulario(formularioPessoaFisica=new FormularioPessoaFisica(), jDesktop);
-        
-    }//GEN-LAST:event_jmcPessoaFisicaActionPerformed
-
-    private void jmcPessoaJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaJuridicaActionPerformed
-        FormularioPessoaJuridica formularioPessoaJuridica;
-        centralizarForm.abrirFormulario(formularioPessoaJuridica=new FormularioPessoaJuridica(), jDesktop);
-    }//GEN-LAST:event_jmcPessoaJuridicaActionPerformed
+    private void jmcPerdaCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPerdaCartaoActionPerformed
+        PerdaCartao perdaCartao;
+        centralizarForm.abrirFormulario(perdaCartao=new PerdaCartao(), jDesktop);
+    }//GEN-LAST:event_jmcPerdaCartaoActionPerformed
 
     private void jmListarrClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarrClienteActionPerformed
         FormularioListarClientes formularioListarClientes;
         centralizarForm.abrirFormulario(formularioListarClientes=new FormularioListarClientes(), jDesktop);
     }//GEN-LAST:event_jmListarrClienteActionPerformed
 
-    private void jmcPerdaCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPerdaCartaoActionPerformed
-        PerdaCartao perdaCartao;
-        centralizarForm.abrirFormulario(perdaCartao=new PerdaCartao(), jDesktop);
-    }//GEN-LAST:event_jmcPerdaCartaoActionPerformed
+    private void jmcPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaFisicaActionPerformed
+        FormularioPessoaFisica formularioPessoaFisica;
+        centralizarForm.abrirFormulario(formularioPessoaFisica=new FormularioPessoaFisica(), jDesktop);
+
+    }//GEN-LAST:event_jmcPessoaFisicaActionPerformed
+
+    private void jmcPessoaJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaJuridicaActionPerformed
+        FormularioPessoaJuridica formularioPessoaJuridica;
+        centralizarForm.abrirFormulario(formularioPessoaJuridica=new FormularioPessoaJuridica(), jDesktop);
+    }//GEN-LAST:event_jmcPessoaJuridicaActionPerformed
 
     /**
      * @param args the command line arguments

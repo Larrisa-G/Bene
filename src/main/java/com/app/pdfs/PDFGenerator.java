@@ -18,15 +18,17 @@ public class PDFGenerator {
     @Setter
     private String outputFilePath;
     
-    public void openWord() throws IOException{
+    public void openWord() throws IOException,FileNotFoundException{
         
         try(FileInputStream fis = new FileInputStream(inputFilePath);) {
             
             document = new HWPFDocument(fis);
             fis.close();
+        } catch (FileNotFoundException e) {
+            throw new FileNotFoundException(String.format("Arquivo: %s não encontrado",inputFilePath));
         } catch (IOException e) {
             throw new IOException(e.getMessage());
-        }
+        } 
     }
     
     public void modifyWord(String searchText, String replacementText) {
@@ -39,12 +41,16 @@ public class PDFGenerator {
     };
     
     public void close() throws IOException{
-        try (FileOutputStream fos = new FileOutputStream(outputFilePath);) {   
+         try (FileOutputStream fos = new FileOutputStream(outputFilePath)) {
             document.write(fos);
-            fos.close();
-            document.close();
         } catch (FileNotFoundException e) {
-            throw new IOException(e.getMessage());
+            throw new FileNotFoundException("Arquivo de saída não encontrado: " + e.getMessage());
+        } catch (IOException e) {
+            throw new IOException("Erro ao fechar o arquivo: " + e.getMessage());
+        } finally {
+            if (document != null) {
+                document.close();
+            }
         }
     }
 }

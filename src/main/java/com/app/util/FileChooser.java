@@ -26,7 +26,7 @@ public class FileChooser {
                 return selectedDirectory;
                 
             } else {
-                throw new IOException("Caminho não especificado");
+                throw new IOException("Caminho para salvar não especificado");
             }   
     }
     
