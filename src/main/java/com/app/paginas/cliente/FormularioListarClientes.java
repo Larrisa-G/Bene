@@ -1,9 +1,6 @@
 
 package com.app.paginas.cliente;
 
-import javax.swing.ButtonModel;
-import javax.swing.JOptionPane;
-
 
 public class FormularioListarClientes extends javax.swing.JInternalFrame {
 

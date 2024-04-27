@@ -35,7 +35,6 @@ public class PDFGenerator {
         Range range = document.getRange();
         String text = range.text();
         if (text.contains(searchText)) {
-            //text = text.replace(searchText, replacementText);
             range.replaceText(searchText, replacementText);
         }
     };

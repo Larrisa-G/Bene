@@ -10,12 +10,12 @@ public class FileChooser {
     
     public static String getPath() throws IOException{
      JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES); // Permitir apenas seleção de diretórios
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             fileChooser.setDialogTitle("Escolha um diretório para salvar");
             FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos Word", "doc");
             fileChooser.setFileFilter(filter);
 
-            int returnValue = fileChooser.showSaveDialog(null); // Exibir o diálogo de seleção de arquivo para salvar
+            int returnValue = fileChooser.showSaveDialog(null);
 
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 String selectedDirectory = fileChooser.getSelectedFile().getAbsolutePath();
