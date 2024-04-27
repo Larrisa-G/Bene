@@ -1,7 +1,0 @@
-Semana 1 : Criar Classes [Pessoa,Fisica,Juridica] [api cep]                          18/03
-Semana 2 : Criar Banco de dados dos Clientes [armazenar, localizar, exibir, editar]  25/03
-Semana 3 : Gerar/alterar pdf                                                         01/04
-Semana 4 : Usuário, Api[enviar, receber, salvar numa pasta do pc]                    08/04
-Semana 5 : margem de erro                                                            15/03
-Semana 6 : Interface                                                                 22/04
-Semana 7 : Integração                                                                29/04

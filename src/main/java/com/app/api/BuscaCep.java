@@ -8,12 +8,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import javax.swing.JOptionPane;
 import org.json.JSONObject;
 
 
 public class BuscaCep {
-    private static String errorMsg = "Falha ao buscar informações do CEP";
+    private static final String ERRORMSG = "Falha ao buscar informações do CEP";
     public static Endereco buscar(String cep) throws IOException {
        try {
         String url = "https://viacep.com.br/ws/" + cep + "/json/";
@@ -33,10 +32,10 @@ public class BuscaCep {
             Endereco response = fromApiResponse(resposta.toString());
             return response;
         } else {
-                throw new IOException(errorMsg);
+                throw new IOException(ERRORMSG);
             }
         } catch (IOException e) {
-            throw new IOException(errorMsg);
+            throw new IOException(ERRORMSG);
         }
     }
     
@@ -46,7 +45,7 @@ public class BuscaCep {
         JSONObject json = new JSONObject(apiResponse);
        
         if(json.optBoolean("erro",false)) {
-            throw new IOException(errorMsg);
+            throw new IOException(ERRORMSG);
         }
         
         endereco.setCep(json.getString("cep"));
@@ -65,63 +64,35 @@ public class BuscaCep {
         
         UF uf = UF.valueOf(stringUf);
        
-        switch (uf) {
-            case AC:
-                return "Acre";
-            case AL:
-                return "Alagoas";
-            case AP:
-                return "Amapá";
-            case AM:
-                return "Amazonas";
-            case BA:
-                return "Bahia";
-            case CE:
-                return "Ceará";
-            case DF:
-                return "Distrito Federal";
-            case ES:
-                return "Espírito Santo";
-            case GO:
-                return "Goiás";
-            case MA:
-                return "Maranhão";
-            case MT:
-                return "Mato Grosso";
-            case MS:
-                return "Mato Grosso do Sul";
-            case MG:
-                return "Minas Gerais";
-            case PA:
-                return "Pará";
-            case PB:
-                return "Paraíba";
-            case PR:
-                return "Paraná";
-            case PE:
-                return "Pernambuco";
-            case PI:
-                return "Piauí";
-            case RJ:
-                return "Rio de Janeiro";
-            case RN:
-                return "Rio Grande do Norte";
-            case RS:
-                return "Rio Grande do Sul";
-            case RO:
-                return "Rondônia";
-            case RR:
-                return "Roraima";
-            case SC:
-                return "Santa Catarina";
-            case SP:
-                return "São Paulo";
-            case SE:
-                return "Sergipe";
-            case TO:
-                return "Tocantins";
-            default:
-                return "UF não reconhecida";
-        }
+        return switch (uf) {
+            case AC -> "Acre";
+            case AL -> "Alagoas";
+            case AP -> "Amapá";
+            case AM -> "Amazonas";
+            case BA -> "Bahia";
+            case CE -> "Ceará";
+            case DF -> "Distrito Federal";
+            case ES -> "Espírito Santo";
+            case GO -> "Goiás";
+            case MA -> "Maranhão";
+            case MT -> "Mato Grosso";
+            case MS -> "Mato Grosso do Sul";
+            case MG -> "Minas Gerais";
+            case PA -> "Pará";
+            case PB -> "Paraíba";
+            case PR -> "Paraná";
+            case PE -> "Pernambuco";
+            case PI -> "Piauí";
+            case RJ -> "Rio de Janeiro";
+            case RN -> "Rio Grande do Norte";
+            case RS -> "Rio Grande do Sul";
+            case RO -> "Rondônia";
+            case RR -> "Roraima";
+            case SC -> "Santa Catarina";
+            case SP -> "São Paulo";
+            case SE -> "Sergipe";
+            case TO -> "Tocantins";
+            default -> "UF não reconhecida";
+        };
     }
 }

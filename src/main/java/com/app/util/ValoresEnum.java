@@ -28,6 +28,6 @@ public class ValoresEnum {
             }
         }
         
-        return generosSeparados.toArray(new String[0]);
+        return generosSeparados.toArray(String[]::new);
     } 
 }
