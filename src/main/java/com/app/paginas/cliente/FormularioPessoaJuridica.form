@@ -163,6 +163,20 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jpDadosEmpresa">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder justification="1" title="Dados Empresariais">
+              <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder>
+                  <Color PropertyName="highlight" blue="66" green="66" red="66" type="rgb"/>
+                </EtchetBorder>
+              </Border>
+              <Font PropertyName="font" name="Courier New" size="14" style="1"/>
+            </TitledBorder>
+          </Border>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -177,10 +191,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jlCadastroEstadual" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jlCadastroEstadual" min="-2" max="-2" attributes="0"/>
                               <Component id="jtCadastroEstadual" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -270,6 +281,20 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jpEndereco">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Endere&#xe7;o">
+              <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder>
+                  <Color PropertyName="highlight" blue="66" green="66" red="66" type="rgb"/>
+                </EtchetBorder>
+              </Border>
+              <Font PropertyName="font" name="Courier New" size="14" style="1"/>
+            </TitledBorder>
+          </Border>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -287,7 +312,7 @@
                               <Component id="jtLogradouro" alignment="0" min="-2" pref="225" max="-2" attributes="0"/>
                               <Component id="jlLogradouro" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="28" max="32767" attributes="0"/>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jtNumero" min="-2" pref="113" max="-2" attributes="0"/>
                               <Component id="jlNumero" min="-2" max="-2" attributes="0"/>
@@ -366,7 +391,7 @@
                       <Component id="jtUF" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="49" max="32767" attributes="0"/>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

@@ -31,9 +31,13 @@ public class App extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
-        jmcPessoaJuridica = new javax.swing.JMenuItem();
-        jmcPessoaFisica = new javax.swing.JMenuItem();
         jmListarrCliente = new javax.swing.JMenuItem();
+        jmPessoaFisica = new javax.swing.JMenu();
+        jmcPFCriar = new javax.swing.JMenuItem();
+        jmcPFAlterar = new javax.swing.JMenuItem();
+        jmPessoaJuridica = new javax.swing.JMenu();
+        jmcPJCriar = new javax.swing.JMenuItem();
+        jmcPJAlterar = new javax.swing.JMenuItem();
         jmContratos = new javax.swing.JMenu();
         jmcPerdaCartao = new javax.swing.JMenuItem();
 
@@ -85,24 +89,6 @@ public class App extends javax.swing.JFrame {
 
         jmClientes.setText("Clientes");
 
-        jmcPessoaJuridica.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmcPessoaJuridica.setText("Pessoa Jurídica");
-        jmcPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmcPessoaJuridicaActionPerformed(evt);
-            }
-        });
-        jmClientes.add(jmcPessoaJuridica);
-
-        jmcPessoaFisica.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmcPessoaFisica.setText("Pessoa Física");
-        jmcPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmcPessoaFisicaActionPerformed(evt);
-            }
-        });
-        jmClientes.add(jmcPessoaFisica);
-
         jmListarrCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmListarrCliente.setText("Listar");
         jmListarrCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +97,40 @@ public class App extends javax.swing.JFrame {
             }
         });
         jmClientes.add(jmListarrCliente);
+
+        jmPessoaFisica.setText("Pessoa Física");
+
+        jmcPFCriar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmcPFCriar.setText("Criar");
+        jmcPFCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPFCriarActionPerformed(evt);
+            }
+        });
+        jmPessoaFisica.add(jmcPFCriar);
+
+        jmcPFAlterar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmcPFAlterar.setText("Alterar");
+        jmPessoaFisica.add(jmcPFAlterar);
+
+        jmClientes.add(jmPessoaFisica);
+
+        jmPessoaJuridica.setText("Pessoa Jurídica");
+
+        jmcPJCriar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmcPJCriar.setText("Criar");
+        jmcPJCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPJCriarActionPerformed(evt);
+            }
+        });
+        jmPessoaJuridica.add(jmcPJCriar);
+
+        jmcPJAlterar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmcPJAlterar.setText("Alterar");
+        jmPessoaJuridica.add(jmcPJAlterar);
+
+        jmClientes.add(jmPessoaJuridica);
 
         jMenuBar1.add(jmClientes);
 
@@ -156,16 +176,16 @@ public class App extends javax.swing.JFrame {
         centralizarForm.abrirFormulario(formularioListarClientes=new FormularioListarClientes(), jDesktop);
     }//GEN-LAST:event_jmListarrClienteActionPerformed
 
-    private void jmcPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaFisicaActionPerformed
+    private void jmcPFCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPFCriarActionPerformed
         FormularioPessoaFisica formularioPessoaFisica;
         centralizarForm.abrirFormulario(formularioPessoaFisica=new FormularioPessoaFisica(), jDesktop);
 
-    }//GEN-LAST:event_jmcPessoaFisicaActionPerformed
+    }//GEN-LAST:event_jmcPFCriarActionPerformed
 
-    private void jmcPessoaJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaJuridicaActionPerformed
+    private void jmcPJCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPJCriarActionPerformed
         FormularioPessoaJuridica formularioPessoaJuridica;
         centralizarForm.abrirFormulario(formularioPessoaJuridica=new FormularioPessoaJuridica(), jDesktop);
-    }//GEN-LAST:event_jmcPessoaJuridicaActionPerformed
+    }//GEN-LAST:event_jmcPJCriarActionPerformed
 
     
 
@@ -179,8 +199,12 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenu jmClientes;
     private javax.swing.JMenu jmContratos;
     private javax.swing.JMenuItem jmListarrCliente;
+    private javax.swing.JMenu jmPessoaFisica;
+    private javax.swing.JMenu jmPessoaJuridica;
+    private javax.swing.JMenuItem jmcPFAlterar;
+    private javax.swing.JMenuItem jmcPFCriar;
+    private javax.swing.JMenuItem jmcPJAlterar;
+    private javax.swing.JMenuItem jmcPJCriar;
     private javax.swing.JMenuItem jmcPerdaCartao;
-    private javax.swing.JMenuItem jmcPessoaFisica;
-    private javax.swing.JMenuItem jmcPessoaJuridica;
     // End of variables declaration//GEN-END:variables
 }
