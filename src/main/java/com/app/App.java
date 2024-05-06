@@ -2,10 +2,11 @@
 package com.app;
 
 import com.app.paginas.pessoa.fisica.FormularioCriarPessoaFisica;
-import com.app.paginas.pessoa.juridica.FormularioPessoaJuridica;
+import com.app.paginas.pessoa.juridica.FormularioCriarPessoaJuridica;
 import com.app.paginas.pessoa.FormularioListarClientes;
 import com.app.paginas.contratos.PerdaCartao;
 import com.app.paginas.pessoa.fisica.FormularioAlterarPessoaFisica;
+import com.app.paginas.pessoa.juridica.FormularioAlterarPessoaJuridica;
 import com.app.util.CentralizarForm;
 import javax.swing.JFrame;
 
@@ -134,6 +135,11 @@ public class App extends javax.swing.JFrame {
 
         jmcPJAlterar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmcPJAlterar.setText("Alterar");
+        jmcPJAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPJAlterarActionPerformed(evt);
+            }
+        });
         jmPessoaJuridica.add(jmcPJAlterar);
 
         jmClientes.add(jmPessoaJuridica);
@@ -189,14 +195,19 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_jmcPFCriarActionPerformed
 
     private void jmcPJCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPJCriarActionPerformed
-        FormularioPessoaJuridica formularioPessoaJuridica;
-        centralizarForm.abrirFormulario(formularioPessoaJuridica=new FormularioPessoaJuridica(), jDesktop);
+        FormularioCriarPessoaJuridica criarPessoaJuridica;
+        centralizarForm.abrirFormulario(criarPessoaJuridica=new FormularioCriarPessoaJuridica(), jDesktop);
     }//GEN-LAST:event_jmcPJCriarActionPerformed
 
     private void jmcPFAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPFAlterarActionPerformed
         FormularioAlterarPessoaFisica formularioAlterarPessoaFisica;
         centralizarForm.abrirFormulario(formularioAlterarPessoaFisica=new FormularioAlterarPessoaFisica(), jDesktop);
     }//GEN-LAST:event_jmcPFAlterarActionPerformed
+
+    private void jmcPJAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPJAlterarActionPerformed
+         FormularioAlterarPessoaJuridica formularioAlterarPessoaJuridica;
+        centralizarForm.abrirFormulario(formularioAlterarPessoaJuridica=new FormularioAlterarPessoaJuridica(), jDesktop);
+    }//GEN-LAST:event_jmcPJAlterarActionPerformed
 
     
 
