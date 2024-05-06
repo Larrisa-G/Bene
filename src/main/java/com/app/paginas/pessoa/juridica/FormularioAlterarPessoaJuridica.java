@@ -361,8 +361,17 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
-        habilitarBotoes(true);
+        habilitarBotoes(false);
+        habilitarInputs(false);
+        
         jtCNPJ.setEnabled(true);
+        jtCNPJ.requestFocus();
+        jbAlterar.setEnabled(false);
+        jbCancelar.setEnabled(true);
+        jbBuscarCNPJ.setEnabled(true);
+    
+       
+        
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed
