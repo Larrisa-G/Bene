@@ -70,7 +70,6 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
         jbCancelar = new javax.swing.JButton();
         jpEndereco = new javax.swing.JPanel();
         jlCEP = new javax.swing.JLabel();
-        jtCEP = new javax.swing.JTextField();
         jlLogradouro = new javax.swing.JLabel();
         jtLogradouro = new javax.swing.JTextField();
         jlNumero = new javax.swing.JLabel();
@@ -85,23 +84,24 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
         jtUF = new javax.swing.JTextField();
         jlEstado = new javax.swing.JLabel();
         jtEstado = new javax.swing.JTextField();
+        jtCEP = new javax.swing.JFormattedTextField();
         jpDadosPessoais = new javax.swing.JPanel();
         jtNome = new javax.swing.JTextField();
         jlNome = new javax.swing.JLabel();
         jlCPF = new javax.swing.JLabel();
-        jtCPF = new javax.swing.JTextField();
         jlRG = new javax.swing.JLabel();
-        jtRG = new javax.swing.JTextField();
         jcbGenero = new javax.swing.JComboBox<>();
         jlGenero = new javax.swing.JLabel();
         jlEstadoCivil = new javax.swing.JLabel();
         jcbEstadoCivil = new javax.swing.JComboBox<>();
         jtNacionalidade = new javax.swing.JTextField();
         jlNacionalidade = new javax.swing.JLabel();
-        jtDataNascimento = new javax.swing.JTextField();
         jlDataNascimento = new javax.swing.JLabel();
         jlProfissao = new javax.swing.JLabel();
         jtProfissao = new javax.swing.JTextField();
+        jtCPF = new javax.swing.JFormattedTextField();
+        jtDataNascimento = new javax.swing.JFormattedTextField();
+        jtRG = new javax.swing.JFormattedTextField();
 
         jTextField4.setText("jTextField4");
 
@@ -167,7 +167,7 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
                 .addComponent(jbSalvar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jbBuscarPessoa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbBuscarCep)
@@ -208,6 +208,12 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
 
         jlEstado.setText("Estado");
 
+        try {
+            jtCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jpEnderecoLayout = new javax.swing.GroupLayout(jpEndereco);
         jpEndereco.setLayout(jpEnderecoLayout);
         jpEnderecoLayout.setHorizontalGroup(
@@ -217,9 +223,12 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpEnderecoLayout.createSequentialGroup()
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlCEP)
-                            .addComponent(jtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jpEnderecoLayout.createSequentialGroup()
+                                .addComponent(jlCEP)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jpEnderecoLayout.createSequentialGroup()
+                                .addComponent(jtCEP)
+                                .addGap(117, 117, 117)))
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlLogradouro)
                             .addComponent(jtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -260,8 +269,8 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
                     .addComponent(jlLogradouro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlNumero)
@@ -312,6 +321,24 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
 
         jlProfissao.setText("Profissão");
 
+        try {
+            jtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jtDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jtRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jpDadosPessoaisLayout = new javax.swing.GroupLayout(jpDadosPessoais);
         jpDadosPessoais.setLayout(jpDadosPessoaisLayout);
         jpDadosPessoaisLayout.setHorizontalGroup(
@@ -331,12 +358,12 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
                     .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
                         .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlCPF)
-                            .addComponent(jtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                            .addComponent(jtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtRG)
-                            .addComponent(jlRG))
-                        .addGap(54, 54, 54))
+                            .addComponent(jlRG)
+                            .addComponent(jtRG, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
                     .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
                         .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,11 +409,15 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
                 .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlProfissao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(jtProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))
+                    .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -525,18 +556,18 @@ public class FormularioPessoaFisica extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpDadosPessoais;
     private javax.swing.JPanel jpEndereco;
     private javax.swing.JTextField jtBairro;
-    private javax.swing.JTextField jtCEP;
-    private javax.swing.JTextField jtCPF;
+    private javax.swing.JFormattedTextField jtCEP;
+    private javax.swing.JFormattedTextField jtCPF;
     private javax.swing.JTextField jtCidade;
     private javax.swing.JTextField jtComplemento;
-    private javax.swing.JTextField jtDataNascimento;
+    private javax.swing.JFormattedTextField jtDataNascimento;
     private javax.swing.JTextField jtEstado;
     private javax.swing.JTextField jtLogradouro;
     private javax.swing.JTextField jtNacionalidade;
     private javax.swing.JTextField jtNome;
     private javax.swing.JTextField jtNumero;
     private javax.swing.JTextField jtProfissao;
-    private javax.swing.JTextField jtRG;
+    private javax.swing.JFormattedTextField jtRG;
     private javax.swing.JTextField jtUF;
     // End of variables declaration//GEN-END:variables
 }
