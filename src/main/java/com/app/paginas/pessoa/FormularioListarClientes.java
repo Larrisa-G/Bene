@@ -1,5 +1,5 @@
 
-package com.app.paginas.cliente;
+package com.app.paginas.pessoa;
 
 
 public class FormularioListarClientes extends javax.swing.JInternalFrame {

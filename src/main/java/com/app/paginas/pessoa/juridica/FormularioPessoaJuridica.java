@@ -1,5 +1,5 @@
 
-package com.app.paginas.cliente;
+package com.app.paginas.pessoa.juridica;
 
 import com.app.api.BuscaCep;
 import com.app.entidades.endereco.Endereco;

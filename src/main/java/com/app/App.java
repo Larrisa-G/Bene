@@ -1,10 +1,11 @@
 
 package com.app;
 
-import com.app.paginas.cliente.FormularioPessoaFisica;
-import com.app.paginas.cliente.FormularioPessoaJuridica;
-import com.app.paginas.cliente.FormularioListarClientes;
+import com.app.paginas.pessoa.fisica.FormularioCriarPessoaFisica;
+import com.app.paginas.pessoa.juridica.FormularioPessoaJuridica;
+import com.app.paginas.pessoa.FormularioListarClientes;
 import com.app.paginas.contratos.PerdaCartao;
+import com.app.paginas.pessoa.fisica.FormularioAlterarPessoaFisica;
 import com.app.util.CentralizarForm;
 import javax.swing.JFrame;
 
@@ -111,6 +112,11 @@ public class App extends javax.swing.JFrame {
 
         jmcPFAlterar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmcPFAlterar.setText("Alterar");
+        jmcPFAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPFAlterarActionPerformed(evt);
+            }
+        });
         jmPessoaFisica.add(jmcPFAlterar);
 
         jmClientes.add(jmPessoaFisica);
@@ -177,8 +183,8 @@ public class App extends javax.swing.JFrame {
     }//GEN-LAST:event_jmListarrClienteActionPerformed
 
     private void jmcPFCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPFCriarActionPerformed
-        FormularioPessoaFisica formularioPessoaFisica;
-        centralizarForm.abrirFormulario(formularioPessoaFisica=new FormularioPessoaFisica(), jDesktop);
+        FormularioCriarPessoaFisica formularioCriarPessoaFisica;
+        centralizarForm.abrirFormulario(formularioCriarPessoaFisica=new FormularioCriarPessoaFisica(), jDesktop);
 
     }//GEN-LAST:event_jmcPFCriarActionPerformed
 
@@ -186,6 +192,11 @@ public class App extends javax.swing.JFrame {
         FormularioPessoaJuridica formularioPessoaJuridica;
         centralizarForm.abrirFormulario(formularioPessoaJuridica=new FormularioPessoaJuridica(), jDesktop);
     }//GEN-LAST:event_jmcPJCriarActionPerformed
+
+    private void jmcPFAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPFAlterarActionPerformed
+        FormularioAlterarPessoaFisica formularioAlterarPessoaFisica;
+        centralizarForm.abrirFormulario(formularioAlterarPessoaFisica=new FormularioAlterarPessoaFisica(), jDesktop);
+    }//GEN-LAST:event_jmcPFAlterarActionPerformed
 
     
 
