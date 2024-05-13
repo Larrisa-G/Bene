@@ -1,9 +1,11 @@
+1 )git checkout nomeDaBranch  -> muda para a branch
+
 2) git add .  -> adiciona as mudan�as feitad: arquivos criados,modificados e deletados
 
 3 - git commit -m "Mensagem Qualquer"  -> prepara para mandar para o repositorio
 
 4 - git push  -> manda para o repositorio
 
-1 )git checkout nomeDaBranch  -> muda para a branch
+
 
 git pull origin meu-branch -> pega todas as mudan�as feitas de uma brach e p�e na sua brach, pode ocorrer conflitos
