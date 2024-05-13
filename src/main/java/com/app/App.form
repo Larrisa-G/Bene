@@ -177,7 +177,7 @@
                   <EmptySpace pref="258" max="32767" attributes="0"/>
                   <Component id="jlUsername" min="-2" pref="189" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbLogOut" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -187,7 +187,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton1" max="32767" attributes="0"/>
+                      <Component id="jbLogOut" max="32767" attributes="0"/>
                       <Component id="jlUsername" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -198,10 +198,13 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jlUsername">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jbLogOut">
           <Properties>
             <Property name="text" type="java.lang.String" value="Log out"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbLogOutActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

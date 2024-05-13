@@ -30,7 +30,7 @@ public class App extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jlUsername = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbLogOut = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
         jmListarrCliente = new javax.swing.JMenuItem();
@@ -66,7 +66,12 @@ public class App extends javax.swing.JFrame {
                 .addContainerGap(117, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Log out");
+        jbLogOut.setText("Log out");
+        jbLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLogOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,7 +81,7 @@ public class App extends javax.swing.JFrame {
                 .addContainerGap(258, Short.MAX_VALUE)
                 .addComponent(jlUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addComponent(jButton1)
+                .addComponent(jbLogOut)
                 .addGap(33, 33, 33))
         );
         jPanel1Layout.setVerticalGroup(
@@ -84,7 +89,7 @@ public class App extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -209,14 +214,20 @@ public class App extends javax.swing.JFrame {
         centralizarForm.abrirFormulario(formularioAlterarPessoaJuridica=new FormularioAlterarPessoaJuridica(), jDesktop);
     }//GEN-LAST:event_jmcPJAlterarActionPerformed
 
+    private void jbLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLogOutActionPerformed
+        dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_jbLogOutActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbLogOut;
     private javax.swing.JLabel jlUsername;
     private javax.swing.JMenu jmClientes;
     private javax.swing.JMenu jmContratos;
