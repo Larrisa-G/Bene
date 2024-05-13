@@ -227,6 +227,7 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
             
             pdfg.setOutputFilePath(FileChooser.getPath());
             pdfg.close();
+            JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso");
             
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
