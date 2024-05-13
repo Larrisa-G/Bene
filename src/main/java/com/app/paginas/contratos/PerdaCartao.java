@@ -2,6 +2,7 @@
 package com.app.paginas.contratos;
 
 import com.app.pdfs.PDFGenerator;
+import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
 
 import java.io.IOException;
@@ -224,6 +225,10 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
             pdfg.modifyWord(
                     "(xxx) (Descrever as circunstâncias em que se deu a perda, indicando a existência de documento comprovando)",
                     jtMotivo.getText());
+            pdfg.modifyWord("(Local, data e ano)", DateUtilFormarter.dateToStringContract());
+            pdfg.modifyWord("(Nome e assinatura do Contratante)","");
+
+            
             
             pdfg.setOutputFilePath(FileChooser.getPath());
             pdfg.close();
