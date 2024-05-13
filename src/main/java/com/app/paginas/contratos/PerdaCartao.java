@@ -126,6 +126,9 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
+        jPanel1.setForeground(new java.awt.Color(102, 102, 102));
+
         jbFechar.setText("Fechar");
         jbFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,7 +202,7 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
