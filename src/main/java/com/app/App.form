@@ -85,12 +85,20 @@
             <Property name="text" type="java.lang.String" value="Contratos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jmcPerdaCartao">
+            <MenuItem class="javax.swing.JMenuItem" name="jmiPerdaCartao">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Perda Cart&#xe3;o"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmcPerdaCartaoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiPerdaCartaoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiCobrancaBancariaIndevida">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cobran&#xe7;a Bancaria Indevida"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiCobrancaBancariaIndevidaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

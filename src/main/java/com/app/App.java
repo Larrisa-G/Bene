@@ -1,6 +1,7 @@
 
 package com.app;
 
+import com.app.paginas.contratos.CobrancaBancariaIndevida;
 import com.app.paginas.pessoa.fisica.FormularioCriarPessoaFisica;
 import com.app.paginas.pessoa.juridica.FormularioCriarPessoaJuridica;
 import com.app.paginas.pessoa.FormularioListarClientes;
@@ -41,7 +42,8 @@ public class App extends javax.swing.JFrame {
         jmcPJCriar = new javax.swing.JMenuItem();
         jmcPJAlterar = new javax.swing.JMenuItem();
         jmContratos = new javax.swing.JMenu();
-        jmcPerdaCartao = new javax.swing.JMenuItem();
+        jmiPerdaCartao = new javax.swing.JMenuItem();
+        jmiCobrancaBancariaIndevida = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,13 +155,21 @@ public class App extends javax.swing.JFrame {
 
         jmContratos.setText("Contratos");
 
-        jmcPerdaCartao.setText("Perda Cartão");
-        jmcPerdaCartao.addActionListener(new java.awt.event.ActionListener() {
+        jmiPerdaCartao.setText("Perda Cartão");
+        jmiPerdaCartao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmcPerdaCartaoActionPerformed(evt);
+                jmiPerdaCartaoActionPerformed(evt);
             }
         });
-        jmContratos.add(jmcPerdaCartao);
+        jmContratos.add(jmiPerdaCartao);
+
+        jmiCobrancaBancariaIndevida.setText("Cobrança Bancaria Indevida");
+        jmiCobrancaBancariaIndevida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCobrancaBancariaIndevidaActionPerformed(evt);
+            }
+        });
+        jmContratos.add(jmiCobrancaBancariaIndevida);
 
         jMenuBar1.add(jmContratos);
 
@@ -183,10 +193,10 @@ public class App extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmcPerdaCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPerdaCartaoActionPerformed
+    private void jmiPerdaCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPerdaCartaoActionPerformed
         PerdaCartao perdaCartao;
         centralizarForm.abrirFormulario(perdaCartao=new PerdaCartao(), jDesktop);
-    }//GEN-LAST:event_jmcPerdaCartaoActionPerformed
+    }//GEN-LAST:event_jmiPerdaCartaoActionPerformed
 
     private void jmListarrClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarrClienteActionPerformed
         FormularioListarClientes formularioListarClientes;
@@ -220,6 +230,11 @@ public class App extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_jbLogOutActionPerformed
 
+    private void jmiCobrancaBancariaIndevidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCobrancaBancariaIndevidaActionPerformed
+        CobrancaBancariaIndevida cobrancaBancariaIndevida;
+        centralizarForm.abrirFormulario(cobrancaBancariaIndevida = new CobrancaBancariaIndevida(), jDesktop);
+    }//GEN-LAST:event_jmiCobrancaBancariaIndevidaActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -238,6 +253,7 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmcPFCriar;
     private javax.swing.JMenuItem jmcPJAlterar;
     private javax.swing.JMenuItem jmcPJCriar;
-    private javax.swing.JMenuItem jmcPerdaCartao;
+    private javax.swing.JMenuItem jmiCobrancaBancariaIndevida;
+    private javax.swing.JMenuItem jmiPerdaCartao;
     // End of variables declaration//GEN-END:variables
 }
