@@ -1,10 +1,13 @@
 
 package com.app;
 
-import com.app.paginas.cliente.FormularioPessoaFisica;
-import com.app.paginas.cliente.FormularioPessoaJuridica;
-import com.app.paginas.cliente.FormularioListarClientes;
+import com.app.paginas.contratos.CobrancaBancariaIndevida;
+import com.app.paginas.pessoa.fisica.FormularioCriarPessoaFisica;
+import com.app.paginas.pessoa.juridica.FormularioCriarPessoaJuridica;
+import com.app.paginas.pessoa.FormularioListarClientes;
 import com.app.paginas.contratos.PerdaCartao;
+import com.app.paginas.pessoa.fisica.FormularioAlterarPessoaFisica;
+import com.app.paginas.pessoa.juridica.FormularioAlterarPessoaJuridica;
 import com.app.util.CentralizarForm;
 import javax.swing.JFrame;
 
@@ -12,9 +15,11 @@ import javax.swing.JFrame;
 public class App extends javax.swing.JFrame {
     CentralizarForm centralizarForm = new CentralizarForm();
     
-    public App() {
+    public App(String text) {
+        
         initComponents();
-         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        jlUsername.setText("Olá, "+text);
     }
 
     
@@ -23,46 +28,75 @@ public class App extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktop = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jlUsername = new javax.swing.JLabel();
+        jbLogOut = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
-        jmcPessoaJuridica = new javax.swing.JMenuItem();
-        jmcPessoaFisica = new javax.swing.JMenuItem();
         jmListarrCliente = new javax.swing.JMenuItem();
+        jmPessoaFisica = new javax.swing.JMenu();
+        jmcPFCriar = new javax.swing.JMenuItem();
+        jmcPFAlterar = new javax.swing.JMenuItem();
+        jmPessoaJuridica = new javax.swing.JMenu();
+        jmcPJCriar = new javax.swing.JMenuItem();
+        jmcPJAlterar = new javax.swing.JMenuItem();
         jmContratos = new javax.swing.JMenu();
-        jmcPerdaCartao = new javax.swing.JMenuItem();
+        jmiPerdaCartao = new javax.swing.JMenuItem();
+        jmiCobrancaBancariaIndevida = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Lucida Calligraphy", 3, 24)); // NOI18N
+
+        jDesktop.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopLayout = new javax.swing.GroupLayout(jDesktop);
         jDesktop.setLayout(jDesktopLayout);
         jDesktopLayout.setHorizontalGroup(
             jDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(jDesktopLayout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopLayout.setVerticalGroup(
             jDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGroup(jDesktopLayout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addComponent(jLabel1)
+                .addContainerGap(117, Short.MAX_VALUE))
+        );
+
+        jbLogOut.setText("Log out");
+        jbLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLogOutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(258, Short.MAX_VALUE)
+                .addComponent(jlUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jbLogOut)
+                .addGap(33, 33, 33))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jmClientes.setText("Clientes");
-
-        jmcPessoaJuridica.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmcPessoaJuridica.setText("Pessoa Jurídica");
-        jmcPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmcPessoaJuridicaActionPerformed(evt);
-            }
-        });
-        jmClientes.add(jmcPessoaJuridica);
-
-        jmcPessoaFisica.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jmcPessoaFisica.setText("Pessoa Física");
-        jmcPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmcPessoaFisicaActionPerformed(evt);
-            }
-        });
-        jmClientes.add(jmcPessoaFisica);
 
         jmListarrCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmListarrCliente.setText("Listar");
@@ -73,17 +107,69 @@ public class App extends javax.swing.JFrame {
         });
         jmClientes.add(jmListarrCliente);
 
+        jmPessoaFisica.setText("Pessoa Física");
+
+        jmcPFCriar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmcPFCriar.setText("Criar");
+        jmcPFCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPFCriarActionPerformed(evt);
+            }
+        });
+        jmPessoaFisica.add(jmcPFCriar);
+
+        jmcPFAlterar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmcPFAlterar.setText("Alterar");
+        jmcPFAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPFAlterarActionPerformed(evt);
+            }
+        });
+        jmPessoaFisica.add(jmcPFAlterar);
+
+        jmClientes.add(jmPessoaFisica);
+
+        jmPessoaJuridica.setText("Pessoa Jurídica");
+
+        jmcPJCriar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmcPJCriar.setText("Criar");
+        jmcPJCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPJCriarActionPerformed(evt);
+            }
+        });
+        jmPessoaJuridica.add(jmcPJCriar);
+
+        jmcPJAlterar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_K, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmcPJAlterar.setText("Alterar");
+        jmcPJAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcPJAlterarActionPerformed(evt);
+            }
+        });
+        jmPessoaJuridica.add(jmcPJAlterar);
+
+        jmClientes.add(jmPessoaJuridica);
+
         jMenuBar1.add(jmClientes);
 
         jmContratos.setText("Contratos");
 
-        jmcPerdaCartao.setText("Perda Cartão");
-        jmcPerdaCartao.addActionListener(new java.awt.event.ActionListener() {
+        jmiPerdaCartao.setText("Perda Cartão");
+        jmiPerdaCartao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmcPerdaCartaoActionPerformed(evt);
+                jmiPerdaCartaoActionPerformed(evt);
             }
         });
-        jmContratos.add(jmcPerdaCartao);
+        jmContratos.add(jmiPerdaCartao);
+
+        jmiCobrancaBancariaIndevida.setText("Cobrança Bancaria Indevida");
+        jmiCobrancaBancariaIndevida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCobrancaBancariaIndevidaActionPerformed(evt);
+            }
+        });
+        jmContratos.add(jmiCobrancaBancariaIndevida);
 
         jMenuBar1.add(jmContratos);
 
@@ -94,79 +180,80 @@ public class App extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jDesktop)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktop)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDesktop))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmcPerdaCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPerdaCartaoActionPerformed
+    private void jmiPerdaCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPerdaCartaoActionPerformed
         PerdaCartao perdaCartao;
         centralizarForm.abrirFormulario(perdaCartao=new PerdaCartao(), jDesktop);
-    }//GEN-LAST:event_jmcPerdaCartaoActionPerformed
+    }//GEN-LAST:event_jmiPerdaCartaoActionPerformed
 
     private void jmListarrClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarrClienteActionPerformed
         FormularioListarClientes formularioListarClientes;
         centralizarForm.abrirFormulario(formularioListarClientes=new FormularioListarClientes(), jDesktop);
     }//GEN-LAST:event_jmListarrClienteActionPerformed
 
-    private void jmcPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaFisicaActionPerformed
-        FormularioPessoaFisica formularioPessoaFisica;
-        centralizarForm.abrirFormulario(formularioPessoaFisica=new FormularioPessoaFisica(), jDesktop);
+    private void jmcPFCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPFCriarActionPerformed
+        FormularioCriarPessoaFisica formularioCriarPessoaFisica;
+        centralizarForm.abrirFormulario(formularioCriarPessoaFisica=new FormularioCriarPessoaFisica(), jDesktop);
 
-    }//GEN-LAST:event_jmcPessoaFisicaActionPerformed
+    }//GEN-LAST:event_jmcPFCriarActionPerformed
 
-    private void jmcPessoaJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaJuridicaActionPerformed
-        FormularioPessoaJuridica formularioPessoaJuridica;
-        centralizarForm.abrirFormulario(formularioPessoaJuridica=new FormularioPessoaJuridica(), jDesktop);
-    }//GEN-LAST:event_jmcPessoaJuridicaActionPerformed
+    private void jmcPJCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPJCriarActionPerformed
+        FormularioCriarPessoaJuridica criarPessoaJuridica;
+        centralizarForm.abrirFormulario(criarPessoaJuridica=new FormularioCriarPessoaJuridica(), jDesktop);
+    }//GEN-LAST:event_jmcPJCriarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jmcPFAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPFAlterarActionPerformed
+        FormularioAlterarPessoaFisica formularioAlterarPessoaFisica;
+        centralizarForm.abrirFormulario(formularioAlterarPessoaFisica=new FormularioAlterarPessoaFisica(), jDesktop);
+    }//GEN-LAST:event_jmcPFAlterarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new App().setVisible(true);
-            }
-        });
-    }
+    private void jmcPJAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPJAlterarActionPerformed
+         FormularioAlterarPessoaJuridica formularioAlterarPessoaJuridica;
+        centralizarForm.abrirFormulario(formularioAlterarPessoaJuridica=new FormularioAlterarPessoaJuridica(), jDesktop);
+    }//GEN-LAST:event_jmcPJAlterarActionPerformed
+
+    private void jbLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLogOutActionPerformed
+        dispose();
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_jbLogOutActionPerformed
+
+    private void jmiCobrancaBancariaIndevidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCobrancaBancariaIndevidaActionPerformed
+        CobrancaBancariaIndevida cobrancaBancariaIndevida;
+        centralizarForm.abrirFormulario(cobrancaBancariaIndevida = new CobrancaBancariaIndevida(), jDesktop);
+    }//GEN-LAST:event_jmiCobrancaBancariaIndevidaActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktop;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbLogOut;
+    private javax.swing.JLabel jlUsername;
     private javax.swing.JMenu jmClientes;
     private javax.swing.JMenu jmContratos;
     private javax.swing.JMenuItem jmListarrCliente;
-    private javax.swing.JMenuItem jmcPerdaCartao;
-    private javax.swing.JMenuItem jmcPessoaFisica;
-    private javax.swing.JMenuItem jmcPessoaJuridica;
+    private javax.swing.JMenu jmPessoaFisica;
+    private javax.swing.JMenu jmPessoaJuridica;
+    private javax.swing.JMenuItem jmcPFAlterar;
+    private javax.swing.JMenuItem jmcPFCriar;
+    private javax.swing.JMenuItem jmcPJAlterar;
+    private javax.swing.JMenuItem jmcPJCriar;
+    private javax.swing.JMenuItem jmiCobrancaBancariaIndevida;
+    private javax.swing.JMenuItem jmiPerdaCartao;
     // End of variables declaration//GEN-END:variables
 }
