@@ -1,9 +1,10 @@
 
 package com.app.paginas.contratos;
 
-import com.app.pdfs.PDFGenerator;
+import com.app.word.WordGenerator;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
+import com.app.word.WordContractPath;
 
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -214,8 +215,8 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
        
         
         try {
-            PDFGenerator pdfg = new PDFGenerator();
-            pdfg.setInputFilePath("contract_tampletes/CARTA COMUNICANDO PERDA DE CARTÃO DE CRÉDITO.doc");
+            WordGenerator pdfg = new WordGenerator();
+            pdfg.setInputFilePath(WordContractPath.PERDACARTAO);
             
             pdfg.openWord();
             pdfg.modifyWord("CONTRATANTE", jtContratante.getText());
@@ -226,7 +227,6 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
                     "(xxx) (Descrever as circunstâncias em que se deu a perda, indicando a existência de documento comprovando)",
                     jtMotivo.getText());
             pdfg.modifyWord("(Local, data e ano)", DateUtilFormarter.dateToStringContract());
-            pdfg.modifyWord("(Nome e assinatura do Contratante)","");
 
             
             
