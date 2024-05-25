@@ -215,23 +215,23 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
        
         
         try {
-            WordGenerator pdfg = new WordGenerator();
-            pdfg.setInputFilePath(WordContractPath.PERDACARTAO);
+            WordGenerator wg = new WordGenerator();
+            wg.setInputFilePath(WordContractPath.PERDACARTAO);
             
-            pdfg.openWord();
-            pdfg.modifyWord("CONTRATANTE", jtContratante.getText());
-            pdfg.modifyWord("CONTRATADO", jtContratado.getText());
-            pdfg.modifyWord("Em (xxx)", String.format("Em %s", jtAssinoCartao.getText()));
-            pdfg.modifyWord("no dia (xxx)", String.format("no dia %s", jtPerdaCartao.getText()));
-            pdfg.modifyWord(
+            wg.openWord();
+            wg.modifyWord("CONTRATANTE", jtContratante.getText());
+            wg.modifyWord("CONTRATADO", jtContratado.getText());
+            wg.modifyWord("Em (xxx)", String.format("Em %s", jtAssinoCartao.getText()));
+            wg.modifyWord("no dia (xxx)", String.format("no dia %s", jtPerdaCartao.getText()));
+            wg.modifyWord(
                     "(xxx) (Descrever as circunstâncias em que se deu a perda, indicando a existência de documento comprovando)",
                     jtMotivo.getText());
-            pdfg.modifyWord("(Local, data e ano)", DateUtilFormarter.dateToStringContract());
+            wg.modifyWord("(Local, data e ano)", DateUtilFormarter.dateToStringContract());
 
             
             
-            pdfg.setOutputFilePath(FileChooser.getPath());
-            pdfg.close();
+            wg.setOutputFilePath(FileChooser.getPath());
+            wg.close();
             JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso");
             
         } catch (IOException e) {

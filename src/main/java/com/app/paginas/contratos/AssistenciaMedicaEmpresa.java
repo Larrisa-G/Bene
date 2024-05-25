@@ -1,6 +1,13 @@
 
 package com.app.paginas.contratos;
 
+import com.app.util.DateUtilFormarter;
+import com.app.util.FileChooser;
+import com.app.word.WordContractPath;
+import com.app.word.WordGenerator;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
 
     
@@ -8,19 +15,43 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         initComponents();
         setTitle("Assistência Médica à Empresa");
     }
-
+    
+    private String contratanteInfo() {
+        /*
+        String s = String.format("%s, com sede em %s, na %s, nº %s, bairro %s, Cep %s, no Estado %s,"
+                + " inscrita no C.N.P.J. sob o nº %s, e no Cadastro Estadual sob o nº %s, "
+                + "neste ato representada pelo seu diretor %s, "
+                + "%s, %s, %s, Carteira de Identidade nº %s,"
+                + " C.P.F. nº %s, residente e domiciliado na"
+                + " Rua %s, nº %s, bairro %s,"
+                + " Cep %s, Cidade %s, no Estado %s;",
+                jpContratanteNomeEmpresa.getText(),jpContratanteSedeEm.getText(),jpContratanteEmpresaRua.getText(),jpContratanteEmpresaNumero.getText(),
+                jpContratanteEmpresaBairro.getText(), jpContratanteEmpresaCEP.getText(), jpContratanteEmpresaEstado.getText(),
+                jpContratanteCNPJ.getText(),jpContratanteCadastroEstadual.getText(),
+                jpContratanteRepresentanteNome.getText(),jpContratanteNacionalidade.getText(),"(String)jpContratanteEstadoCivil.getSelectedItem()",
+                jpContratanteProfissao.getText(), jpContratanteRG.getText(),jpContratanteCPF.getText(),
+                jpContratanteRepresentanteRua.getText(),jpContratanteRepresentanteNumero.getText(),jpContratanteRepresentanteBairro.getText(),
+                jpContratanteRepresentanteCEP.getText(),jpContratanteRepresentanteCidade.getText(),jpContratanteRepresentanteEstado.getText()
+                );
+        */
+        return "s";
+    }
+    
+    private String contratadaInfo() {
+        return null;
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jbSalvar = new javax.swing.JButton();
+        jbCancelar = new javax.swing.JButton();
+        jbBuscarEmpresa = new javax.swing.JButton();
+        jbBuscarCepEmpresa = new javax.swing.JButton();
+        jbBuscarPessoa = new javax.swing.JButton();
+        jbBuscarCepRepesentante = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jpContratante = new javax.swing.JPanel();
@@ -155,17 +186,22 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
 
-        jButton1.setText("Salvar");
+        jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Cancelar");
+        jbCancelar.setText("Cancelar");
 
-        jButton3.setText("Buscar Empresa");
+        jbBuscarEmpresa.setText("Buscar Empresa");
 
-        jButton4.setText("Buscar Pessoa");
+        jbBuscarCepEmpresa.setText("Buscar Cep Empresa");
 
-        jButton5.setText("Buscar Cep Empresa");
+        jbBuscarPessoa.setText("Buscar Pessoa");
 
-        jButton6.setText("Buscar Cep Representante");
+        jbBuscarCepRepesentante.setText("Buscar Cep Representante");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -173,17 +209,17 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jButton1)
+                .addComponent(jbSalvar)
                 .addGap(29, 29, 29)
-                .addComponent(jButton2)
+                .addComponent(jbCancelar)
                 .addGap(41, 41, 41)
-                .addComponent(jButton3)
+                .addComponent(jbBuscarEmpresa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(jbBuscarCepEmpresa)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(jbBuscarPessoa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
+                .addComponent(jbBuscarCepRepesentante)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -191,12 +227,12 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(jbSalvar)
+                    .addComponent(jbCancelar)
+                    .addComponent(jbBuscarEmpresa)
+                    .addComponent(jbBuscarPessoa)
+                    .addComponent(jbBuscarCepEmpresa)
+                    .addComponent(jbBuscarCepRepesentante))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -1199,14 +1235,24 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        try {
+            WordGenerator wg = new WordGenerator();
+            wg.setInputFilePath(WordContractPath.ASSISTENCIAMEDICAEMPRESA);
+            wg.openWord();
+            
+            
+            wg.setOutputFilePath(FileChooser.getPath());
+            wg.close();
+            JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso");
+        }
+         catch(IOException e) {
+             JOptionPane.showMessageDialog(null, e.getMessage());
+         }
+    }//GEN-LAST:event_jbSalvarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1280,6 +1326,12 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbBuscarCepEmpresa;
+    private javax.swing.JButton jbBuscarCepRepesentante;
+    private javax.swing.JButton jbBuscarEmpresa;
+    private javax.swing.JButton jbBuscarPessoa;
+    private javax.swing.JButton jbCancelar;
+    private javax.swing.JButton jbSalvar;
     private javax.swing.JPanel jpContratada;
     private javax.swing.JFormattedTextField jpContratadaCNPJ;
     private javax.swing.JFormattedTextField jpContratadaCPF;
