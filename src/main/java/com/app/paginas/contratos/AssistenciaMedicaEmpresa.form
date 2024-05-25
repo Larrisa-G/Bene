@@ -373,9 +373,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jpContratanteCadastroEstadual">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField2"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel9">
                       <Properties>
@@ -724,9 +721,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jpContratanteRepresentanteEstado">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField4"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel25">
                       <Properties>
@@ -737,9 +731,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jpContratanteRepresentanteCidade">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField3"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel20">
                       <Properties>
@@ -770,9 +761,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jpContratanteRepresentanteNumero">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jTextField7"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
