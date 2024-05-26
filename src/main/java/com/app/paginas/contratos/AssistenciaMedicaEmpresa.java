@@ -67,6 +67,10 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         return s;
     }
     
+    private String isPlural(Integer num,String text) {
+        return num > 1 ? text+"s" : text;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1269,7 +1273,18 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
             
             wg.modifyWord(contratanteTextWord, contratanteInfo());
             wg.modifyWord(contratadaTextWord,contratadaInfo());
-
+            
+            wg.modifyWord("(xxx) (Valor Expresso)", jtQuantiaMensal.getText());
+            wg.modifyWord("todo dia (xxx)",String.format("todo dia %d",jtDiaPagamento.getValue())) ;
+            wg.modifyWord("(xxx)%", jtPorcentagemMulta.getText()+"%");
+            
+            wg.modifyWord("(xxx) (Nº de mensalidades) mensalidades", String.format("%d %s", jtQtdMeses.getValue(), isPlural((Integer)jtQtdMeses.getValue(), "mensalidade")));
+            wg.modifyWord("(xxx) ano", String.format("%d %s", jtQtdPrazoContrato.getValue(), isPlural((Integer)jtQtdPrazoContrato.getValue(), "ano")));
+            wg.modifyWord("(xxx) dias", String.format("%d %s", jtQtdPrazoProrrogacao.getValue(), isPlural((Integer)jtQtdPrazoProrrogacao.getValue(), "dia")));
+            
+            wg.modifyWord("comarca de (xxx)", String.format("comarca de %s", jtForroComarca.getText()));
+            
+            wg.modifyWord("(Local, data e ano)", DateUtilFormarter.dateToStringContract());
             wg.setOutputFilePath(FileChooser.getPath());
             wg.close();
             JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso");
