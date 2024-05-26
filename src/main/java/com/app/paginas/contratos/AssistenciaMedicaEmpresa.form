@@ -19,15 +19,18 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="286" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="831" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="286" max="-2" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="848" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -124,19 +127,17 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jpPrazo" min="-2" max="-2" attributes="0"/>
                                   <Component id="jpForro" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jpContratante" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="78" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jpPagamento" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jpContratada" min="-2" max="-2" attributes="0"/>
-                              <Component id="jpContratante" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jpContratada" min="-2" max="-2" attributes="0"/>
                           <Component id="jpRescissao" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -858,8 +859,16 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel61" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel61" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                                  <Component id="jbBuscarCepRepresentanteContratada" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="jbBuscarCepEmpresaContratada" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="jLabel51" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
                               <Component id="jpContratadaDadosEmpresa" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -878,11 +887,17 @@
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="jLabel51" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbBuscarCepEmpresaContratada" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jpContratadaDadosEmpresa" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel61" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel61" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbBuscarCepRepresentanteContratada" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jpContratadaDadosRepresentante" min="-2" pref="318" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
@@ -931,7 +946,7 @@
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jpContratadaSedeEm" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
+                                          <Component id="jpContratadaEmpresaSedeEm" alignment="0" min="-2" pref="208" max="-2" attributes="0"/>
                                           <Component id="jLabel56" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
@@ -1008,7 +1023,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jpContratadaEmpresaCEP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jpContratadaSedeEm" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jpContratadaEmpresaSedeEm" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jpContratadaEmpresaEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -1087,7 +1102,7 @@
                         <Property name="text" type="java.lang.String" value="Sede em"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jpContratadaSedeEm">
+                    <Component class="javax.swing.JTextField" name="jpContratadaEmpresaSedeEm">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel57">
                       <Properties>
@@ -1454,6 +1469,22 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JButton" name="jbBuscarCepEmpresaContratada">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Buscar Cep empresa"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarCepEmpresaContratadaActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="jbBuscarCepRepresentanteContratada">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Buscar Cep Representante"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarCepRepresentanteContratadaActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel77">
@@ -1747,7 +1778,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="217" max="32767" attributes="0"/>
+                          <EmptySpace pref="229" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1850,7 +1881,7 @@
                               <Component id="jLabel78" min="-2" max="-2" attributes="0"/>
                               <Component id="jtForroComarca" alignment="0" min="-2" pref="231" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="438" max="32767" attributes="0"/>
+                          <EmptySpace pref="450" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
