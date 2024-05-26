@@ -10,14 +10,24 @@ import javax.swing.JOptionPane;
 
 public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
 
+    private final String contratanteTextWord = "(Nome da Contratante), com sede em (xxx), na Rua (xxx), nº (xxx), bairro (xxx), "
+            + "Cep (xxx), no Estado (xxx), inscrita no C.N.P.J. sob o nº (xxx), e no"
+            + " Cadastro Estadual sob o nº (xxx), neste ato representada pelo seu diretor (xxx), "
+            + "(Nacionalidade), (Estado Civil), (Profissão), Carteira de Identidade nº (xxx), C.P.F. nº "
+            + "(xxx), residente e domiciliado na Rua (xxx), nº (xxx), bairro (xxx), Cep (xxx), Cidade (xxx), no Estado (xxx);";
     
+    private final String contratadaTextWord = "(Nome da Contratada), com sede em (xxx), na Rua (xxx), nº (xxx), bairro (xxx), "
+            + "Cep (xxx), no Estado (xxx), inscrita no C.N.P.J. sob o nº (xxx), e no "
+            + "Cadastro Estadual sob o nº (xxx), neste ato representada pelo seu diretor (xxx), "
+            + "(Nacionalidade), (Estado Civil), (Profissão), Carteira de Identidade nº (xxx), C.P.F. nº (xxx), "
+            + "residente e domiciliado na Rua (xxx), nº (xxx), bairro (xxx), Cep (xxx), Cidade (xxx), no Estado (xxx).";
     public AssistenciaMedicaEmpresa() {
         initComponents();
         setTitle("Assistência Médica à Empresa");
     }
     
     private String contratanteInfo() {
-        /*
+        
         String s = String.format("%s, com sede em %s, na %s, nº %s, bairro %s, Cep %s, no Estado %s,"
                 + " inscrita no C.N.P.J. sob o nº %s, e no Cadastro Estadual sob o nº %s, "
                 + "neste ato representada pelo seu diretor %s, "
@@ -25,20 +35,36 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 + " C.P.F. nº %s, residente e domiciliado na"
                 + " Rua %s, nº %s, bairro %s,"
                 + " Cep %s, Cidade %s, no Estado %s;",
-                jpContratanteNomeEmpresa.getText(),jpContratanteSedeEm.getText(),jpContratanteEmpresaRua.getText(),jpContratanteEmpresaNumero.getText(),
-                jpContratanteEmpresaBairro.getText(), jpContratanteEmpresaCEP.getText(), jpContratanteEmpresaEstado.getText(),
-                jpContratanteCNPJ.getText(),jpContratanteCadastroEstadual.getText(),
-                jpContratanteRepresentanteNome.getText(),jpContratanteNacionalidade.getText(),"(String)jpContratanteEstadoCivil.getSelectedItem()",
-                jpContratanteProfissao.getText(), jpContratanteRG.getText(),jpContratanteCPF.getText(),
-                jpContratanteRepresentanteRua.getText(),jpContratanteRepresentanteNumero.getText(),jpContratanteRepresentanteBairro.getText(),
-                jpContratanteRepresentanteCEP.getText(),jpContratanteRepresentanteCidade.getText(),jpContratanteRepresentanteEstado.getText()
-                );
-        */
-        return "s";
+                jpContratanteNomeEmpresa.getText(), jpContratanteSedeEm.getText(), jpContratanteEmpresaRua.getText(), jpContratanteEmpresaNumero.getText(), 
+                jpContratanteEmpresaBairro.getText(), jpContratanteEmpresaCEP.getText(), jpContratanteEmpresaEstado.getText(), 
+                jpContratanteCNPJ.getText() ,jpContratanteCadastroEstadual.getText(), 
+                jpContratanteRepresentanteNome.getText(), jpContratanteNacionalidade.getText(),(String)jpContratanteEstadoCivil.getSelectedItem(), 
+                jpContratanteProfissao.getText(), jpContratanteRG.getText(), jpContratanteCPF.getText(), 
+                jpContratanteRepresentanteRua.getText(), jpContratanteRepresentanteNumero.getText(), jpContratanteRepresentanteBairro.getText(), 
+                jpContratanteRepresentanteCEP.getText(), jpContratanteRepresentanteCidade.getText(), jpContratanteRepresentanteEstado.getText()
+                ); 
+        
+        return s;
     }
     
     private String contratadaInfo() {
-        return null;
+         String s = String.format("%s, com sede em %s, na %s, nº %s, bairro %s, Cep %s, no Estado %s,"
+                + " inscrita no C.N.P.J. sob o nº %s, e no Cadastro Estadual sob o nº %s, "
+                + "neste ato representada pelo seu diretor %s, "
+                + "%s, %s, %s, Carteira de Identidade nº %s,"
+                + " C.P.F. nº %s, residente e domiciliado na"
+                + " Rua %s, nº %s, bairro %s,"
+                + " Cep %s, Cidade %s, no Estado %s;",
+                jpContratadaNomeEmpresa.getText(), jpContratadaSedeEm.getText(), jpContratadaEmpresaRua.getText(), jpContratadaEmpresaNumero.getText(),
+                jpContratadaEmpresaBairro.getText(), jpContratadaEmpresaCEP.getText(), jpContratadaEmpresaEstado.getText(),
+                jpContratanteCNPJ.getText(), jpContratanteCadastroEstadual.getText(),
+                jpContratadaRepresentanteNome.getText(), jpContratadaNacionalidade.getText(),(String)jpContratadaEstadoCivil.getSelectedItem(),
+                jpContratadaProfissao.getText(), jpContratadaRG.getText(), jpContratadaCPF.getText(),
+                jpContratadaRepresentanteRua.getText(), jpContratadaRepresentanteNumero.getText(), jpContratadaRepresentanteBairro.getText(),
+                jpContratadaRepresentanteCEP.getText(), jpContratadaRepresentanteCidade.getText(), jpContratadaRepresentanteEstado.getText()
+                );
+        
+        return s;
     }
     
     @SuppressWarnings("unchecked")
@@ -1241,7 +1267,9 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
             wg.setInputFilePath(WordContractPath.ASSISTENCIAMEDICAEMPRESA);
             wg.openWord();
             
-            
+            wg.modifyWord(contratanteTextWord, contratanteInfo());
+            wg.modifyWord(contratadaTextWord,contratadaInfo());
+
             wg.setOutputFilePath(FileChooser.getPath());
             wg.close();
             JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso");
