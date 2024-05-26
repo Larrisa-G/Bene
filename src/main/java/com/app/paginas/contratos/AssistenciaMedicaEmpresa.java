@@ -1,6 +1,8 @@
 
 package com.app.paginas.contratos;
 
+import com.app.api.BuscaCep;
+import com.app.entidades.endereco.Endereco;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
 import com.app.word.WordContractPath;
@@ -35,7 +37,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 + " C.P.F. nº %s, residente e domiciliado na"
                 + " Rua %s, nº %s, bairro %s,"
                 + " Cep %s, Cidade %s, no Estado %s;",
-                jpContratanteNomeEmpresa.getText(), jpContratanteSedeEm.getText(), jpContratanteEmpresaRua.getText(), jpContratanteEmpresaNumero.getText(), 
+                jpContratanteNomeEmpresa.getText(), jpContratanteEmpresaSedeEm.getText(), jpContratanteEmpresaRua.getText(), jpContratanteEmpresaNumero.getText(), 
                 jpContratanteEmpresaBairro.getText(), jpContratanteEmpresaCEP.getText(), jpContratanteEmpresaEstado.getText(), 
                 jpContratanteCNPJ.getText() ,jpContratanteCadastroEstadual.getText(), 
                 jpContratanteRepresentanteNome.getText(), jpContratanteNacionalidade.getText(),(String)jpContratanteEstadoCivil.getSelectedItem(), 
@@ -78,10 +80,6 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jbSalvar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
-        jbBuscarEmpresa = new javax.swing.JButton();
-        jbBuscarCepEmpresa = new javax.swing.JButton();
-        jbBuscarPessoa = new javax.swing.JButton();
-        jbBuscarCepRepesentante = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jpContratante = new javax.swing.JPanel();
@@ -97,7 +95,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jpContratanteEmpresaCEP = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
-        jpContratanteSedeEm = new javax.swing.JTextField();
+        jpContratanteEmpresaSedeEm = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jpContratanteEmpresaEstado = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -132,6 +130,10 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         jpContratanteRepresentanteRua = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jpContratanteRepresentanteNumero = new javax.swing.JTextField();
+        jbBuscarContratanteEmpresa = new javax.swing.JButton();
+        jbBuscarCepContratanteEmpresa = new javax.swing.JButton();
+        jbBuscarContratante = new javax.swing.JButton();
+        jbBuscarCepContratanteRepesentante = new javax.swing.JButton();
         jpContratada = new javax.swing.JPanel();
         jLabel51 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -225,14 +227,6 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
 
         jbCancelar.setText("Cancelar");
 
-        jbBuscarEmpresa.setText("Buscar Empresa");
-
-        jbBuscarCepEmpresa.setText("Buscar Cep Empresa");
-
-        jbBuscarPessoa.setText("Buscar Pessoa");
-
-        jbBuscarCepRepesentante.setText("Buscar Cep Representante");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -242,15 +236,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 .addComponent(jbSalvar)
                 .addGap(29, 29, 29)
                 .addComponent(jbCancelar)
-                .addGap(41, 41, 41)
-                .addComponent(jbBuscarEmpresa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbBuscarCepEmpresa)
-                .addGap(18, 18, 18)
-                .addComponent(jbBuscarPessoa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbBuscarCepRepesentante)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,11 +244,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalvar)
-                    .addComponent(jbCancelar)
-                    .addComponent(jbBuscarEmpresa)
-                    .addComponent(jbBuscarPessoa)
-                    .addComponent(jbBuscarCepEmpresa)
-                    .addComponent(jbBuscarCepRepesentante))
+                    .addComponent(jbCancelar))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -330,7 +312,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                             .addComponent(jpContratanteEmpresaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jpContratanteDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpContratanteSedeEm, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jpContratanteEmpresaSedeEm, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(78, 78, 78)
                         .addGroup(jpContratanteDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,7 +345,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                         .addGroup(jpContratanteDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jpContratanteEmpresaRua, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addGap(86, 86, 86))))
         );
@@ -388,7 +370,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpContratanteDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jpContratanteEmpresaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratanteSedeEm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpContratanteEmpresaSedeEm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpContratanteEmpresaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jpContratanteDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -472,35 +454,6 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
             .addGroup(jpContratanteDadosRepresentanteLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratanteDadosRepresentanteLayout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addGap(219, 219, 219)
-                        .addComponent(jLabel19)
-                        .addGap(258, 258, 258)
-                        .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21)
-                            .addComponent(jpContratanteRepresentanteNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratanteDadosRepresentanteLayout.createSequentialGroup()
-                        .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpContratanteDadosRepresentanteLayout.createSequentialGroup()
-                                .addComponent(jpContratanteRepresentanteBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(jpContratanteRepresentanteRua, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContratanteDadosRepresentanteLayout.createSequentialGroup()
-                                .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jpContratanteRepresentanteCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(136, 136, 136)
-                                .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel23)
-                                    .addGroup(jpContratanteDadosRepresentanteLayout.createSequentialGroup()
-                                        .addComponent(jpContratanteRepresentanteEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(47, 47, 47)
-                                        .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel25)
-                                            .addComponent(jpContratanteRepresentanteCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addContainerGap())
                     .addGroup(jpContratanteDadosRepresentanteLayout.createSequentialGroup()
                         .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jpContratanteDadosRepresentanteLayout.createSequentialGroup()
@@ -533,7 +486,38 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                                 .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jpContratanteRG, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())))))
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratanteDadosRepresentanteLayout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addGap(219, 219, 219)
+                        .addComponent(jLabel19)
+                        .addGap(258, 258, 258)
+                        .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addComponent(jpContratanteRepresentanteNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratanteDadosRepresentanteLayout.createSequentialGroup()
+                        .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratanteDadosRepresentanteLayout.createSequentialGroup()
+                                .addComponent(jpContratanteRepresentanteBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(jpContratanteRepresentanteRua, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratanteDadosRepresentanteLayout.createSequentialGroup()
+                                .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpContratanteDadosRepresentanteLayout.createSequentialGroup()
+                                        .addComponent(jpContratanteRepresentanteCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(55, 55, 55))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContratanteDadosRepresentanteLayout.createSequentialGroup()
+                                        .addComponent(jLabel22)
+                                        .addGap(162, 162, 162)))
+                                .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jpContratanteRepresentanteEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel23))
+                                .addGap(57, 57, 57)
+                                .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel25)
+                                    .addComponent(jpContratanteRepresentanteCidade))))
+                        .addGap(137, 137, 137))))
         );
         jpContratanteDadosRepresentanteLayout.setVerticalGroup(
             jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -559,12 +543,17 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                     .addComponent(jpContratanteProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpContratanteNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpContratanteEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel25))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpContratanteDadosRepresentanteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContratanteDadosRepresentanteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel22))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jpContratanteDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jpContratanteRepresentanteEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpContratanteRepresentanteCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -582,19 +571,51 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 .addGap(80, 80, 80))
         );
 
+        jbBuscarContratanteEmpresa.setText("Buscar Empresa");
+
+        jbBuscarCepContratanteEmpresa.setText("Buscar Cep Empresa");
+        jbBuscarCepContratanteEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarCepContratanteEmpresaActionPerformed(evt);
+            }
+        });
+
+        jbBuscarContratante.setText("Buscar Contratante");
+
+        jbBuscarCepContratanteRepesentante.setText("Buscar Cep Representante");
+        jbBuscarCepContratanteRepesentante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarCepContratanteRepesentanteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpContratanteLayout = new javax.swing.GroupLayout(jpContratante);
         jpContratante.setLayout(jpContratanteLayout);
         jpContratanteLayout.setHorizontalGroup(
             jpContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpContratanteLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addGroup(jpContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpContratanteDadosRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratanteDadosEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpContratanteLayout.createSequentialGroup()
+                        .addGroup(jpContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addGap(52, 52, 52)
+                        .addComponent(jbBuscarContratanteEmpresa)
+                        .addGap(42, 42, 42)
+                        .addComponent(jbBuscarCepContratanteEmpresa)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpContratanteLayout.createSequentialGroup()
+                        .addGroup(jpContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jpContratanteLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(51, 51, 51)
+                                .addComponent(jbBuscarContratante)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbBuscarCepContratanteRepesentante))
+                            .addComponent(jpContratanteDadosRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jpContratanteDadosEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jpContratanteLayout.setVerticalGroup(
             jpContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -602,11 +623,17 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jpContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jbBuscarContratanteEmpresa)
+                    .addComponent(jbBuscarCepContratanteEmpresa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpContratanteDadosEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel14)
+                .addGroup(jpContratanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jbBuscarCepContratanteRepesentante)
+                    .addComponent(jbBuscarContratante))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpContratanteDadosRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
@@ -707,7 +734,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                         .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jpContratadaEmpresaRua, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel59))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addComponent(jLabel60)
                         .addGap(86, 86, 86))))
         );
@@ -817,15 +844,6 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                        .addComponent(jLabel71)
-                        .addGap(219, 219, 219)
-                        .addComponent(jLabel72)
-                        .addGap(258, 258, 258)
-                        .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel73)
-                            .addComponent(jpContratadaRepresentanteNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratadaDadosRepresentanteLayout.createSequentialGroup()
                         .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
                                 .addComponent(jpContratadaRepresentanteBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -835,15 +853,12 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                                 .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel68)
                                     .addComponent(jpContratadaRepresentanteCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(136, 136, 136)
+                                .addGap(48, 48, 48)
                                 .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel69)
-                                    .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                                        .addComponent(jpContratadaRepresentanteEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(47, 47, 47)
-                                        .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel70)
-                                            .addComponent(jpContratadaRepresentanteCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jpContratadaRepresentanteEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel69))
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel70)))
                         .addContainerGap())
                     .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
                         .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -877,7 +892,20 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                                 .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel64)
                                     .addComponent(jpContratadaRG, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())))))
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratadaDadosRepresentanteLayout.createSequentialGroup()
+                        .addComponent(jLabel71)
+                        .addGap(219, 219, 219)
+                        .addComponent(jLabel72)
+                        .addGap(258, 258, 258)
+                        .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel73)
+                            .addComponent(jpContratadaRepresentanteNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jpContratadaRepresentanteCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(137, 137, 137))))
         );
         jpContratadaDadosRepresentanteLayout.setVerticalGroup(
             jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -934,12 +962,14 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jpContratadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel61)
-                    .addGroup(jpContratadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jpContratadaDadosRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel24)
-                        .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jpContratadaDadosEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpContratadaDadosEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(7, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContratadaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpContratadaDadosRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jpContratadaLayout.setVerticalGroup(
             jpContratadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -952,9 +982,9 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 .addComponent(jpContratadaDadosEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel61)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpContratadaDadosRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
+                .addGap(86, 86, 86))
         );
 
         jLabel77.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
@@ -1007,7 +1037,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                                         .addComponent(jtPorcentagemMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel30)))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 288, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpPagamentoLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1138,7 +1168,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                                 .addComponent(jtQtdPrazoProrrogacao, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel36)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jpPrazoLayout.setVerticalGroup(
             jpPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1181,7 +1211,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                     .addComponent(jLabel83)
                     .addComponent(jLabel78)
                     .addComponent(jtForroComarca, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(438, Short.MAX_VALUE))
         );
         jpForroLayout.setVerticalGroup(
             jpForroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1202,41 +1232,44 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(277, 277, 277)
                         .addComponent(jLabel77))
-                    .addComponent(jpForro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpRescissao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpPrazo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jpForro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(6, 19, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jpContratante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpContratada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jpContratada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jpContratante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpRescissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jpContratante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpContratada, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel77)
                 .addGap(18, 18, 18)
                 .addComponent(jpPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jpRescissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(46, 46, 46)
                 .addComponent(jpPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(34, 34, 34)
                 .addComponent(jpForro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel2);
@@ -1245,21 +1278,22 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(286, 286, 286)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(23, 23, 23))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -1293,6 +1327,36 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
              JOptionPane.showMessageDialog(null, e.getMessage());
          }
     }//GEN-LAST:event_jbSalvarActionPerformed
+
+    private void jbBuscarCepContratanteEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepContratanteEmpresaActionPerformed
+       try {
+            Endereco endereco = BuscaCep.buscar(jpContratanteEmpresaCEP.getText().trim());
+            jpContratanteEmpresaCEP.setText(endereco.getCep());
+            jpContratanteEmpresaRua.setText(endereco.getLogradouro());
+            jpContratanteEmpresaNumero.setText( String.valueOf((Object)endereco.getNumero()));
+            jpContratanteEmpresaBairro.setText(endereco.getBairro());
+            jpContratanteEmpresaSedeEm.setText(endereco.getCidade());
+            jpContratanteEmpresaEstado.setText(endereco.getEstado());
+            
+        } catch(IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } 
+    }//GEN-LAST:event_jbBuscarCepContratanteEmpresaActionPerformed
+
+    private void jbBuscarCepContratanteRepesentanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepContratanteRepesentanteActionPerformed
+        try {
+            Endereco endereco = BuscaCep.buscar(jpContratanteRepresentanteCEP.getText().trim());
+            jpContratanteRepresentanteCEP.setText(endereco.getCep());
+            jpContratanteRepresentanteRua.setText(endereco.getLogradouro());
+            jpContratanteRepresentanteNumero.setText( String.valueOf((Object)endereco.getNumero()));
+            jpContratanteRepresentanteBairro.setText(endereco.getBairro());
+            jpContratanteRepresentanteCidade.setText(endereco.getCidade());
+            jpContratanteRepresentanteEstado.setText(endereco.getEstado());
+            
+        } catch(IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } 
+    }//GEN-LAST:event_jbBuscarCepContratanteRepesentanteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1369,10 +1433,10 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbBuscarCepEmpresa;
-    private javax.swing.JButton jbBuscarCepRepesentante;
-    private javax.swing.JButton jbBuscarEmpresa;
-    private javax.swing.JButton jbBuscarPessoa;
+    private javax.swing.JButton jbBuscarCepContratanteEmpresa;
+    private javax.swing.JButton jbBuscarCepContratanteRepesentante;
+    private javax.swing.JButton jbBuscarContratante;
+    private javax.swing.JButton jbBuscarContratanteEmpresa;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbSalvar;
     private javax.swing.JPanel jpContratada;
@@ -1410,6 +1474,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jpContratanteEmpresaEstado;
     private javax.swing.JTextField jpContratanteEmpresaNumero;
     private javax.swing.JTextField jpContratanteEmpresaRua;
+    private javax.swing.JTextField jpContratanteEmpresaSedeEm;
     private javax.swing.JComboBox<String> jpContratanteEstadoCivil;
     private javax.swing.JTextField jpContratanteNacionalidade;
     private javax.swing.JTextField jpContratanteNomeEmpresa;
@@ -1422,7 +1487,6 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jpContratanteRepresentanteNome;
     private javax.swing.JTextField jpContratanteRepresentanteNumero;
     private javax.swing.JTextField jpContratanteRepresentanteRua;
-    private javax.swing.JTextField jpContratanteSedeEm;
     private javax.swing.JPanel jpForro;
     private javax.swing.JPanel jpPagamento;
     private javax.swing.JPanel jpPrazo;
