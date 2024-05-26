@@ -10,7 +10,7 @@ import com.app.word.WordGenerator;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
-public class ComodadoImovel extends javax.swing.JInternalFrame {
+public class ComodatoImovel extends javax.swing.JInternalFrame {
 
     private final String contratanteTextWord = "(Nome da Contratante), com sede em (xxx), na Rua (xxx), nº (xxx), bairro (xxx), "
             + "Cep (xxx), no Estado (xxx), inscrita no C.N.P.J. sob o nº (xxx), e no"
@@ -23,11 +23,12 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
             + "Cadastro Estadual sob o nº (xxx), neste ato representada pelo seu diretor (xxx), "
             + "(Nacionalidade), (Estado Civil), (Profissão), Carteira de Identidade nº (xxx), C.P.F. nº (xxx), "
             + "residente e domiciliado na Rua (xxx), nº (xxx), bairro (xxx), Cep (xxx), Cidade (xxx), no Estado (xxx).";
-    public ComodadoImovel() {
+    
+    public ComodatoImovel() {
         initComponents();
         setTitle("Assistência Médica à Empresa");
     }
-    
+    /*
     private String contratanteInfo() {
         
         String s = String.format("%s, com sede em %s, na %s, nº %s, bairro %s, Cep %s, no Estado %s,"
@@ -60,15 +61,15 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
                 jpContratadaNomeEmpresa.getText(), jpContratadaEmpresaSedeEm.getText(), jpContratadaEmpresaRua.getText(), jpContratadaEmpresaNumero.getText(),
                 jpContratadaEmpresaBairro.getText(), jpContratadaEmpresaCEP.getText(), jpContratadaEmpresaEstado.getText(),
                 jtComodanteCNPJ.getText(), jtComodanteCadastroEstadual.getText(),
-                jpContratadaRepresentanteNome.getText(), jpContratadaNacionalidade.getText(),(String)jpContratadaEstadoCivil.getSelectedItem(),
-                jpContratadaProfissao.getText(), jpContratadaRG.getText(), jpContratadaCPF.getText(),
-                jpContratadaRepresentanteRua.getText(), jpContratadaRepresentanteNumero.getText(), jpContratadaRepresentanteBairro.getText(),
-                jpContratadaRepresentanteCEP.getText(), jpContratadaRepresentanteCidade.getText(), jpContratadaRepresentanteEstado.getText()
+                jtComodatarioNome.getText(), jtComodatarioNacionalidade.getText(),(String)jtComodatarioEstadoCivil.getSelectedItem(),
+                jtComodatarioProfissao.getText(), jtComodatarioRG.getText(), jtComodatarioCPF.getText(),
+                jtComodatarioRua.getText(), jtComodatarioNumero.getText(), jtComodatarioBairro.getText(),
+                jtComodatarioCEP.getText(), jtComodatarioCidade.getText(), jtComodatarioEstado.getText()
                 );
         
         return s;
     }
-    
+    */
     private String isPlural(Integer num,String text) {
         return num > 1 ? text+"s" : text;
     }
@@ -134,84 +135,60 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
         jbBuscarCepContratanteEmpresa = new javax.swing.JButton();
         jbBuscarContratante = new javax.swing.JButton();
         jbBuscarCepContratanteRepesentante = new javax.swing.JButton();
-        jpContratada = new javax.swing.JPanel();
+        jpComodatario = new javax.swing.JPanel();
         jLabel51 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jpContratadaDadosEmpresa = new javax.swing.JPanel();
-        jLabel52 = new javax.swing.JLabel();
-        jpContratadaNomeEmpresa = new javax.swing.JTextField();
-        jLabel53 = new javax.swing.JLabel();
-        jpContratadaCNPJ = new javax.swing.JFormattedTextField();
-        jLabel54 = new javax.swing.JLabel();
-        jpContratadaCadastroEstadual = new javax.swing.JTextField();
-        jLabel55 = new javax.swing.JLabel();
-        jpContratadaEmpresaCEP = new javax.swing.JFormattedTextField();
-        jLabel56 = new javax.swing.JLabel();
-        jpContratadaEmpresaSedeEm = new javax.swing.JTextField();
-        jLabel57 = new javax.swing.JLabel();
-        jpContratadaEmpresaEstado = new javax.swing.JTextField();
-        jLabel58 = new javax.swing.JLabel();
-        jpContratadaEmpresaBairro = new javax.swing.JTextField();
-        jLabel59 = new javax.swing.JLabel();
-        jpContratadaEmpresaRua = new javax.swing.JTextField();
-        jLabel60 = new javax.swing.JLabel();
-        jpContratadaEmpresaNumero = new javax.swing.JTextField();
         jLabel61 = new javax.swing.JLabel();
-        jpContratadaDadosRepresentante = new javax.swing.JPanel();
+        jpComodatarioDados = new javax.swing.JPanel();
         jLabel62 = new javax.swing.JLabel();
-        jpContratadaRepresentanteNome = new javax.swing.JTextField();
+        jtComodatarioNome = new javax.swing.JTextField();
         jLabel63 = new javax.swing.JLabel();
-        jpContratadaCPF = new javax.swing.JFormattedTextField();
+        jtComodatarioCPF = new javax.swing.JFormattedTextField();
         jLabel64 = new javax.swing.JLabel();
-        jpContratadaRG = new javax.swing.JFormattedTextField();
+        jtComodatarioRG = new javax.swing.JFormattedTextField();
         jLabel65 = new javax.swing.JLabel();
-        jpContratadaEstadoCivil = new javax.swing.JComboBox<>();
+        jtComodatarioEstadoCivil = new javax.swing.JComboBox<>();
         jLabel66 = new javax.swing.JLabel();
-        jpContratadaProfissao = new javax.swing.JTextField();
+        jtComodatarioProfissao = new javax.swing.JTextField();
         jLabel67 = new javax.swing.JLabel();
-        jpContratadaNacionalidade = new javax.swing.JTextField();
+        jtComodatarioNacionalidade = new javax.swing.JTextField();
         jLabel68 = new javax.swing.JLabel();
-        jpContratadaRepresentanteCEP = new javax.swing.JFormattedTextField();
+        jtComodatarioCEP = new javax.swing.JFormattedTextField();
         jLabel69 = new javax.swing.JLabel();
-        jpContratadaRepresentanteEstado = new javax.swing.JTextField();
+        jtComodatarioEstado = new javax.swing.JTextField();
         jLabel70 = new javax.swing.JLabel();
-        jpContratadaRepresentanteCidade = new javax.swing.JTextField();
+        jtComodatarioCidade = new javax.swing.JTextField();
         jLabel71 = new javax.swing.JLabel();
-        jpContratadaRepresentanteBairro = new javax.swing.JTextField();
+        jtComodatarioBairro = new javax.swing.JTextField();
         jLabel72 = new javax.swing.JLabel();
-        jpContratadaRepresentanteRua = new javax.swing.JTextField();
+        jtComodatarioRua = new javax.swing.JTextField();
         jLabel73 = new javax.swing.JLabel();
-        jpContratadaRepresentanteNumero = new javax.swing.JTextField();
-        jbBuscarCepEmpresaContratada = new javax.swing.JButton();
-        jbBuscarCepRepresentanteContratada = new javax.swing.JButton();
+        jtComodatarioNumero = new javax.swing.JTextField();
+        jLabel84 = new javax.swing.JLabel();
+        jtComodatarioCarteiraTrabalho = new javax.swing.JTextField();
+        jLabel85 = new javax.swing.JLabel();
+        jtComodatarioSerieCarteiraTrabalho = new javax.swing.JTextField();
+        jbBuscarCepComodatario = new javax.swing.JButton();
         jLabel77 = new javax.swing.JLabel();
         jpPagamento = new javax.swing.JPanel();
         jLabel74 = new javax.swing.JLabel();
         jLabel75 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jtQuantiaMensal = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jtDiaPagamento = new javax.swing.JSpinner();
+        jLabel86 = new javax.swing.JLabel();
         jLabel76 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jtPorcentagemMulta = new javax.swing.JTextField();
-        jLabel30 = new javax.swing.JLabel();
-        jpRescissao = new javax.swing.JPanel();
-        jLabel79 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jtQtdMeses = new javax.swing.JSpinner();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel80 = new javax.swing.JLabel();
-        jpPrazo = new javax.swing.JPanel();
-        jLabel81 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jtQtdPrazoContrato = new javax.swing.JSpinner();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jtQtdPrazoProrrogacao = new javax.swing.JSpinner();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel82 = new javax.swing.JLabel();
+        jLabel87 = new javax.swing.JLabel();
+        jLabel88 = new javax.swing.JLabel();
+        jLabel89 = new javax.swing.JLabel();
+        jLabel90 = new javax.swing.JLabel();
+        jLabel91 = new javax.swing.JLabel();
+        jLabel92 = new javax.swing.JLabel();
+        jtPropriedadeCEP = new javax.swing.JFormattedTextField();
+        jtPropriedadeEstado = new javax.swing.JTextField();
+        jtPropriedadeCidade = new javax.swing.JTextField();
+        jtPropriedadeBairro = new javax.swing.JTextField();
+        jtPropriedadeRua = new javax.swing.JTextField();
+        jtPropriedadeNumero = new javax.swing.JTextField();
+        jtPropriedadeCartorio = new javax.swing.JTextField();
+        jtPropriedadeRegistro = new javax.swing.JTextField();
         jpForro = new javax.swing.JPanel();
         jLabel78 = new javax.swing.JLabel();
         jLabel83 = new javax.swing.JLabel();
@@ -228,6 +205,11 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
         });
 
         jbCancelar.setText("Cancelar");
+        jbCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -641,146 +623,15 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26))
         );
 
-        jpContratada.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
+        jpComodatario.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
 
         jLabel51.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jLabel51.setText("Contratada");
-
-        jLabel24.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel24.setText("Dados da Empresa");
-
-        jpContratadaDadosEmpresa.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
-
-        jLabel52.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel52.setText("Nome da Empresa");
-
-        jLabel53.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel53.setText("CNPJ");
-
-        try {
-            jpContratadaCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel54.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel54.setText("Cadastro Estadual");
-
-        jLabel55.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel55.setText("CEP");
-
-        try {
-            jpContratadaEmpresaCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel56.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel56.setText("Sede em");
-
-        jLabel57.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel57.setText("Estado");
-
-        jLabel58.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel58.setText("Bairro");
-
-        jLabel59.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel59.setText("Rua");
-
-        jLabel60.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel60.setText("Número");
-
-        javax.swing.GroupLayout jpContratadaDadosEmpresaLayout = new javax.swing.GroupLayout(jpContratadaDadosEmpresa);
-        jpContratadaDadosEmpresa.setLayout(jpContratadaDadosEmpresaLayout);
-        jpContratadaDadosEmpresaLayout.setHorizontalGroup(
-            jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpContratadaDadosEmpresaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpContratadaDadosEmpresaLayout.createSequentialGroup()
-                        .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel55)
-                            .addComponent(jpContratadaEmpresaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpContratadaEmpresaSedeEm, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel56))
-                        .addGap(78, 78, 78)
-                        .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpContratadaEmpresaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel57))
-                        .addGap(74, 74, 74))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContratadaDadosEmpresaLayout.createSequentialGroup()
-                        .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jpContratadaDadosEmpresaLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jpContratadaEmpresaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContratadaDadosEmpresaLayout.createSequentialGroup()
-                                .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel52)
-                                    .addComponent(jpContratadaNomeEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(102, 102, 102)
-                                .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel53)
-                                    .addComponent(jpContratadaCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel54)
-                                    .addComponent(jpContratadaCadastroEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContratadaDadosEmpresaLayout.createSequentialGroup()
-                        .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel58)
-                            .addComponent(jpContratadaEmpresaBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42)
-                        .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpContratadaEmpresaRua, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel59))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                        .addComponent(jLabel60)
-                        .addGap(86, 86, 86))))
-        );
-        jpContratadaDadosEmpresaLayout.setVerticalGroup(
-            jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpContratadaDadosEmpresaLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel52)
-                    .addComponent(jLabel53)
-                    .addComponent(jLabel54))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jpContratadaNomeEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaCadastroEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel55)
-                    .addComponent(jLabel56)
-                    .addComponent(jLabel57))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jpContratadaEmpresaCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaEmpresaSedeEm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaEmpresaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel58)
-                    .addComponent(jLabel59)
-                    .addComponent(jLabel60))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpContratadaDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jpContratadaEmpresaBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaEmpresaRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaEmpresaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel51.setText("Comodatário");
 
         jLabel61.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel61.setText("Dados do Representante");
 
-        jpContratadaDadosRepresentante.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
-        jpContratadaDadosRepresentante.setForeground(new java.awt.Color(102, 102, 102));
+        jpComodatarioDados.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
+        jpComodatarioDados.setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel62.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel62.setText("Nome");
@@ -789,7 +640,7 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
         jLabel63.setText("CPF");
 
         try {
-            jpContratadaCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            jtComodatarioCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -798,7 +649,7 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
         jLabel64.setText("RG");
 
         try {
-            jpContratadaRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
+            jtComodatarioRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -806,7 +657,7 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
         jLabel65.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel65.setText("Estado Civil");
 
-        jpContratadaEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"--Selecione--"}));
+        jtComodatarioEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"--Selecione--"}));
 
         jLabel66.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel66.setText("Profissão");
@@ -818,7 +669,7 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
         jLabel68.setText("CEP");
 
         try {
-            jpContratadaRepresentanteCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            jtComodatarioCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -838,180 +689,179 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
         jLabel73.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel73.setText("Número");
 
-        javax.swing.GroupLayout jpContratadaDadosRepresentanteLayout = new javax.swing.GroupLayout(jpContratadaDadosRepresentante);
-        jpContratadaDadosRepresentante.setLayout(jpContratadaDadosRepresentanteLayout);
-        jpContratadaDadosRepresentanteLayout.setHorizontalGroup(
-            jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
+        jLabel84.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jLabel84.setText("Série da Carteira de Trabalho");
+
+        jLabel85.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jLabel85.setText("Nº da Cartira de Trabalho");
+
+        javax.swing.GroupLayout jpComodatarioDadosLayout = new javax.swing.GroupLayout(jpComodatarioDados);
+        jpComodatarioDados.setLayout(jpComodatarioDadosLayout);
+        jpComodatarioDadosLayout.setHorizontalGroup(
+            jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpComodatarioDadosLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                        .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                                .addComponent(jpContratadaRepresentanteBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpComodatarioDadosLayout.createSequentialGroup()
+                        .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpComodatarioDadosLayout.createSequentialGroup()
+                                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtComodatarioBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel71))
                                 .addGap(31, 31, 31)
-                                .addComponent(jpContratadaRepresentanteRua, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel68)
-                                    .addComponent(jpContratadaRepresentanteCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtComodatarioRua, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel72))
+                                .addGap(18, 18, 18)
+                                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel73)
+                                    .addComponent(jtComodatarioNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jpComodatarioDadosLayout.createSequentialGroup()
+                                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtComodatarioCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel68))
                                 .addGap(48, 48, 48)
-                                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jpContratadaRepresentanteEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtComodatarioEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel69))
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabel70)))
-                        .addContainerGap())
-                    .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                        .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jpContratadaEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel65))
-                                .addGap(67, 67, 67)
-                                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jpContratadaProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel66)))
-                            .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                                        .addComponent(jpContratadaRepresentanteNome, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(63, 63, 63))
-                                    .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                                        .addComponent(jLabel62)
-                                        .addGap(175, 175, 175)))
-                                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel63)
-                                    .addComponent(jpContratadaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(39, 39, 39)
+                                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel70)
+                                    .addComponent(jtComodatarioCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jpComodatarioDadosLayout.createSequentialGroup()
+                                .addComponent(jtComodatarioEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(240, 240, 240)
+                                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel67)
-                                    .addComponent(jpContratadaNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(137, 137, 137))
-                            .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel64)
-                                    .addComponent(jpContratadaRG, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                        .addComponent(jLabel71)
-                        .addGap(219, 219, 219)
-                        .addComponent(jLabel72)
-                        .addGap(258, 258, 258)
-                        .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel73)
-                            .addComponent(jpContratadaRepresentanteNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jtComodatarioNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtComodatarioCarteiraTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jpContratadaRepresentanteCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpComodatarioDadosLayout.createSequentialGroup()
+                        .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jpComodatarioDadosLayout.createSequentialGroup()
+                                .addComponent(jLabel65)
+                                .addGap(111, 111, 111)
+                                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtComodatarioProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel66)))
+                            .addGroup(jpComodatarioDadosLayout.createSequentialGroup()
+                                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jpComodatarioDadosLayout.createSequentialGroup()
+                                        .addComponent(jLabel62)
+                                        .addGap(175, 175, 175))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpComodatarioDadosLayout.createSequentialGroup()
+                                        .addComponent(jtComodatarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel63)
+                                    .addComponent(jtComodatarioCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(28, 28, 28)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel64)
+                            .addComponent(jtComodatarioRG, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(195, 195, 195))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpComodatarioDadosLayout.createSequentialGroup()
+                        .addComponent(jLabel85)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtComodatarioSerieCarteiraTrabalho)
+                            .addComponent(jLabel84, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
                         .addGap(137, 137, 137))))
         );
-        jpContratadaDadosRepresentanteLayout.setVerticalGroup(
-            jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpContratadaDadosRepresentanteLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jpComodatarioDadosLayout.setVerticalGroup(
+            jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpComodatarioDadosLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel62)
                     .addComponent(jLabel63)
-                    .addComponent(jLabel64)
-                    .addComponent(jLabel62))
+                    .addComponent(jLabel64))
+                .addGap(14, 14, 14)
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtComodatarioNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtComodatarioCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtComodatarioRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel85)
+                    .addComponent(jLabel84))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jpContratadaRepresentanteNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtComodatarioCarteiraTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtComodatarioSerieCarteiraTrabalho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel65)
+                    .addComponent(jLabel66)
+                    .addComponent(jLabel67))
                 .addGap(18, 18, 18)
-                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel66)
-                        .addComponent(jLabel67))
-                    .addComponent(jLabel65))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpContratadaProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtComodatarioEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtComodatarioProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtComodatarioNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel68)
                     .addComponent(jLabel69)
-                    .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel68)
-                        .addComponent(jLabel70)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jpContratadaRepresentanteEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaRepresentanteCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaRepresentanteCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel70))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtComodatarioCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtComodatarioEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtComodatarioCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel71)
                     .addComponent(jLabel72)
                     .addComponent(jLabel73))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpContratadaDadosRepresentanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jpContratadaRepresentanteNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaRepresentanteRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaRepresentanteBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpComodatarioDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtComodatarioBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtComodatarioRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtComodatarioNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
-        jbBuscarCepEmpresaContratada.setText("Buscar Cep empresa");
-        jbBuscarCepEmpresaContratada.addActionListener(new java.awt.event.ActionListener() {
+        jbBuscarCepComodatario.setText("Buscar Cep Representante");
+        jbBuscarCepComodatario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarCepEmpresaContratadaActionPerformed(evt);
+                jbBuscarCepComodatarioActionPerformed(evt);
             }
         });
 
-        jbBuscarCepRepresentanteContratada.setText("Buscar Cep Representante");
-        jbBuscarCepRepresentanteContratada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarCepRepresentanteContratadaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jpContratadaLayout = new javax.swing.GroupLayout(jpContratada);
-        jpContratada.setLayout(jpContratadaLayout);
-        jpContratadaLayout.setHorizontalGroup(
-            jpContratadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpContratadaLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpComodatarioLayout = new javax.swing.GroupLayout(jpComodatario);
+        jpComodatario.setLayout(jpComodatarioLayout);
+        jpComodatarioLayout.setHorizontalGroup(
+            jpComodatarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpComodatarioLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jpContratadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpContratadaLayout.createSequentialGroup()
+                .addGroup(jpComodatarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpComodatarioLayout.createSequentialGroup()
                         .addComponent(jLabel61)
-                        .addGap(76, 76, 76)
-                        .addComponent(jbBuscarCepRepresentanteContratada))
-                    .addGroup(jpContratadaLayout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addGap(113, 113, 113)
-                        .addComponent(jbBuscarCepEmpresaContratada))
-                    .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratadaDadosEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(7, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContratadaLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpComodatarioLayout.createSequentialGroup()
+                        .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbBuscarCepComodatario)
+                        .addGap(134, 134, 134))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpComodatarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jpContratadaDadosRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jpComodatarioDados, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
-        jpContratadaLayout.setVerticalGroup(
-            jpContratadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContratadaLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel51)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpContratadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel24)
-                    .addComponent(jbBuscarCepEmpresaContratada))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jpContratadaDadosEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jpComodatarioLayout.setVerticalGroup(
+            jpComodatarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpComodatarioLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jpComodatarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel51)
+                    .addComponent(jbBuscarCepComodatario))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel61)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpContratadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel61)
-                    .addComponent(jbBuscarCepRepresentanteContratada))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpContratadaDadosRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addComponent(jpComodatarioDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jLabel77.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
@@ -1019,26 +869,41 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
 
         jpPagamento.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
 
-        jLabel74.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel74.setText("13º Cláusula");
+        jLabel74.setFont(new java.awt.Font("Courier New", 1, 12)); // NOI18N
+        jLabel74.setText("Rua");
 
         jLabel75.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jLabel75.setText("Do Pagamento");
+        jLabel75.setText("DO OBJETO DO CONTRATO");
 
-        jLabel1.setText("Quantia mensal a ser paga pelo contratante");
+        jLabel86.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jLabel86.setText("1º Cláusula");
 
-        jLabel27.setText("R$");
+        jLabel76.setFont(new java.awt.Font("Courier New", 1, 12)); // NOI18N
+        jLabel76.setText("Numero");
 
-        jLabel28.setText("Dia a ser pago");
+        jLabel87.setFont(new java.awt.Font("Courier New", 1, 12)); // NOI18N
+        jLabel87.setText("Bairro");
 
-        jtDiaPagamento.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
+        jLabel88.setFont(new java.awt.Font("Courier New", 1, 12)); // NOI18N
+        jLabel88.setText("Cep");
 
-        jLabel76.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel76.setText("14º Cláusula");
+        jLabel89.setFont(new java.awt.Font("Courier New", 1, 12)); // NOI18N
+        jLabel89.setText("Cidade");
 
-        jLabel29.setText("Porcentagem da multa caso o  descumprimento da cláusula anterior");
+        jLabel90.setFont(new java.awt.Font("Courier New", 1, 12)); // NOI18N
+        jLabel90.setText("Estado");
 
-        jLabel30.setText("%");
+        jLabel91.setFont(new java.awt.Font("Courier New", 1, 12)); // NOI18N
+        jLabel91.setText("Número do Registro da propriedade");
+
+        jLabel92.setFont(new java.awt.Font("Courier New", 1, 12)); // NOI18N
+        jLabel92.setText("Cartório do Ofício de Registro de Imóveil");
+
+        try {
+            jtPropriedadeCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jpPagamentoLayout = new javax.swing.GroupLayout(jpPagamento);
         jpPagamento.setLayout(jpPagamentoLayout);
@@ -1048,173 +913,103 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPagamentoLayout.createSequentialGroup()
+                        .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jpPagamentoLayout.createSequentialGroup()
+                                .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpPagamentoLayout.createSequentialGroup()
+                                        .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPagamentoLayout.createSequentialGroup()
+                                                .addComponent(jLabel88)
+                                                .addGap(153, 153, 153))
+                                            .addGroup(jpPagamentoLayout.createSequentialGroup()
+                                                .addComponent(jtPropriedadeBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(37, 37, 37)))
+                                        .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel90)
+                                            .addComponent(jtPropriedadeEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jtPropriedadeRua, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jpPagamentoLayout.createSequentialGroup()
+                                        .addComponent(jLabel87)
+                                        .addGap(144, 144, 144)
+                                        .addComponent(jLabel74))
+                                    .addComponent(jtPropriedadeCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(jpPagamentoLayout.createSequentialGroup()
+                                .addComponent(jtPropriedadeCartorio)
+                                .addGap(119, 119, 119)))
                         .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel75)
-                            .addComponent(jLabel74))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPagamentoLayout.createSequentialGroup()
-                        .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpPagamentoLayout.createSequentialGroup()
+                            .addGroup(jpPagamentoLayout.createSequentialGroup()
+                                .addComponent(jLabel89)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jpPagamentoLayout.createSequentialGroup()
                                 .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtPropriedadeCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jpPagamentoLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel29))
-                                    .addComponent(jLabel76)
-                                    .addGroup(jpPagamentoLayout.createSequentialGroup()
-                                        .addComponent(jtPorcentagemMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel30)))
-                                .addGap(0, 288, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpPagamentoLayout.createSequentialGroup()
+                                        .addGap(68, 68, 68)
+                                        .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel76)
+                                            .addComponent(jtPropriedadeNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jpPagamentoLayout.createSequentialGroup()
+                        .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpPagamentoLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
+                                .addComponent(jLabel1))
+                            .addComponent(jLabel75)
+                            .addGroup(jpPagamentoLayout.createSequentialGroup()
+                                .addComponent(jLabel92)
+                                .addGap(88, 88, 88)
                                 .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addGroup(jpPagamentoLayout.createSequentialGroup()
-                                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jtQuantiaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel28)
-                                    .addComponent(jtDiaPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(41, 41, 41))))
+                                    .addComponent(jLabel91)
+                                    .addComponent(jtPropriedadeRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())))
+            .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpPagamentoLayout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addComponent(jLabel86)
+                    .addContainerGap(599, Short.MAX_VALUE)))
         );
         jpPagamentoLayout.setVerticalGroup(
             jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPagamentoLayout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(jLabel75)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel74)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel1)
+                .addGap(24, 24, 24)
                 .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel28))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel88)
+                    .addComponent(jLabel90)
+                    .addComponent(jLabel89))
+                .addGap(4, 4, 4)
                 .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtQuantiaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel27)
-                    .addComponent(jtDiaPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(jLabel76)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel29)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jtPropriedadeCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtPropriedadeEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtPropriedadeCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtPorcentagemMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30))
-                .addContainerGap(57, Short.MAX_VALUE))
-        );
-
-        jpRescissao.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
-
-        jLabel79.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel79.setText("16º Cláusula");
-
-        jLabel31.setText("Quantidades de meses a ser ressacido  caso uma das partes não cumpra o estabelecido em qualquer uma das cláusulas");
-
-        jtQtdMeses.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-
-        jLabel32.setText("meses");
-
-        jLabel80.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jLabel80.setText("Da Rescisão");
-
-        javax.swing.GroupLayout jpRescissaoLayout = new javax.swing.GroupLayout(jpRescissao);
-        jpRescissao.setLayout(jpRescissaoLayout);
-        jpRescissaoLayout.setHorizontalGroup(
-            jpRescissaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpRescissaoLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jpRescissaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel31)
-                    .addComponent(jLabel80)
-                    .addComponent(jLabel79)
-                    .addGroup(jpRescissaoLayout.createSequentialGroup()
-                        .addComponent(jtQtdMeses, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel32)))
-                .addContainerGap(68, Short.MAX_VALUE))
-        );
-        jpRescissaoLayout.setVerticalGroup(
-            jpRescissaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpRescissaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel80)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel79)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel31)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpRescissaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtQtdMeses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32))
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-
-        jpPrazo.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
-
-        jLabel81.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
-        jLabel81.setText("17º Cláusula");
-
-        jLabel33.setText("Prazo do contrato");
-
-        jtQtdPrazoContrato.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-
-        jLabel34.setText("anos");
-
-        jLabel35.setText("Prazo de prorrogação do contrato");
-
-        jtQtdPrazoProrrogacao.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-
-        jLabel36.setText("dias");
-
-        jLabel82.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
-        jLabel82.setText("Do Prazo");
-
-        javax.swing.GroupLayout jpPrazoLayout = new javax.swing.GroupLayout(jpPrazo);
-        jpPrazo.setLayout(jpPrazoLayout);
-        jpPrazoLayout.setHorizontalGroup(
-            jpPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpPrazoLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jpPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel82)
-                    .addComponent(jLabel81)
-                    .addGroup(jpPrazoLayout.createSequentialGroup()
-                        .addGroup(jpPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel33)
-                            .addGroup(jpPrazoLayout.createSequentialGroup()
-                                .addComponent(jtQtdPrazoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel34)))
-                        .addGap(144, 144, 144)
-                        .addGroup(jpPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel35)
-                            .addGroup(jpPrazoLayout.createSequentialGroup()
-                                .addComponent(jtQtdPrazoProrrogacao, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel36)))))
-                .addContainerGap(229, Short.MAX_VALUE))
-        );
-        jpPrazoLayout.setVerticalGroup(
-            jpPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpPrazoLayout.createSequentialGroup()
+                    .addComponent(jLabel87)
+                    .addComponent(jLabel74)
+                    .addComponent(jLabel76))
                 .addGap(9, 9, 9)
-                .addComponent(jLabel82)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel81)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel35))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpPrazoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtQtdPrazoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel34)
-                    .addComponent(jtQtdPrazoProrrogacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel36))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtPropriedadeBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtPropriedadeRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtPropriedadeNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel92)
+                    .addComponent(jLabel91))
+                .addGap(9, 9, 9)
+                .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtPropriedadeCartorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtPropriedadeRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
+            .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpPagamentoLayout.createSequentialGroup()
+                    .addGap(52, 52, 52)
+                    .addComponent(jLabel86)
+                    .addContainerGap(242, Short.MAX_VALUE)))
         );
 
         jpForro.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
@@ -1261,22 +1056,16 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(jLabel77))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jpForro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jpComodante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpContratada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpRescissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                            .addComponent(jpComodante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jpComodatario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jpPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(251, 251, 251)
+                        .addComponent(jLabel77)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1284,18 +1073,14 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jpComodante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpContratada, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jpComodatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel77)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jpRescissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jpPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(28, 28, 28)
                 .addComponent(jpForro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel2);
@@ -1332,18 +1117,9 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
             wg.setInputFilePath(WordContractPath.ASSISTENCIAMEDICAEMPRESA);
             wg.openWord();
             
-            wg.modifyWord(contratanteTextWord, contratanteInfo());
-            wg.modifyWord(contratadaTextWord,contratadaInfo());
+            //wg.modifyWord(contratanteTextWord, contratanteInfo());
+            //wg.modifyWord(contratadaTextWord,contratadaInfo());
             
-            wg.modifyWord("(xxx) (Valor Expresso)", jtQuantiaMensal.getText());
-            wg.modifyWord("todo dia (xxx)",String.format("todo dia %d",jtDiaPagamento.getValue())) ;
-            wg.modifyWord("(xxx)%", jtPorcentagemMulta.getText()+"%");
-            
-            wg.modifyWord("(xxx) (Nº de mensalidades) mensalidades", String.format("%d %s", jtQtdMeses.getValue(), isPlural((Integer)jtQtdMeses.getValue(), "mensalidade")));
-            wg.modifyWord("(xxx) ano", String.format("%d %s", jtQtdPrazoContrato.getValue(), isPlural((Integer)jtQtdPrazoContrato.getValue(), "ano")));
-            wg.modifyWord("(xxx) dias", String.format("%d %s", jtQtdPrazoProrrogacao.getValue(), isPlural((Integer)jtQtdPrazoProrrogacao.getValue(), "dia")));
-            
-            wg.modifyWord("comarca de (xxx)", String.format("comarca de %s", jtForroComarca.getText()));
             
             wg.modifyWord("(Local, data e ano)", DateUtilFormarter.dateToStringContract());
             wg.setOutputFilePath(FileChooser.getPath());
@@ -1385,35 +1161,24 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
         } 
     }//GEN-LAST:event_jbBuscarCepContratanteRepesentanteActionPerformed
 
-    private void jbBuscarCepEmpresaContratadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepEmpresaContratadaActionPerformed
+    private void jbBuscarCepComodatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepComodatarioActionPerformed
         try {
-            Endereco endereco = BuscaCep.buscar(jpContratadaEmpresaCEP.getText().trim());
-            jpContratadaEmpresaCEP.setText(endereco.getCep());
-            jpContratadaEmpresaRua.setText(endereco.getLogradouro());
-            jpContratadaEmpresaNumero.setText( String.valueOf((Object)endereco.getNumero()));
-            jpContratadaEmpresaBairro.setText(endereco.getBairro());
-            jpContratadaEmpresaSedeEm.setText(endereco.getCidade());
-            jpContratadaEmpresaEstado.setText(endereco.getEstado());
+            Endereco endereco = BuscaCep.buscar(jtComodatarioCEP.getText().trim());
+            jtComodatarioCEP.setText(endereco.getCep());
+            jtComodatarioRua.setText(endereco.getLogradouro());
+            jtComodatarioNumero.setText( String.valueOf((Object)endereco.getNumero()));
+            jtComodatarioBairro.setText(endereco.getBairro());
+            jtComodatarioCidade.setText(endereco.getCidade());
+            jtComodatarioEstado.setText(endereco.getEstado());
             
         } catch(IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         } 
-    }//GEN-LAST:event_jbBuscarCepEmpresaContratadaActionPerformed
+    }//GEN-LAST:event_jbBuscarCepComodatarioActionPerformed
 
-    private void jbBuscarCepRepresentanteContratadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepRepresentanteContratadaActionPerformed
-        try {
-            Endereco endereco = BuscaCep.buscar(jpContratadaRepresentanteCEP.getText().trim());
-            jpContratadaRepresentanteCEP.setText(endereco.getCep());
-            jpContratadaRepresentanteRua.setText(endereco.getLogradouro());
-            jpContratadaRepresentanteNumero.setText( String.valueOf((Object)endereco.getNumero()));
-            jpContratadaRepresentanteBairro.setText(endereco.getBairro());
-            jpContratadaRepresentanteCidade.setText(endereco.getCidade());
-            jpContratadaRepresentanteEstado.setText(endereco.getEstado());
-            
-        } catch(IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } 
-    }//GEN-LAST:event_jbBuscarCepRepresentanteContratadaActionPerformed
+    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+       dispose();
+    }//GEN-LAST:event_jbCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1433,34 +1198,14 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
@@ -1480,20 +1225,24 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel80;
-    private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
+    private javax.swing.JLabel jLabel92;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbBuscarCepComodatario;
     private javax.swing.JButton jbBuscarCepContratanteEmpresa;
     private javax.swing.JButton jbBuscarCepContratanteRepesentante;
-    private javax.swing.JButton jbBuscarCepEmpresaContratada;
-    private javax.swing.JButton jbBuscarCepRepresentanteContratada;
     private javax.swing.JButton jbBuscarContratante;
     private javax.swing.JButton jbBuscarContratanteEmpresa;
     private javax.swing.JButton jbCancelar;
@@ -1501,34 +1250,10 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpComodante;
     private javax.swing.JPanel jpComodanteDados;
     private javax.swing.JPanel jpComodanteDadosEmpresa;
-    private javax.swing.JPanel jpContratada;
-    private javax.swing.JFormattedTextField jpContratadaCNPJ;
-    private javax.swing.JFormattedTextField jpContratadaCPF;
-    private javax.swing.JTextField jpContratadaCadastroEstadual;
-    private javax.swing.JPanel jpContratadaDadosEmpresa;
-    private javax.swing.JPanel jpContratadaDadosRepresentante;
-    private javax.swing.JTextField jpContratadaEmpresaBairro;
-    private javax.swing.JFormattedTextField jpContratadaEmpresaCEP;
-    private javax.swing.JTextField jpContratadaEmpresaEstado;
-    private javax.swing.JTextField jpContratadaEmpresaNumero;
-    private javax.swing.JTextField jpContratadaEmpresaRua;
-    private javax.swing.JTextField jpContratadaEmpresaSedeEm;
-    private javax.swing.JComboBox<String> jpContratadaEstadoCivil;
-    private javax.swing.JTextField jpContratadaNacionalidade;
-    private javax.swing.JTextField jpContratadaNomeEmpresa;
-    private javax.swing.JTextField jpContratadaProfissao;
-    private javax.swing.JFormattedTextField jpContratadaRG;
-    private javax.swing.JTextField jpContratadaRepresentanteBairro;
-    private javax.swing.JFormattedTextField jpContratadaRepresentanteCEP;
-    private javax.swing.JTextField jpContratadaRepresentanteCidade;
-    private javax.swing.JTextField jpContratadaRepresentanteEstado;
-    private javax.swing.JTextField jpContratadaRepresentanteNome;
-    private javax.swing.JTextField jpContratadaRepresentanteNumero;
-    private javax.swing.JTextField jpContratadaRepresentanteRua;
+    private javax.swing.JPanel jpComodatario;
+    private javax.swing.JPanel jpComodatarioDados;
     private javax.swing.JPanel jpForro;
     private javax.swing.JPanel jpPagamento;
-    private javax.swing.JPanel jpPrazo;
-    private javax.swing.JPanel jpRescissao;
     private javax.swing.JFormattedTextField jtComodanteCNPJ;
     private javax.swing.JTextField jtComodanteCadastroEstadual;
     private javax.swing.JTextField jtComodanteEmpresaBairro;
@@ -1538,6 +1263,20 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtComodanteEmpresaRua;
     private javax.swing.JTextField jtComodanteNomeEmpresa;
     private javax.swing.JTextField jtComodanteSedeEm;
+    private javax.swing.JTextField jtComodatarioBairro;
+    private javax.swing.JFormattedTextField jtComodatarioCEP;
+    private javax.swing.JFormattedTextField jtComodatarioCPF;
+    private javax.swing.JTextField jtComodatarioCarteiraTrabalho;
+    private javax.swing.JTextField jtComodatarioCidade;
+    private javax.swing.JTextField jtComodatarioEstado;
+    private javax.swing.JComboBox<String> jtComodatarioEstadoCivil;
+    private javax.swing.JTextField jtComodatarioNacionalidade;
+    private javax.swing.JTextField jtComodatarioNome;
+    private javax.swing.JTextField jtComodatarioNumero;
+    private javax.swing.JTextField jtComodatarioProfissao;
+    private javax.swing.JFormattedTextField jtComodatarioRG;
+    private javax.swing.JTextField jtComodatarioRua;
+    private javax.swing.JTextField jtComodatarioSerieCarteiraTrabalho;
     private javax.swing.JTextField jtContratanteComodanteBairro;
     private javax.swing.JFormattedTextField jtContratanteComodanteCEP;
     private javax.swing.JFormattedTextField jtContratanteComodanteCPF;
@@ -1550,12 +1289,14 @@ public class ComodadoImovel extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtContratanteComodanteProfissao;
     private javax.swing.JFormattedTextField jtContratanteComodanteRG;
     private javax.swing.JTextField jtContratanteComodanteRua;
-    private javax.swing.JSpinner jtDiaPagamento;
     private javax.swing.JTextField jtForroComarca;
-    private javax.swing.JTextField jtPorcentagemMulta;
-    private javax.swing.JSpinner jtQtdMeses;
-    private javax.swing.JSpinner jtQtdPrazoContrato;
-    private javax.swing.JSpinner jtQtdPrazoProrrogacao;
-    private javax.swing.JTextField jtQuantiaMensal;
+    private javax.swing.JTextField jtPropriedadeBairro;
+    private javax.swing.JFormattedTextField jtPropriedadeCEP;
+    private javax.swing.JTextField jtPropriedadeCartorio;
+    private javax.swing.JTextField jtPropriedadeCidade;
+    private javax.swing.JTextField jtPropriedadeEstado;
+    private javax.swing.JTextField jtPropriedadeNumero;
+    private javax.swing.JTextField jtPropriedadeRegistro;
+    private javax.swing.JTextField jtPropriedadeRua;
     // End of variables declaration//GEN-END:variables
 }
