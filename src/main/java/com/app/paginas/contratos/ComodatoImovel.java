@@ -12,24 +12,22 @@ import javax.swing.JOptionPane;
 
 public class ComodatoImovel extends javax.swing.JInternalFrame {
 
-    private final String contratanteTextWord = "(Nome da Contratante), com sede em (xxx), na Rua (xxx), nº (xxx), bairro (xxx), "
+    private final String comodanteTextWord = "(Nome da Comodante), com sede em (xxx), na Rua (xxx), nº (xxx), bairro (xxx), "
             + "Cep (xxx), no Estado (xxx), inscrita no C.N.P.J. sob o nº (xxx), e no"
             + " Cadastro Estadual sob o nº (xxx), neste ato representada pelo seu diretor (xxx), "
             + "(Nacionalidade), (Estado Civil), (Profissão), Carteira de Identidade nº (xxx), C.P.F. nº "
             + "(xxx), residente e domiciliado na Rua (xxx), nº (xxx), bairro (xxx), Cep (xxx), Cidade (xxx), no Estado (xxx);";
     
-    private final String contratadaTextWord = "(Nome da Contratada), com sede em (xxx), na Rua (xxx), nº (xxx), bairro (xxx), "
-            + "Cep (xxx), no Estado (xxx), inscrita no C.N.P.J. sob o nº (xxx), e no "
-            + "Cadastro Estadual sob o nº (xxx), neste ato representada pelo seu diretor (xxx), "
-            + "(Nacionalidade), (Estado Civil), (Profissão), Carteira de Identidade nº (xxx), C.P.F. nº (xxx), "
+    private final String comodatarioTextWord = "(Nome do Comodatário), (Nacionalidade), (Estado Civil), (Profissão), "
+            + "Carteira de Identidade nº (xxx), C.P.F. nº (xxx), Carteira de Trabalho nº (xxx) e série (xxx), "
             + "residente e domiciliado na Rua (xxx), nº (xxx), bairro (xxx), Cep (xxx), Cidade (xxx), no Estado (xxx).";
     
     public ComodatoImovel() {
         initComponents();
-        setTitle("Assistência Médica à Empresa");
+        setTitle("Comodado de Imóvel para moradia de empregado");
     }
-    /*
-    private String contratanteInfo() {
+    
+    private String comodanteInfo() {
         
         String s = String.format("%s, com sede em %s, na %s, nº %s, bairro %s, Cep %s, no Estado %s,"
                 + " inscrita no C.N.P.J. sob o nº %s, e no Cadastro Estadual sob o nº %s, "
@@ -50,26 +48,20 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
         return s;
     }
     
-    private String contratadaInfo() {
-         String s = String.format("%s, com sede em %s, na %s, nº %s, bairro %s, Cep %s, no Estado %s,"
-                + " inscrita no C.N.P.J. sob o nº %s, e no Cadastro Estadual sob o nº %s, "
-                + "neste ato representada pelo seu diretor %s, "
-                + "%s, %s, %s, Carteira de Identidade nº %s,"
-                + " C.P.F. nº %s, residente e domiciliado na"
-                + " Rua %s, nº %s, bairro %s,"
-                + " Cep %s, Cidade %s, no Estado %s;",
-                jpContratadaNomeEmpresa.getText(), jpContratadaEmpresaSedeEm.getText(), jpContratadaEmpresaRua.getText(), jpContratadaEmpresaNumero.getText(),
-                jpContratadaEmpresaBairro.getText(), jpContratadaEmpresaCEP.getText(), jpContratadaEmpresaEstado.getText(),
-                jtComodanteCNPJ.getText(), jtComodanteCadastroEstadual.getText(),
+    private String comodatarioInfo() {
+         String s = String.format("%s, %s, %s, %s, "
+            + "Carteira de Identidade nº %s, C.P.F. nº %s, Carteira de Trabalho nº %s e série %s, "
+            + "residente e domiciliado na Rua %s, nº %s, bairro %s, Cep %s, Cidade %s, no Estado %s.",
                 jtComodatarioNome.getText(), jtComodatarioNacionalidade.getText(),(String)jtComodatarioEstadoCivil.getSelectedItem(),
                 jtComodatarioProfissao.getText(), jtComodatarioRG.getText(), jtComodatarioCPF.getText(),
+                jtComodatarioCarteiraTrabalho.getText(),jtComodatarioSerieCarteiraTrabalho.getText(),
                 jtComodatarioRua.getText(), jtComodatarioNumero.getText(), jtComodatarioBairro.getText(),
                 jtComodatarioCEP.getText(), jtComodatarioCidade.getText(), jtComodatarioEstado.getText()
                 );
         
         return s;
     }
-    */
+    
     private String isPlural(Integer num,String text) {
         return num > 1 ? text+"s" : text;
     }
@@ -1114,11 +1106,11 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         try {
             WordGenerator wg = new WordGenerator();
-            wg.setInputFilePath(WordContractPath.ASSISTENCIAMEDICAEMPRESA);
+            wg.setInputFilePath(WordContractPath.COMODATOIMOVEL);
             wg.openWord();
             
-            //wg.modifyWord(contratanteTextWord, contratanteInfo());
-            //wg.modifyWord(contratadaTextWord,contratadaInfo());
+            wg.modifyWord(comodanteTextWord, comodanteInfo());
+            wg.modifyWord(comodatarioTextWord,comodatarioInfo());
             
             
             wg.modifyWord("(Local, data e ano)", DateUtilFormarter.dateToStringContract());
