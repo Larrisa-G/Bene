@@ -1,15 +1,28 @@
 
 package com.app.paginas.pessoa;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import com.app.util.Tabela;
 
 public class FormularioListarClientes extends javax.swing.JInternalFrame {
-
+    JTable table;
+    DefaultTableModel model = new DefaultTableModel();
+    Tabela utilTabela = new Tabela();
    
     public FormularioListarClientes() {
         setTitle("Listar Clientes");
         initComponents();
         jrbFisica.setSelected(true);
+        table = utilTabela.criarTabela(
+                jpnConsulta, 
+                new Object[] {50,300}, 
+                new Object[] {"centro","esquerda"}, 
+                new Object[] {"CNJP","Descrição","A"}
+        ); 
         
+        model = (DefaultTableModel) table.getModel();
+        model.addRow(new Object[] {"a","b","c"});
     }
 
    
@@ -25,6 +38,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         searchLabel = new javax.swing.JLabel();
         jrbFisica = new javax.swing.JRadioButton("Física");
         jrbJuridica = new javax.swing.JRadioButton("Jurídica");
+        jpnConsulta = new javax.swing.JPanel();
 
         buttonGroup.add(jrbFisica);
         buttonGroup.add(jrbJuridica);
@@ -67,7 +81,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addComponent(searchLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                .addComponent(jtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                 .addGap(14, 14, 14)
                 .addComponent(jrbFisica)
                 .addGap(18, 18, 18)
@@ -92,17 +106,34 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout jpnConsultaLayout = new javax.swing.GroupLayout(jpnConsulta);
+        jpnConsulta.setLayout(jpnConsultaLayout);
+        jpnConsultaLayout.setHorizontalGroup(
+            jpnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jpnConsultaLayout.setVerticalGroup(
+            jpnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpnConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 219, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jpnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 241, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,6 +161,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbFechar;
     private javax.swing.JButton jbListar;
+    private javax.swing.JPanel jpnConsulta;
     private javax.swing.JRadioButton jrbFisica;
     private javax.swing.JRadioButton jrbJuridica;
     private javax.swing.JTextField jtCPF;

@@ -1,9 +1,11 @@
-git add .  -> adiciona as mudanças feitad: arquivos criados,modificados e deletados
+1 )git checkout nomeDaBranch  -> muda para a branch
 
-git commit -m "Mensagem Qualquer"  -> prepara para mandar para o repositorio
+2) git add .  -> adiciona as mudanï¿½as feitad: arquivos criados,modificados e deletados
 
-git push  -> manda para o repositorio
+3 - git commit -m "Mensagem Qualquer"  -> prepara para mandar para o repositorio
 
-git checkout nomeDaBranch  -> muda para a branch 
+4 - git push  -> manda para o repositorio
 
-git pull origin meu-branch -> pega todas as mudanças feitas de uma brach e põe na sua brach, pode ocorrer conflitos
+
+
+git pull origin meu-branch -> pega todas as mudanï¿½as feitas de uma brach e pï¿½e na sua brach, pode ocorrer conflitos

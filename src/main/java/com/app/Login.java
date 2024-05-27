@@ -1,12 +1,15 @@
 
 package com.app;
 
+import com.app.Banco.Conector;
+
 
 public class Login extends javax.swing.JFrame {
 
     
     public Login() {
         initComponents();
+        Conector.criarTabelas();
     }
 
     

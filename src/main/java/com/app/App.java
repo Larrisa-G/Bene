@@ -1,7 +1,9 @@
 
 package com.app;
 
+import com.app.paginas.contratos.AssistenciaMedicaEmpresa;
 import com.app.paginas.contratos.CobrancaBancariaIndevida;
+import com.app.paginas.contratos.ComodatoImovel;
 import com.app.paginas.pessoa.fisica.FormularioCriarPessoaFisica;
 import com.app.paginas.pessoa.juridica.FormularioCriarPessoaJuridica;
 import com.app.paginas.pessoa.FormularioListarClientes;
@@ -44,6 +46,8 @@ public class App extends javax.swing.JFrame {
         jmContratos = new javax.swing.JMenu();
         jmiPerdaCartao = new javax.swing.JMenuItem();
         jmiCobrancaBancariaIndevida = new javax.swing.JMenuItem();
+        jmiAssistenciaMedicaEmpresa = new javax.swing.JMenuItem();
+        jmiComodatoImovel = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,6 +175,22 @@ public class App extends javax.swing.JFrame {
         });
         jmContratos.add(jmiCobrancaBancariaIndevida);
 
+        jmiAssistenciaMedicaEmpresa.setText("Assistencia Médica à Empresa");
+        jmiAssistenciaMedicaEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAssistenciaMedicaEmpresaActionPerformed(evt);
+            }
+        });
+        jmContratos.add(jmiAssistenciaMedicaEmpresa);
+
+        jmiComodatoImovel.setText(" Comodato de Imóvel para moradia de empregado");
+        jmiComodatoImovel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiComodatoImovelActionPerformed(evt);
+            }
+        });
+        jmContratos.add(jmiComodatoImovel);
+
         jMenuBar1.add(jmContratos);
 
         setJMenuBar(jMenuBar1);
@@ -235,6 +255,16 @@ public class App extends javax.swing.JFrame {
         centralizarForm.abrirFormulario(cobrancaBancariaIndevida = new CobrancaBancariaIndevida(), jDesktop);
     }//GEN-LAST:event_jmiCobrancaBancariaIndevidaActionPerformed
 
+    private void jmiAssistenciaMedicaEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAssistenciaMedicaEmpresaActionPerformed
+        AssistenciaMedicaEmpresa assistenciaMedicaEmpresa;
+        centralizarForm.abrirFormulario(assistenciaMedicaEmpresa = new AssistenciaMedicaEmpresa(), jDesktop);
+    }//GEN-LAST:event_jmiAssistenciaMedicaEmpresaActionPerformed
+
+    private void jmiComodatoImovelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiComodatoImovelActionPerformed
+       ComodatoImovel comodatoImovel;
+       centralizarForm.abrirFormulario(comodatoImovel = new ComodatoImovel(), jDesktop);
+    }//GEN-LAST:event_jmiComodatoImovelActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -253,7 +283,9 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmcPFCriar;
     private javax.swing.JMenuItem jmcPJAlterar;
     private javax.swing.JMenuItem jmcPJCriar;
+    private javax.swing.JMenuItem jmiAssistenciaMedicaEmpresa;
     private javax.swing.JMenuItem jmiCobrancaBancariaIndevida;
+    private javax.swing.JMenuItem jmiComodatoImovel;
     private javax.swing.JMenuItem jmiPerdaCartao;
     // End of variables declaration//GEN-END:variables
 }

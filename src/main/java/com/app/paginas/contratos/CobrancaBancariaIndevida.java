@@ -224,21 +224,21 @@ public class CobrancaBancariaIndevida extends javax.swing.JInternalFrame {
        
         
         try {
-            WordGenerator pdfg = new WordGenerator();
-            pdfg.setInputFilePath(WordContractPath.COBRANCABANCARIAINDEVIDA);
+            WordGenerator wg = new WordGenerator();
+            wg.setInputFilePath(WordContractPath.COBRANCABANCARIAINDEVIDA);
             
-            pdfg.openWord();
-            pdfg.modifyWord("CONTRATANTE", jtContratante.getText());
-            pdfg.modifyWord("CONTRATADO", jtContratado.getText());
-            pdfg.modifyWord("No dia (xxx)", String.format("no dia %s", jtDataContratacao.getText()));
-            pdfg.modifyWord("Em (xxx)", String.format("Em %s", jtDataCobranca.getText()));
-            pdfg.modifyWord("no prazo de (xxx)",String.format("no prazo de %s",jtPrazoDevolucao.getText()));
-            pdfg.modifyWord("(Local, data e ano)", DateUtilFormarter.dateToStringContract());
+            wg.openWord();
+            wg.modifyWord("CONTRATANTE", jtContratante.getText());
+            wg.modifyWord("CONTRATADO", jtContratado.getText());
+            wg.modifyWord("No dia (xxx)", String.format("no dia %s", jtDataContratacao.getText()));
+            wg.modifyWord("Em (xxx)", String.format("Em %s", jtDataCobranca.getText()));
+            wg.modifyWord("no prazo de (xxx)",String.format("no prazo de %s",jtPrazoDevolucao.getText()));
+            wg.modifyWord("(Local, data e ano)", DateUtilFormarter.dateToStringContract());
 
             
             
-            pdfg.setOutputFilePath(FileChooser.getPath());
-            pdfg.close();
+            wg.setOutputFilePath(FileChooser.getPath());
+            wg.close();
             JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso");
             
         } catch (IOException e) {
