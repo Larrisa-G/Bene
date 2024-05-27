@@ -127,7 +127,7 @@
                                   <Component id="jpForro" min="-2" max="-2" attributes="0"/>
                                   <Component id="jpComodante" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jpComodatario" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jpPagamento" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jpObjContrato" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -149,7 +149,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel77" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jpPagamento" min="-2" max="-2" attributes="0"/>
+                      <Component id="jpObjContrato" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jpForro" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="34" max="32767" attributes="0"/>
@@ -1266,7 +1266,7 @@
                 <Property name="text" type="java.lang.String" value="Clausulas do Contrato"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JPanel" name="jpPagamento">
+            <Container class="javax.swing.JPanel" name="jpObjContrato">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
