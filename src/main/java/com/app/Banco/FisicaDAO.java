@@ -2,7 +2,6 @@ package com.app.Banco;
 
 import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.EstadoCivil;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import com.app.entidades.pessoas.Genero;
 public class FisicaDAO  {
 
     public void inserirPessoaFisica(Fisica fisica){
-        String sql = "INSERT INTO pessoaFisica (nome, cpf,genero, estadoCivil rg, dataNascimento, nacionalidade, profissao, logradouro, número, complemento, bairro, cep, cidade, uf, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO pessoaFisica (nome, cpf,genero, estadoCivil, rg, dataNascimento, nacionalidade, profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(1, fisica.getNome());
             statement.setString(2, fisica.getCpf());

@@ -2,9 +2,11 @@
 package com.app.paginas.pessoa.fisica;
 
 import com.app.api.BuscaCep;
+import com.app.controller.FisicaController;
 import com.app.entidades.endereco.Endereco;
 import javax.swing.JOptionPane;
 import com.app.entidades.pessoas.EstadoCivil;
+import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
@@ -465,6 +467,23 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
+        
+        try {
+            FisicaController fc = new FisicaController();
+             Endereco endereco = new Endereco(
+                    jtLogradouro.getText(), Integer.valueOf(jtNumero.getText()), jtComplemento.getText(),
+                    jtBairro.getText(), jtCEP.getText(), jtCidade.getText(), jtUF.getText(), jtEstado.getText());
+            Fisica fisica = new Fisica(
+                    jtNome.getText(),jtCPF.getText(), Genero.valueOf((String)jcbGenero.getSelectedItem()),
+                    EstadoCivil.valueOf((String)jcbEstadoCivil.getSelectedItem()), jtRG.getText(), jtDataNascimento.getText(), 
+                    jtNacionalidade.getText(), jtProfissao.getText(), endereco
+                    
+            );
+            fc.criar(fisica);
+        } catch(Exception e) {
+           
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
