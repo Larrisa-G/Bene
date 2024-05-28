@@ -1,14 +1,20 @@
 
 package com.app.util;
 
+import com.app.api.UF;
+import com.app.entidades.endereco.Endereco;
+import com.app.entidades.pessoas.Fisica;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Pattern;
 
 public class Validador {
     
     
-    public void validaCep(String value) {
-       String regex = "\\d{8}";
+    public static void validaCep(String value) {
+       String regex = "\\d{5}-\\d{3}";
        boolean isValid =Pattern.matches(regex, value);
        
        if (!isValid) {
@@ -16,7 +22,7 @@ public class Validador {
        }
     }
     
-    public boolean isEmpty(String value) {
+    public static boolean isEmpty(String value) {
         return value.isBlank();
     }
 
@@ -122,5 +128,83 @@ public class Validador {
         LocalDate dataFimLocalDate = LocalDate.of(anoFim, mesFim, diaFim);
 
         return !dataFimLocalDate.isBefore(dataInicioLocalDate);
+    }
+    
+    public static void validarPessoaFisica(Fisica fisica) {
+       
+        if (isEmpty(fisica.getNome()) || fisica.getNome().length() > 100) {
+            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio.");
+        }
+
+        if (isEmpty(fisica.getCpf()) || !fisica.getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}") || !validarCPF(fisica.getCpf())) {
+            throw new IllegalArgumentException("CPF inválido.");
+        }
+        
+        
+
+
+        if (isEmpty(fisica.getRg()) || !fisica.getRg().matches("\\d{2}\\.\\d{3}\\.\\d{3}-\\d{1}")) {
+            throw new IllegalArgumentException("RG inválido");
+        }
+
+        // Validação da data de nascimento
+        try {
+            LocalDate dataNascimento = LocalDate.parse(fisica.getDataNascimento(),DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            LocalDate hoje = LocalDate.now();
+    
+            Period periodo = Period.between(dataNascimento, hoje);
+            if (periodo.getYears() < 18){
+                throw new IllegalArgumentException("O cliente deve ter pelo menos de 18 anos");
+            }
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Data de nascimento inválida.");
+        }
+
+        if (isEmpty(fisica.getNacionalidade()) || fisica.getNacionalidade().length() > 50){
+            throw new IllegalArgumentException("Nacionalidade não pode ser nula ou vazia.");
+        }
+
+        if (isEmpty(fisica.getProfissao()) || fisica.getNacionalidade().length() > 50) {
+            throw new IllegalArgumentException("Profissão não pode ser nula ou vazia.");
+        }
+    }
+
+
+    
+    
+    public static void validarEndereco(Endereco endereco) throws IllegalArgumentException{
+        
+        
+        
+        if (isEmpty(endereco.getLogradouro()) || endereco.getLogradouro().length() > 100) {
+            throw new IllegalArgumentException("Logradouro inválido");
+        }
+         
+        if (endereco.getNumero() <= 0) {
+            throw new IllegalArgumentException("Número inválido");
+        }
+        
+        if (isEmpty(endereco.getComplemento()) || endereco.getComplemento().length() > 20) {
+            throw new IllegalArgumentException("Complemento inválido");
+        }
+          
+        if (isEmpty(endereco.getBairro()) || endereco.getBairro().length() > 100) {
+            throw new IllegalArgumentException("Bairro inválido");
+        }
+        
+       validaCep(endereco.getCep());
+  
+        if (isEmpty(endereco.getCidade()) ||  endereco.getCidade().length() > 100) {
+            throw new IllegalArgumentException("Cidade inválida");
+        }
+  
+        if (isEmpty(endereco.getUf()) || endereco.getUf().length() != 2 || !UF.valueOf(endereco.getUf()).equals(endereco.getUf())) {
+            throw new IllegalArgumentException("UF inválido");
+        }
+
+        if (isEmpty(endereco.getEstado())|| endereco.getEstado().length() > 50) {
+            throw new IllegalArgumentException("Estado inválido");
+        }
+       
     }
 }

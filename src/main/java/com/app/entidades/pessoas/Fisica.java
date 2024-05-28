@@ -2,9 +2,6 @@
 package com.app.entidades.pessoas;
         
 import com.app.entidades.endereco.Endereco;
-import com.app.util.DateUtilFormarter;
-import java.text.ParseException;
-import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 

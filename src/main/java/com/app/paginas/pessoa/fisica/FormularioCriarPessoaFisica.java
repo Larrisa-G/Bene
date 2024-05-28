@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
+import com.app.util.Validador;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
@@ -54,6 +55,30 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
         jtUF.setEnabled(value);
         
         jtEstado.setEnabled(value);
+    }
+    
+    private void limparCampos() {
+        jtNome.setText("");
+        jtCPF.setText("");
+        jtRG.setText("");
+        
+        jcbGenero.setSelectedIndex(0);
+        jcbEstadoCivil.setSelectedIndex(0);
+        jtNacionalidade.setText("");
+        
+        jtDataNascimento.setText("");
+        jtProfissao.setText("");
+        jtCEP.setText("");
+        
+        jtLogradouro.setText("");
+        jtNumero.setText("");
+        jtComplemento.setText("");
+        
+        jtBairro.setText("");
+        jtCidade.setText("");
+        jtUF.setText("");
+        
+        jtEstado.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -473,15 +498,19 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
              Endereco endereco = new Endereco(
                     jtLogradouro.getText(), Integer.valueOf(jtNumero.getText()), jtComplemento.getText(),
                     jtBairro.getText(), jtCEP.getText(), jtCidade.getText(), jtUF.getText(), jtEstado.getText());
+             Validador.validarEndereco(endereco);
+             
             Fisica fisica = new Fisica(
                     jtNome.getText(),jtCPF.getText(), Genero.valueOf((String)jcbGenero.getSelectedItem()),
                     EstadoCivil.valueOf((String)jcbEstadoCivil.getSelectedItem()), jtRG.getText(), jtDataNascimento.getText(), 
                     jtNacionalidade.getText(), jtProfissao.getText(), endereco
                     
             );
+            Validador.validarPessoaFisica(fisica);
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
             fc.criar(fisica);
+            limparCampos();
         } catch(Exception e) {
-           
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
