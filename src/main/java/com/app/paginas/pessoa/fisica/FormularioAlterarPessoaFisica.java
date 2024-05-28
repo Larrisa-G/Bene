@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
+import com.app.util.Validador;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
@@ -16,6 +17,7 @@ import javax.swing.DefaultComboBoxModel;
 
 public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
 
+    
     
     public FormularioAlterarPessoaFisica() {
         initComponents();
@@ -456,6 +458,32 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
+        Fisica fisica = new Fisica();
+        fisica.setNome(jtNome.getText());
+        fisica.setProfissao(jtProfissao.getText());
+        fisica.setEstadoCivil(EstadoCivil.valueOf((String)jcbEstadoCivil.getSelectedItem()));
+        fisica.setGenero(Genero.valueOf((String) jcbGenero.getSelectedItem()));
+        
+        Endereco endereco = new Endereco(
+            jtLogradouro.getText(),
+            
+            Integer.parseInt(jtNumero.getText()),
+            jtComplemento.getText(),      
+            jtBairro.getText(),
+            jtCEP.getText(),
+            jtCidade.getText(),
+            jtUF.getText(),
+            jtEstado.getText()
+        );
+        
+        try {
+           
+            FisicaController controller = new FisicaController();
+            controller.alterar(fisica, endereco);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed

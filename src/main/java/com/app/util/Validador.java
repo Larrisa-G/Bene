@@ -23,7 +23,7 @@ public class Validador {
     }
     
     public static boolean isEmpty(String value) {
-        return value.isBlank();
+        return (value.isBlank() || value.isEmpty() || value == null );
     }
 
     public static boolean validarCPF(String cpf) {

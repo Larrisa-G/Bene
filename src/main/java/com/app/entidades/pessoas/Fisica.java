@@ -21,6 +21,10 @@ public class Fisica extends Pessoa {
     private String nacionalidade;
     private String profissao;
     
+    public Fisica(){
+        super(null);
+    }
+    
     public Fisica(
         String nome,
         String cpf,
