@@ -8,6 +8,6 @@ public interface ControllersInterface<T> {
     void  criar(T entidade) throws Exception;
     void deletar();
     void alterar();
-    List<T> pegarTodos();
-    T pegarUm(String value);
+    List<T> buscarTodos() throws Exception;
+    T buscarUm(String value) throws Exception;
 }

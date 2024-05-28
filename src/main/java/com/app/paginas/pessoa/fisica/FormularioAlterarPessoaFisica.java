@@ -1,10 +1,13 @@
 
 package com.app.paginas.pessoa.fisica;
 
+
 import com.app.api.BuscaCep;
+import com.app.controller.FisicaController;
 import com.app.entidades.endereco.Endereco;
 import javax.swing.JOptionPane;
 import com.app.entidades.pessoas.EstadoCivil;
+import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
@@ -418,9 +421,9 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpDadosPessoais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -461,7 +464,31 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbBuscarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPessoaActionPerformed
-        JOptionPane.showMessageDialog(null, "Buscando Pessoa");
+        try {
+            FisicaController controller = new FisicaController();
+            Fisica fisica = controller.buscarUm(jtCPF.getText());
+            jtCPF.setEnabled(false);
+            jtNome.setText(fisica.getNome());
+
+            jtProfissao.setText(fisica.getProfissao());
+            jtCEP.setText(fisica.getEndereco().getCep());
+
+            jtLogradouro.setText(fisica.getEndereco().getLogradouro());
+            jtNumero.setText(String.valueOf(fisica.getEndereco().getNumero()) );
+            jtComplemento.setText(fisica.getEndereco().getComplemento());
+
+            jtBairro.setText(fisica.getEndereco().getBairro());
+            jtCidade.setText(fisica.getEndereco().getCidade());
+            jtUF.setText(fisica.getEndereco().getUf());
+
+            jtEstado.setText(fisica.getEndereco().getEstado());
+            habilitarInputs(true);
+            jtCPF.setEnabled(false);
+            habilitarBotoes(true);
+            jbBuscarPessoa.setEnabled(false);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jbBuscarPessoaActionPerformed
 
     private void jbBuscarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepActionPerformed

@@ -198,7 +198,7 @@ public class Validador {
             throw new IllegalArgumentException("Cidade inválida");
         }
   
-        if (isEmpty(endereco.getUf()) || endereco.getUf().length() != 2 || !UF.valueOf(endereco.getUf()).equals(endereco.getUf())) {
+        if (isEmpty(endereco.getUf()) || endereco.getUf().length() != 2) {
             throw new IllegalArgumentException("UF inválido");
         }
 

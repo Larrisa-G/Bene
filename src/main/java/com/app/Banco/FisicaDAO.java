@@ -43,10 +43,13 @@ public class FisicaDAO  {
         }
     }
 
-    public Fisica obterPessoaFisicaPorCPF(String cpf) {
-        String sql = "SELECT nome, cpf, rg, dataNascimento, nacionalidade, profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado  FROM pessoaFisica WHERE cpf = ?";
+    public Fisica obterPessoaFisicaPorCPF(String cpf) throws SQLException{
+        String sql = "SELECT "
+                + "nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, "
+                + "profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado "
+                + "FROM pessoaFisica WHERE cpf = ?";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)) {
-            statement.setString(2,cpf);
+            statement.setString(1,cpf);
             try (ResultSet result = statement.executeQuery()) {
                 if (!result.next()) {
                     return null;
@@ -72,9 +75,8 @@ public class FisicaDAO  {
                     )
                 );
             }
-        } catch (SQLException e) {
-            
-            throw new RuntimeException("Erro ao obter pessoa física pelo CPF: ", e);
+        } catch (SQLException e) {    
+            throw new SQLException("Erro ao obter pessoa física pelo CPF"+e.getMessage());
         }
     }
 
@@ -108,7 +110,7 @@ public class FisicaDAO  {
             }
         }catch (SQLException e){
            
-            throw new RuntimeException("Eroo ao obter todas as pessoas físicas", e);
+            throw new RuntimeException("Eroo ao obter todas as pessoas físicas");
         }
         return pessoas;
     }

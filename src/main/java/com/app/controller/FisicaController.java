@@ -29,7 +29,7 @@ public class FisicaController implements ControllersInterface<Fisica>{
     }
 
     @Override
-    public List<Fisica> pegarTodos() {
+    public List<Fisica> buscarTodos() throws Exception  {
         
             List<Fisica> list = dao.obterTodasPessoasFisicas();
             return list;
@@ -37,8 +37,13 @@ public class FisicaController implements ControllersInterface<Fisica>{
     }
 
     @Override
-    public Fisica pegarUm(String value) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Fisica buscarUm(String value) throws Exception{
+        
+        try{ 
+            return dao.obterPessoaFisicaPorCPF(value);
+        } catch (SQLException e) {
+            throw new Exception(e.getMessage());
+        }
     }
     
     

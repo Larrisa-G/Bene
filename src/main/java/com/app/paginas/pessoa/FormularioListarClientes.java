@@ -32,7 +32,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         
         try {
             FisicaController controller = new FisicaController();
-            List<Fisica> list = controller.pegarTodos();
+            List<Fisica> list = controller.buscarTodos();
             
             for (Fisica f : list) {
                 model.addRow(new Object[] {f.getCpf(),f.getNome()});
