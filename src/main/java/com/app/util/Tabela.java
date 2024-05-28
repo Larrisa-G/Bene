@@ -14,7 +14,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 public class Tabela {
-     public JTable criarTabela(JPanel jpn, Object[] largura, Object[] pos, Object[] col) throws NullPointerException {
+     public JTable criarTabela(JPanel jpn, Object[] pos, Object[] col) throws NullPointerException {
         
         JTable tabela = new JTable(new DefaultTableModel());
         tabela.setVisible(true);
@@ -24,8 +24,8 @@ public class Tabela {
     
         tabela.setFont(new Font("Arial", Font.BOLD, 16));
         JScrollPane jsp = new JScrollPane(tabela);
-        tabela.setRowHeight(50);
-        jsp.setBounds(10, 40, 700, 200);
+        tabela.setRowHeight(30);
+        jsp.setBounds(0, 0, 675, 200);
        
         jsp.setVisible(true);
         jpn.add(jsp);
@@ -51,7 +51,7 @@ public class Tabela {
         esquerda.setHorizontalAlignment(SwingConstants.LEFT);
 
         //Trabalhando com as colunas 
-        for (int i = 0; i < largura.length; i++) {
+        for (int i = 0; i < col.length; i++) {
             if (pos[i].equals("centro")) {
                 pos[i] = centro;
             }
@@ -62,9 +62,7 @@ public class Tabela {
                 pos[i] = esquerda;
             }
 
-            tabela.getColumnModel().getColumn(i).setMaxWidth(
-                    Integer.parseInt(largura[i].toString())
-            );
+            tabela.getColumnModel().getColumn(i).setPreferredWidth(700/col.length);
 
             tabela.getColumnModel().getColumn(i).setCellRenderer(
                     (TableCellRenderer) pos[i]);

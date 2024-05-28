@@ -10,6 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Fisica extends Pessoa {
+    
+    
     private String nome;
     private String cpf;
     private Genero genero;
@@ -18,6 +20,10 @@ public class Fisica extends Pessoa {
     private String dataNascimento;
     private String nacionalidade;
     private String profissao;
+    
+    public Fisica(){
+        super(null);
+    }
     
     public Fisica(
         String nome,
@@ -41,4 +47,5 @@ public class Fisica extends Pessoa {
         this.profissao = profissao;
        
     }
+   
 }

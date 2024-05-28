@@ -1,10 +1,13 @@
 
 package com.app.paginas.pessoa;
 
+import com.app.controller.FisicaController;
+import com.app.entidades.pessoas.Fisica;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import com.app.util.Tabela;
-
+import javax.swing.JOptionPane;
+import java.util.List;
 public class FormularioListarClientes extends javax.swing.JInternalFrame {
     JTable table;
     DefaultTableModel model = new DefaultTableModel();
@@ -14,17 +17,31 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         setTitle("Listar Clientes");
         initComponents();
         jrbFisica.setSelected(true);
-        table = utilTabela.criarTabela(
-                jpnConsulta, 
-                new Object[] {50,300}, 
+        criarTabela();
+    }
+    
+    private void criarTabela(){
+        table = utilTabela.criarTabela(jpnConsulta, 
+               
                 new Object[] {"centro","esquerda"}, 
-                new Object[] {"CNJP","Descrição","A"}
+                new Object[] {"CPF","Nome"}
         ); 
         
         model = (DefaultTableModel) table.getModel();
-        model.addRow(new Object[] {"a","b","c"});
+        
+        
+        try {
+            FisicaController controller = new FisicaController();
+            List<Fisica> list = controller.buscarTodos();
+            
+            for (Fisica f : list) {
+                model.addRow(new Object[] {f.getCpf(),f.getNome()});
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
     }
-
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -81,7 +98,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                 .addGap(15, 15, 15)
                 .addComponent(searchLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                .addComponent(jtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addGap(14, 14, 14)
                 .addComponent(jrbFisica)
                 .addGap(18, 18, 18)
@@ -110,11 +127,11 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         jpnConsulta.setLayout(jpnConsultaLayout);
         jpnConsultaLayout.setHorizontalGroup(
             jpnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 675, Short.MAX_VALUE)
         );
         jpnConsultaLayout.setVerticalGroup(
             jpnConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,17 +140,17 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpnConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(15, 15, 15)
+                .addComponent(jpnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(jpnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 241, Short.MAX_VALUE))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         pack();

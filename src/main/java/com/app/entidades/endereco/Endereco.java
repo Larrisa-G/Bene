@@ -20,4 +20,5 @@ public class Endereco {
     private String estado;
     
     public Endereco(){};
+    
 }
