@@ -2,6 +2,9 @@
 package com.app.entidades.pessoas;
         
 import com.app.entidades.endereco.Endereco;
+import com.app.util.DateUtilFormarter;
+import java.text.ParseException;
+import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +13,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Fisica extends Pessoa {
+    
+    
     private String nome;
     private String cpf;
     private Genero genero;
@@ -41,4 +46,5 @@ public class Fisica extends Pessoa {
         this.profissao = profissao;
        
     }
+   
 }

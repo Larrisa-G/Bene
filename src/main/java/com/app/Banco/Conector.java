@@ -1,4 +1,5 @@
 package com.app.Banco;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -29,16 +30,16 @@ public class Conector {
                 + " estadoCivil VARCHAR(20),"
                 + " rg VARCHAR(20),"
                 + " dataNascimento DATE,"
-                + " nacionalidade VARCHAR(20),"
-                + " profissao VARCHAR(20),"
-                + " logradouro VARCHAR(20),"
+                + " nacionalidade VARCHAR(50),"
+                + " profissao VARCHAR(50),"
+                + " logradouro VARCHAR(100),"
                 + " numero INTEGER,"
                 + " complemento VARCHAR(20),"
-                + " bairro VARCHAR(20),"
+                + " bairro VARCHAR(100),"
                 + " cep VARCHAR(20),"
-                + " cidade VARCHAR(20),"
-                + " uf VARCHAR(20),"
-                + " estado VARCHAR(20)"
+                + " cidade VARCHAR(100),"
+                + " uf VARCHAR(2),"
+                + " estado VARCHAR(50)"
                 + ");";
         try(PreparedStatement statement = openConnection().prepareStatement(sql)) {
             statement.execute();

@@ -3,6 +3,7 @@ package com.app.controller;
 
 import com.app.Banco.FisicaDAO;
 import com.app.entidades.pessoas.Fisica;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -12,8 +13,8 @@ public class FisicaController implements ControllersInterface<Fisica>{
     public void criar(Fisica fisica) throws Exception{
         try {
             dao.inserirPessoaFisica(fisica);
-        } catch (Exception e){
-            throw new Exception(e.getMessage());
+        } catch (SQLException e){
+            throw new SQLException(e.getMessage());
         }
     }
 

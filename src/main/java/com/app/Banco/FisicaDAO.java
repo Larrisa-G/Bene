@@ -9,18 +9,24 @@ import java.util.List;
 import java.sql.ResultSet;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
+import com.app.util.DateUtilFormarter;
+import java.sql.Date;
+import java.text.ParseException;
 
 public class FisicaDAO  {
 
-    public void inserirPessoaFisica(Fisica fisica){
-        String sql = "INSERT INTO pessoaFisica (nome, cpf,genero, estadoCivil, rg, dataNascimento, nacionalidade, profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    public void inserirPessoaFisica(Fisica fisica) throws SQLException,ParseException{
+        String sql = "INSERT INTO pessoaFisica ("
+                + "nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, "
+                + "profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado"
+                + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(1, fisica.getNome());
             statement.setString(2, fisica.getCpf());
             statement.setString(3, fisica.getGenero().toString());
             statement.setString(4, fisica.getEstadoCivil().toString());
             statement.setString(5, fisica.getRg());
-            statement.setString(6, fisica.getDataNascimento());
+            statement.setDate(6, new Date(DateUtilFormarter.stringToDate(fisica.getDataNascimento()).getTime()));
             statement.setString(7, fisica.getNacionalidade());
             statement.setString(8, fisica.getProfissao());
             statement.setString(9, fisica.getEndereco().getLogradouro());
@@ -32,9 +38,8 @@ public class FisicaDAO  {
             statement.setString(15, fisica.getEndereco().getUf());
             statement.setString(16, fisica.getEndereco().getEstado());
             statement.execute();
-        } catch (SQLException e){
-            System.err.println("Erro ao inserir pessoa física no banco de dados:" + e.getMessage());
-            throw new RuntimeException("Erro ao inserir pessoa física no banco de dados, " + e);
+        } catch (SQLException e){        
+            throw new SQLException("Erro ao inserir pessoa física no banco de dados, " + e);
         }
     }
 
@@ -52,7 +57,7 @@ public class FisicaDAO  {
                     Genero.valueOf(result.getString("genero")),
                     EstadoCivil.valueOf(result.getString("estadoCivil")),
                     result.getString("rg"),
-                    result.getString("dataNascimento"),
+                    DateUtilFormarter.sqlDateToString(result.getDate("dataNascimento")),
                     result.getString("nacionalidade"),
                     result.getString("profissao"),
                     new Endereco(
@@ -68,7 +73,7 @@ public class FisicaDAO  {
                 );
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao obter pessoa física pelo CPF: " + e.getMessage());
+            
             throw new RuntimeException("Erro ao obter pessoa física pelo CPF: ", e);
         }
     }
@@ -85,7 +90,7 @@ public class FisicaDAO  {
                         Genero.valueOf(result.getString("genero")),
                         EstadoCivil.valueOf(result.getString("estadoCivil")),
                         result.getString("rg"),
-                        result.getString("dataNascimento"),
+                        DateUtilFormarter.sqlDateToString(result.getDate("dataNascimento")),
                         result.getString("nacionalidade"),
                         result.getString("profissao"),
                         new Endereco(
@@ -102,7 +107,7 @@ public class FisicaDAO  {
                 }
             }
         }catch (SQLException e){
-            System.err.println("Rerro ao obter todas as pessoas físicas: " + e.getMessage());
+           
             throw new RuntimeException("Eroo ao obter todas as pessoas físicas", e);
         }
         return pessoas;
