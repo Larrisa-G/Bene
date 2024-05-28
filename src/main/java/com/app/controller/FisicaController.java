@@ -30,7 +30,10 @@ public class FisicaController implements ControllersInterface<Fisica>{
 
     @Override
     public List<Fisica> pegarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+            List<Fisica> list = dao.obterTodasPessoasFisicas();
+            return list;
+       
     }
 
     @Override

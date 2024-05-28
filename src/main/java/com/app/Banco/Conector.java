@@ -53,7 +53,7 @@ public class Conector {
     private static void criarTabelaPessoaJuridica(){
         String sql = "CREATE TABLE IF NOT EXISTS empresas ("
                 + "nomeFantasia VARCHAR(50),"
-                + "cpfDiretor VARCHAR(50),"
+                + "cpfDiretor VARCHAR(20),"
                 + "cnpj VARCHAR(50) PRIMARY KEY,"
                 + "cadastroEstadual INTEGER, "
                 + " logradouro VARCHAR(20),"
@@ -64,7 +64,7 @@ public class Conector {
                 + " cidade VARCHAR(20),"
                 + " uf VARCHAR(20),"
                 + " estado VARCHAR(20),"
-                + "FOREIGN KEY (cpfDiretor) REFERENCES pessoas(cpf)"
+                + "FOREIGN KEY (cpfDiretor) REFERENCES pessoaFisica(cpf)"
                 +")";
         try(PreparedStatement statement = openConnection().prepareStatement(sql)) {
             statement.execute();
