@@ -11,6 +11,7 @@ import java.util.List;
 
 public class FisicaController implements ControllersInterface<Fisica>{
     FisicaDAO dao = new FisicaDAO();
+    
     @Override
     public void criar(Fisica fisica) throws Exception{
         try {
@@ -40,10 +41,12 @@ public class FisicaController implements ControllersInterface<Fisica>{
 
     @Override
     public List<Fisica> buscarTodos() throws Exception  {
-        
+        try{
             List<Fisica> list = dao.obterTodasPessoasFisicas();
             return list;
-       
+        } catch (SQLException e ){
+            throw new Exception("Erro ao pegar clientes do banco");
+        }
     }
 
     @Override

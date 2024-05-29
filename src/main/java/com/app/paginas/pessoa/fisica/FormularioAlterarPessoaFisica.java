@@ -492,7 +492,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
             if(!"--Selecione--".equals((String)jcbGenero.getSelectedItem())) {
                 fisica.setGenero(Genero.valueOf((String)jcbGenero.getSelectedItem()));
             } 
-            fisica.setGenero(Genero.valueOf((String) jcbGenero.getSelectedItem()));
+            
 
             Endereco endereco = new Endereco(
                 jtLogradouro.getText(),
@@ -508,9 +508,9 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
         
             FisicaController controller = new FisicaController();
             controller.alterar(fisica, endereco);
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } catch (Exception e) {
+        } catch(IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Gênro ou Estado civil incorretos");
+        }  catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
@@ -544,7 +544,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
             jtCPF.setEnabled(false);
             habilitarBotoes(true);
             jbBuscarPessoa.setEnabled(false);
-        } catch(Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jbBuscarPessoaActionPerformed
