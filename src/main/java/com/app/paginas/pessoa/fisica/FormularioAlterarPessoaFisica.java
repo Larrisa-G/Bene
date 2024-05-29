@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
+import com.app.exceptions.ServiceException;
 import com.app.util.Validador;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
@@ -510,7 +511,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
             controller.alterar(fisica, endereco);
         } catch(IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Gênro ou Estado civil incorretos");
-        }  catch (Exception e) {
+        }  catch (ServiceException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
@@ -544,7 +545,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
             jtCPF.setEnabled(false);
             habilitarBotoes(true);
             jbBuscarPessoa.setEnabled(false);
-        } catch (Exception e) {
+        } catch (ServiceException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jbBuscarPessoaActionPerformed
