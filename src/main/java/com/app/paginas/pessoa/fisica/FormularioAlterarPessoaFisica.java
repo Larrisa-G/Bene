@@ -56,6 +56,28 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
         
         jtEstado.setEnabled(value);
     }
+    
+    private void limparInpunts() {
+        jtNome.setText("");
+        jtCPF.setText("");
+        
+        
+        jcbGenero.setSelectedIndex(0);
+        jcbEstadoCivil.setSelectedIndex(0);
+        
+        jtProfissao.setText("");
+        jtCEP.setText("");
+        
+        jtLogradouro.setText("");
+        jtNumero.setText("");
+        jtComplemento.setText("");
+        
+        jtBairro.setText("");
+        jtCidade.setText("");
+        jtUF.setText("");
+        
+        jtEstado.setText("");
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -458,29 +480,37 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
-        Fisica fisica = new Fisica();
-        fisica.setNome(jtNome.getText());
-        fisica.setProfissao(jtProfissao.getText());
-        fisica.setEstadoCivil(EstadoCivil.valueOf((String)jcbEstadoCivil.getSelectedItem()));
-        fisica.setGenero(Genero.valueOf((String) jcbGenero.getSelectedItem()));
-        
-        Endereco endereco = new Endereco(
-            jtLogradouro.getText(),
-            
-            Integer.parseInt(jtNumero.getText()),
-            jtComplemento.getText(),      
-            jtBairro.getText(),
-            jtCEP.getText(),
-            jtCidade.getText(),
-            jtUF.getText(),
-            jtEstado.getText()
-        );
         
         try {
-           
+            Fisica fisica = new FisicaController().buscarUm(jtCPF.getText());
+            fisica.setNome(jtNome.getText());
+            fisica.setProfissao(jtProfissao.getText());
+            if (!"--Selecione--".equals((String)jcbEstadoCivil.getSelectedItem())) {
+                fisica.setEstadoCivil(EstadoCivil.valueOf((String)jcbEstadoCivil.getSelectedItem()));
+            } 
+
+            if(!"--Selecione--".equals((String)jcbGenero.getSelectedItem())) {
+                fisica.setGenero(Genero.valueOf((String)jcbGenero.getSelectedItem()));
+            } 
+            fisica.setGenero(Genero.valueOf((String) jcbGenero.getSelectedItem()));
+
+            Endereco endereco = new Endereco(
+                jtLogradouro.getText(),
+
+                Integer.parseInt(jtNumero.getText()),
+                jtComplemento.getText(),      
+                jtBairro.getText(),
+                jtCEP.getText(),
+                jtCidade.getText(),
+                jtUF.getText(),
+                jtEstado.getText()
+            );
+        
             FisicaController controller = new FisicaController();
             controller.alterar(fisica, endereco);
         } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         

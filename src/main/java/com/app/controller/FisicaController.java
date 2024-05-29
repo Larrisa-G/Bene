@@ -32,7 +32,7 @@ public class FisicaController implements ControllersInterface<Fisica>{
                 throw new IllegalArgumentException("Alguns dados pessoais estão vazios");
             }
             Validador.validarEndereco(endereco);
-            // alterar
+            dao.alterarPessoaFisica(fisica,endereco);
         } catch(Exception e) {
             throw new Exception(e.getMessage());
         }
