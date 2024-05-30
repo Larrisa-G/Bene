@@ -39,10 +39,10 @@ public class JuridicaDAO {
         }
     }
 
-    public Juridica obterEmpresaPorCnpj(String cnpj) {
+    public Juridica obterEmpresaPorCnpj(String cnpj) throws SQLException{
         String sql = "SELECT nomeFantasia, cnpj, cpfDiretor, cadastroEstadual, logradouro, numero, complemento, bairro, cep, cidade, uf, estado FROM empresas WHERE cnpj = ?";
         try (PreparedStatement statment = Conector.openConnection().prepareStatement(sql)) {
-            statment.setString(3, cnpj);
+            statment.setString(1, cnpj);
             try (ResultSet result = statment.executeQuery()) {
                 if (!result.next()) {
                     return null;
@@ -65,8 +65,8 @@ public class JuridicaDAO {
                 );
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao obter pessoa jurídica por CNPJ: " + e.getMessage());
-            throw new RuntimeException("Erro ao obter pessoa jurídica por CNPJ: ", e);
+            
+            throw new SQLException("Erro ao obter pessoa jurídica por CNPJ ");
         }
     }
 

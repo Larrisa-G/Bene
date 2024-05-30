@@ -534,6 +534,8 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
            FisicaController fc = new FisicaController();
            if(fc.buscarUm(jtCPF.getText()) == null){
                throw  new ServiceException("Cliente não encontrado");
+           } else {
+               JOptionPane.showMessageDialog(null, "Cliente já cadastrado");
            }
             
            

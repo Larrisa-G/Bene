@@ -49,7 +49,16 @@ public class JuridicaController implements ControllersInterface<Juridica>{
 
     @Override
     public Juridica buscarUm(String value) throws ServiceException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         try{ 
+           Juridica juridica = dao.obterEmpresaPorCnpj(value);
+           if (juridica == null) {
+               return null;
+           } 
+           
+           return juridica;
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage());
+        }
     }
     
 }

@@ -478,7 +478,18 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbBuscarCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCNPJActionPerformed
-        // TODO add your handling code here:
+         try {
+           JuridicaController controller = new JuridicaController();
+           if(controller.buscarUm(jtCNPJ.getText()) == null){
+               throw  new ServiceException("Enpresa não encontrada");
+           } else {
+               JOptionPane.showMessageDialog(null, "Empreja já cadastrada");
+           }
+           
+       } catch (ServiceException e) {
+           JOptionPane.showMessageDialog(null, e.getMessage());
+           
+       }
     }//GEN-LAST:event_jbBuscarCNPJActionPerformed
 
 
