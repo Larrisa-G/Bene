@@ -8,7 +8,6 @@ import com.app.exceptions.ServiceException;
 import com.app.exceptions.ValidationError;
 import com.app.util.Validador;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.List;
 
 
@@ -44,7 +43,12 @@ public class JuridicaController implements ControllersInterface<Juridica>{
 
     @Override
     public List<Juridica> buscarTodos() throws ServiceException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         try{
+            List<Juridica> list = dao.obterTodasEmpresas();
+            return list;
+        } catch (SQLException e ){
+            throw new ServiceException("Erro ao pegar clientes do banco");
+        }
     }
 
     @Override

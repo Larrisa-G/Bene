@@ -70,7 +70,7 @@ public class JuridicaDAO {
         }
     }
 
-    public List<Juridica> obterTodasEmpresas(){
+    public List<Juridica> obterTodasEmpresas() throws SQLException{
         List<Juridica> empresas = new ArrayList<>();
         String sql = "SELECT nomeFantasia, cnpj, cpfDiretor, cadastroEstadual, logradouro, numero, complemento, bairro, cep, cidade, uf, estado FROM empresas";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
@@ -97,8 +97,8 @@ public class JuridicaDAO {
                 }
             }
         }catch (SQLException e){
-            System.err.println("Erro ao obter todas as pessoas jurídicas: " + e.getMessage());
-            throw new RuntimeException("Erro ao obter todas as pessoas jurídicas", e);
+           
+            throw new SQLException("Erro ao obter todas as pessoas jurídicas");
         }
         return empresas;
     }
