@@ -526,6 +526,9 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
         try {
             FisicaController controller = new FisicaController();
             Fisica fisica = controller.buscarUm(jtCPF.getText());
+            if (fisica == null) {
+                throw new ServiceException("Cliente não encontrado");
+            }
             jtCPF.setEnabled(false);
             jtNome.setText(fisica.getNome());
 

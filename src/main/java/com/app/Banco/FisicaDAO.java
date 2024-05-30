@@ -39,7 +39,7 @@ public class FisicaDAO  {
             statement.setString(16, fisica.getEndereco().getEstado());
             statement.execute();
         } catch (SQLException e){        
-            throw new SQLException("Erro ao inserir pessoa física no banco de dados");
+            throw new SQLException("Erro ao inserir pessoa física no banco de dados"+e.getMessage());
         }
     }
 

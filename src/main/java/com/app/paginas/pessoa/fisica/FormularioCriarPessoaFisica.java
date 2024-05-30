@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
+import com.app.exceptions.ServiceException;
+import com.app.exceptions.ValidationError;
 import com.app.util.Validador;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
@@ -490,15 +492,14 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbFecharActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        habilitarBotoes(false);
-        habilitarInputs(false);
+        
         
         try {
             FisicaController fc = new FisicaController();
              Endereco endereco = new Endereco(
                     jtLogradouro.getText(), Integer.valueOf(jtNumero.getText()), jtComplemento.getText(),
                     jtBairro.getText(), jtCEP.getText(), jtCidade.getText(), jtUF.getText(), jtEstado.getText());
-             Validador.validarEndereco(endereco);
+             
              
             Fisica fisica = new Fisica(
                     jtNome.getText(),jtCPF.getText(), Genero.valueOf((String)jcbGenero.getSelectedItem()),
@@ -506,22 +507,42 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
                     jtNacionalidade.getText(), jtProfissao.getText(), endereco
                     
             );
-            Validador.validarPessoaFisica(fisica);
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+            
+            
             fc.criar(fisica);
             limparCampos();
-        } catch(Exception e) {
+            habilitarBotoes(false);
+            habilitarInputs(false);
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Número Inválido");
+        } catch(ServiceException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Gênero ou Estado Civil Inválidos");
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
+        limparCampos();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbBuscarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPessoaActionPerformed
-        JOptionPane.showMessageDialog(null, "Buscando Pessoa");
+       try {
+           FisicaController fc = new FisicaController();
+           if(fc.buscarUm(jtCPF.getText()) == null){
+               throw  new ServiceException("Cliente não encontrado");
+           }
+            
+           
+       } catch (ServiceException e) {
+           JOptionPane.showMessageDialog(null, e.getMessage());
+           habilitarBotoes(false);
+           habilitarInputs(false);
+           limparCampos();
+       }
     }//GEN-LAST:event_jbBuscarPessoaActionPerformed
 
     private void jbBuscarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepActionPerformed
