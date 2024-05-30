@@ -2,7 +2,10 @@
 package com.app.paginas.pessoa.juridica;
 
 import com.app.api.BuscaCep;
+import com.app.controller.JuridicaController;
 import com.app.entidades.endereco.Endereco;
+import com.app.entidades.pessoas.Juridica;
+import com.app.exceptions.ServiceException;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
@@ -28,6 +31,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     }
     
     private void habilitarInputs(boolean value) {
+        jtCPFDiretor.setEnabled(value);
         jtCNPJ.setEnabled(value);
         jtNomeFantasia.setEnabled(value);
         jtCEP.setEnabled(value);
@@ -41,6 +45,23 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
         jtUF.setEnabled(value);
         
         jtEstado.setEnabled(value);
+    }
+    
+    private void limparInputs() {
+        jtCEP.setText("");
+
+        jtLogradouro.setText("");
+        jtNumero.setText("");
+        jtComplemento.setText("");
+
+        jtBairro.setText("");
+        jtCidade.setText("");
+        jtUF.setText("");
+
+        jtEstado.setText("");
+        jtNomeFantasia.setText(""); 
+        jtCPFDiretor.setText(""); 
+        jtCNPJ.setText(""); 
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -77,6 +98,8 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
         jpCNPJ = new javax.swing.JPanel();
         jlCNPJ = new javax.swing.JLabel();
         jtCNPJ = new javax.swing.JFormattedTextField();
+        jlCPF = new javax.swing.JLabel();
+        jtCPFDiretor = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -141,19 +164,19 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
         jpButoesLayout.setHorizontalGroup(
             jpButoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpButoesLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(136, 136, 136)
                 .addComponent(jbAlterar)
-                .addGap(49, 49, 49)
+                .addGap(30, 30, 30)
                 .addComponent(jbSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbBuscarCNPJ)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbBuscarCep)
                 .addGap(18, 18, 18)
                 .addComponent(jbFechar)
-                .addGap(24, 24, 24))
+                .addGap(180, 180, 180))
         );
         jpButoesLayout.setVerticalGroup(
             jpButoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,6 +338,14 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
             ex.printStackTrace();
         }
 
+        jlCPF.setText("CPF");
+
+        try {
+            jtCPFDiretor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jpCNPJLayout = new javax.swing.GroupLayout(jpCNPJ);
         jpCNPJ.setLayout(jpCNPJLayout);
         jpCNPJLayout.setHorizontalGroup(
@@ -322,17 +353,27 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
             .addGroup(jpCNPJLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpCNPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlCNPJ)
-                    .addComponent(jtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                    .addGroup(jpCNPJLayout.createSequentialGroup()
+                        .addComponent(jlCNPJ)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jtCNPJ, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jpCNPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlCPF)
+                    .addComponent(jtCPFDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
         );
         jpCNPJLayout.setVerticalGroup(
             jpCNPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCNPJLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jlCNPJ)
+                .addGroup(jpCNPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlCNPJ)
+                    .addComponent(jlCPF))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpCNPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtCPFDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -428,7 +469,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
             jtUF.setText(endereco.getUf());
 
             jtEstado.setText(endereco.getEstado());
-
+           
         } catch(IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -443,10 +484,36 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
+        limparInputs();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbBuscarCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCNPJActionPerformed
-        //JOptionPane.showMessageDialog(null, "Buscando Pessoa");
+        try {
+            JuridicaController controller = new JuridicaController();
+            Juridica juridica = controller.buscarUm(jtCNPJ.getText());
+            if( juridica == null){
+                throw  new ServiceException("Enpresa não encontrada");
+            } 
+           
+            jtCEP.setText(juridica.getEndereco().getCep());
+
+            jtLogradouro.setText(juridica.getEndereco().getLogradouro());
+            jtNumero.setText(String.valueOf(juridica.getEndereco().getNumero()));
+            jtComplemento.setText(juridica.getEndereco().getComplemento());
+
+            jtBairro.setText(juridica.getEndereco().getBairro());
+            jtCidade.setText(juridica.getEndereco().getCidade());
+            jtUF.setText(juridica.getEndereco().getUf());
+
+            jtEstado.setText(juridica.getEndereco().getEstado());
+            jtNomeFantasia.setText(juridica.getNomeFantasia());
+            jtCPFDiretor.setText(juridica.getCpfDiretor());
+            habilitarInputs(true);
+            jtCNPJ.setEnabled(false);
+       } catch (ServiceException e) {
+           JOptionPane.showMessageDialog(null, e.getMessage());
+           
+       }
     }//GEN-LAST:event_jbBuscarCNPJActionPerformed
 
     private void jtNomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNomeFantasiaActionPerformed
@@ -468,6 +535,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     private javax.swing.JLabel jlBairro;
     private javax.swing.JLabel jlCEP;
     private javax.swing.JLabel jlCNPJ;
+    private javax.swing.JLabel jlCPF;
     private javax.swing.JLabel jlCidade;
     private javax.swing.JLabel jlComplemento;
     private javax.swing.JLabel jlEstado;
@@ -482,6 +550,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     private javax.swing.JTextField jtBairro;
     private javax.swing.JFormattedTextField jtCEP;
     private javax.swing.JFormattedTextField jtCNPJ;
+    private javax.swing.JFormattedTextField jtCPFDiretor;
     private javax.swing.JTextField jtCidade;
     private javax.swing.JTextField jtComplemento;
     private javax.swing.JTextField jtEstado;
