@@ -22,7 +22,7 @@ public class Conector {
         return connection;
     }
 
-    public static void criarTabelaPessoaFisica() {
+    public static void criarTabelaPessoaFisica() throws SQLException{
         String sql = "CREATE TABLE IF NOT EXISTS pessoaFisica ("
                 + " nome VARCHAR(100),"
                 + " cpf VARCHAR(20) PRIMARY KEY,"
@@ -45,17 +45,17 @@ public class Conector {
             statement.execute();
             statement.close();
         }catch (SQLException e){
-            System.err.println("Erro ao criar tabela pessoaFísica: " + e.getMessage() );
-            throw new RuntimeException("Erro ao criar tabela pessoaFísica,", e);
+            
+            throw new SQLException("Erro ao criar tabela pessoaFísica");
         }
     }
 
-    private static void criarTabelaPessoaJuridica(){
+    private static void criarTabelaPessoaJuridica() throws SQLException{
         String sql = "CREATE TABLE IF NOT EXISTS empresas ("
                 + "nomeFantasia VARCHAR(50),"
                 + "cpfDiretor VARCHAR(20),"
                 + "cnpj VARCHAR(50) PRIMARY KEY,"
-                + "cadastroEstadual INTEGER, "
+                + "cadastroEstadual varchar(50), "
                 + " logradouro VARCHAR(20),"
                 + " numero INTEGER,"
                 + " complemento VARCHAR(20),"
@@ -71,8 +71,8 @@ public class Conector {
             statement.close();
             openConnection().close();
         }catch (SQLException e){
-            System.err.println("Erro ao criar tabela pessoas: " + e.getMessage() );
-            throw new RuntimeException("Erro ao criar tabela pessoas,", e);
+            
+            throw new SQLException("Erro ao criar tabela empresas");
         }
     }
 

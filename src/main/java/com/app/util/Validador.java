@@ -4,6 +4,7 @@ package com.app.util;
 import com.app.api.UF;
 import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.Fisica;
+import com.app.entidades.pessoas.Juridica;
 import com.app.exceptions.ValidationError;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -163,9 +164,6 @@ public class Validador {
         }
     }
 
-
-    
-    
     public static void validarEndereco(Endereco endereco) throws ValidationError{
         
         
@@ -198,5 +196,23 @@ public class Validador {
             throw new ValidationError("Estado inválido");
         }
        
+    }
+    
+    public static void validarPessoaJuridica(Juridica juridica) throws ValidationError {
+        if (isEmpty(juridica.getNomeFantasia()) || juridica.getNomeFantasia().length() > 100) {
+            throw new ValidationError("Nome fantasia deve ter no ");
+        }
+        
+         if (isEmpty(juridica.getCadastroEstadual())) {
+            throw new ValidationError("Cadastro estadua não pode estar vazio");
+        }
+         
+          if (!validarCNPJ(juridica.getCnpj())) {
+            throw new ValidationError("CNPJ inválido");
+        }
+          
+           if (!validarCPF(juridica.getCpfDiretor())) {
+            throw new ValidationError("CPF inválido");
+        }
     }
 }

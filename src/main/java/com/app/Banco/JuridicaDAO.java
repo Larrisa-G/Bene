@@ -15,25 +15,27 @@ public class JuridicaDAO {
 
    
 
-    public void inserirEmpresa(Juridica empresa){
-        String sql = "INSERT INTO empresas (nomeFantasia, cpfDiretor, cnpj, cadastroEstadual, logradouro, número, complemento, bairro, cep, cidade, uf, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    public void inserirEmpresa(Juridica empresa) throws SQLException{
+        String sql = "INSERT INTO empresas ("
+                + "nomeFantasia, cpfDiretor, cnpj, cadastroEstadual, logradouro, numero, complemento, bairro, cep, cidade, uf, estado) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(1, empresa.getNomeFantasia());
-            statement.setString(3, empresa.getCpfDiretor());
-            statement.setString(2, empresa.getCnpj());
+            statement.setString(2, empresa.getCpfDiretor());
+            statement.setString(3, empresa.getCnpj());
             statement.setString(4, empresa.getCadastroEstadual());
-            statement.setString(8, empresa.getEndereco().getLogradouro());
-            statement.setInt(9, empresa.getEndereco().getNumero());
-            statement.setString(10, empresa.getEndereco().getComplemento());
-            statement.setString(11, empresa.getEndereco().getBairro());
-            statement.setString(12, empresa.getEndereco().getCep());
-            statement.setString(13, empresa.getEndereco().getCidade());
-            statement.setString(14, empresa.getEndereco().getUf());
-            statement.setString(15, empresa.getEndereco().getEstado());
+            statement.setString(5, empresa.getEndereco().getLogradouro());
+            statement.setInt(6, empresa.getEndereco().getNumero());
+            statement.setString(7, empresa.getEndereco().getComplemento());
+            statement.setString(8, empresa.getEndereco().getBairro());
+            statement.setString(9, empresa.getEndereco().getCep());
+            statement.setString(10, empresa.getEndereco().getCidade());
+            statement.setString(11, empresa.getEndereco().getUf());
+            statement.setString(12, empresa.getEndereco().getEstado());
             statement.execute();
         } catch (SQLException e){
-            System.err.println("Erro ao inserir pessoa jurídica ao banco de dados:" + e.getMessage());
-            throw new RuntimeException("Erro ao inserir pessoa jurídica ao banco de dados, " + e);
+            
+            throw new SQLException("Erro ao inserir pessoa jurídica ao banco de dados");
         }
     }
 

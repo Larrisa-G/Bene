@@ -2,6 +2,7 @@
 package com.app.paginas.pessoa.juridica;
 
 import com.app.api.BuscaCep;
+import com.app.controller.JuridicaController;
 import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.Juridica;
 import com.app.exceptions.ServiceException;
@@ -18,7 +19,24 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
         habilitarBotoes(false);
         habilitarInputs(false);
     }
+    
+    private void limparInputs() {
+        jtCEP.setText("");
 
+        jtLogradouro.setText("");
+        jtNumero.setText("");
+        jtComplemento.setText("");
+
+        jtBairro.setText("");
+        jtCidade.setText("");
+        jtUF.setText("");
+
+        jtEstado.setText("");
+        jtNomeFantasia.setText(""); 
+        jtCPFDiretor.setText(""); 
+        jtCNPJ.setText(""); 
+        jtCadastroEstadual.setText("");
+    }
     private void habilitarBotoes(boolean value) {
         jbNovo.setEnabled(!value);
         
@@ -439,8 +457,12 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
                     jtBairro.getText(), jtCEP.getText(), jtCidade.getText(), jtUF.getText(), jtEstado.getText());
 
             Juridica juridica = new Juridica(jtNomeFantasia.getText(), jtCPFDiretor.getText(), jtCNPJ.getText(), jtCadastroEstadual.getText(), endereco);
-             habilitarBotoes(false); 
-        habilitarInputs(false);
+            JuridicaController controller = new JuridicaController();
+            controller.criar(juridica);
+            limparInputs();
+            habilitarBotoes(false); 
+            habilitarInputs(false);
+            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Número Inválido");
         } catch(ServiceException e) {
@@ -452,6 +474,7 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
+        limparInputs();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbBuscarCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCNPJActionPerformed
