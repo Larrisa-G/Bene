@@ -2,7 +2,6 @@
 package com.app.controller;
 
 import com.app.Banco.JuridicaDAO;
-import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.Juridica;
 import com.app.exceptions.ServiceException;
 import com.app.exceptions.ValidationError;
@@ -18,14 +17,14 @@ public class JuridicaController implements ControllersInterface<Juridica>{
     @Override
     public void criar(Juridica juridica) throws ServiceException {
         try {
-            if(buscarUm(juridica.getCnpj()).getCnpj().equals(juridica.getCnpj())) {           
-               throw new ServiceException("Cliente já cadastrado");
-            }  
-            
+            if(buscarUm(juridica.getCnpj()) != null) {           
+               throw new ServiceException("Empresa já cadastrada");
+            } 
+            Validador.validarPessoaJuridica(juridica);
             Validador.validarEndereco(juridica.getEndereco());
             
                     
-            dao.inserirEmpresa(juridica);
+            dao.inserir(juridica);
         } catch (SQLException e){
             throw new ServiceException(e.getMessage());
         } catch (ValidationError e){
@@ -39,7 +38,7 @@ public class JuridicaController implements ControllersInterface<Juridica>{
     }
 
     @Override
-    public void alterar(Juridica juridica, Endereco endereco) throws ServiceException {
+    public void alterar(Juridica juridica) throws ServiceException {
         try {
             if (Validador.isEmpty(juridica.getCpfDiretor())) {
                 throw new ValidationError("CPF não pode estar vazio");
@@ -49,8 +48,8 @@ public class JuridicaController implements ControllersInterface<Juridica>{
             }
             
             
-            Validador.validarEndereco(endereco);
-            dao.alterarPessoaJuridica(juridica);
+            Validador.validarEndereco(juridica.getEndereco());
+            dao.alterar(juridica);
         } catch (ValidationError e) {
             throw new ServiceException("Erro de validação: " + e.getMessage());
         } catch (SQLException e) {
@@ -61,7 +60,7 @@ public class JuridicaController implements ControllersInterface<Juridica>{
     @Override
     public List<Juridica> buscarTodos() throws ServiceException {
          try{
-            List<Juridica> list = dao.obterTodasEmpresas();
+            List<Juridica> list = dao.obterTodos();
             return list;
         } catch (SQLException e ){
             throw new ServiceException("Erro ao pegar clientes do banco");
@@ -71,7 +70,7 @@ public class JuridicaController implements ControllersInterface<Juridica>{
     @Override
     public Juridica buscarUm(String value) throws ServiceException {
          try{ 
-           Juridica juridica = dao.obterEmpresaPorCnpj(value);
+           Juridica juridica = dao.obterPorChave(value);
            if (juridica == null) {
                return null;
            } 

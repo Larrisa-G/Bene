@@ -492,7 +492,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
                 fisica.setGenero(Genero.valueOf((String)jcbGenero.getSelectedItem()));
             } 
             
-
+            
             Endereco endereco = new Endereco(
                 jtLogradouro.getText(),
 
@@ -504,9 +504,9 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
                 jtUF.getText(),
                 jtEstado.getText()
             );
-        
+            fisica.setEndereco(endereco);
             FisicaController controller = new FisicaController();
-            controller.alterar(fisica, endereco);
+            controller.alterar(fisica);
             limparInpunts();
             habilitarBotoes(false);
             habilitarInputs(false);
@@ -521,6 +521,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
+        limparInpunts();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbBuscarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPessoaActionPerformed

@@ -13,9 +13,10 @@ import com.app.util.DateUtilFormarter;
 import java.sql.Date;
 import java.text.ParseException;
 
-public class FisicaDAO  {
+public class FisicaDAO implements DAOInterface<Fisica>{
 
-    public void inserirPessoaFisica(Fisica fisica) throws SQLException,ParseException{
+    @Override
+    public void inserir(Fisica fisica) throws SQLException{
         String sql = "INSERT INTO pessoaFisica ("
                 + "nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, "
                 + "profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado"
@@ -39,11 +40,14 @@ public class FisicaDAO  {
             statement.setString(16, fisica.getEndereco().getEstado());
             statement.execute();
         } catch (SQLException e){        
-            throw new SQLException("Erro ao inserir pessoa física no banco de dados"+e.getMessage());
+            throw new SQLException("Erro ao inserir pessoa física no banco de dados");
+        } catch (ParseException e) {
+            throw new SQLException("Data inválida");
         }
     }
 
-    public Fisica obterPessoaFisicaPorCPF(String cpf) throws SQLException{
+    @Override
+    public Fisica obterPorChave(String cpf) throws SQLException{
         String sql = "SELECT "
                 + "nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, "
                 + "profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado "
@@ -80,7 +84,8 @@ public class FisicaDAO  {
         }
     }
 
-    public List<Fisica> obterTodasPessoasFisicas() throws SQLException{
+    @Override
+    public List<Fisica> obterTodos() throws SQLException{
         List<Fisica> pessoas = new ArrayList<>();
         String sql = "SELECT nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado  FROM pessoaFisica";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
@@ -115,7 +120,8 @@ public class FisicaDAO  {
         return pessoas;
     }
 
-    public void deletarPessoaFisica(String cpf) throws SQLException{
+    @Override
+    public void deletar(String cpf) throws SQLException{
         String sql = "DELETE FROM pessoaFisica WHERE cpf = ?";
         try(PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(1, cpf);
@@ -126,7 +132,8 @@ public class FisicaDAO  {
         }
     }
 
-    public void alterarPessoaFisica(Fisica fisica,Endereco endereco) throws SQLException{
+    @Override
+    public void alterar(Fisica fisica) throws SQLException{
         String sql = "UPDATE pessoaFisica SET "
            + "nome = ?, "
            + "estadoCivil = ?, "
@@ -146,14 +153,14 @@ public class FisicaDAO  {
             statement.setString(2, fisica.getEstadoCivil().toString());
             statement.setString(3, fisica.getGenero().toString());
             statement.setString(4, fisica.getProfissao());
-            statement.setString(5, endereco.getLogradouro());
-            statement.setInt(6, endereco.getNumero());
-            statement.setString(7, endereco.getComplemento());
-            statement.setString(8, endereco.getBairro());
-            statement.setString(9, endereco.getCep());
-            statement.setString(10, endereco.getCidade());
-            statement.setString(11, endereco.getUf());
-            statement.setString(12, endereco.getEstado());
+            statement.setString(5, fisica.getEndereco().getLogradouro());
+            statement.setInt(6, fisica.getEndereco().getNumero());
+            statement.setString(7, fisica.getEndereco().getComplemento());
+            statement.setString(8, fisica.getEndereco().getBairro());
+            statement.setString(9, fisica.getEndereco().getCep());
+            statement.setString(10, fisica.getEndereco().getCidade());
+            statement.setString(11, fisica.getEndereco().getUf());
+            statement.setString(12, fisica.getEndereco().getEstado());
             statement.setString(13, fisica.getCpf());
             statement.executeUpdate();
         }catch(SQLException e){     

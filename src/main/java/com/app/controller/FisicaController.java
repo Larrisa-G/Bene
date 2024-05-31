@@ -2,13 +2,11 @@
 package com.app.controller;
 
 import com.app.Banco.FisicaDAO;
-import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.Fisica;
 import com.app.exceptions.ServiceException;
 import com.app.exceptions.ValidationError;
 import com.app.util.Validador;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.List;
 
 
@@ -19,13 +17,14 @@ public class FisicaController implements ControllersInterface<Fisica>{
     public void criar(Fisica fisica) throws ServiceException{
         
         try {
-            if(buscarUm(fisica.getCpf()).getCpf().equals(fisica.getCpf())) {           
-               throw new ServiceException("Cliente já cadastrado");
-            }    
             Validador.validarEndereco(fisica.getEndereco());
             Validador.validarPessoaFisica(fisica);
-            dao.inserirPessoaFisica(fisica);
-        } catch (SQLException | ParseException e){
+            if(buscarUm(fisica.getCpf()) != null) {           
+               throw new ValidationError("Cliente já cadastrado");
+            }    
+            
+            dao.inserir(fisica);
+        } catch (SQLException e){
             throw new ServiceException(e.getMessage());
         } catch (ValidationError e){
             throw new ServiceException("Erro de validação: "+e.getMessage());
@@ -38,13 +37,13 @@ public class FisicaController implements ControllersInterface<Fisica>{
     }
 
     @Override
-    public void alterar(Fisica fisica, Endereco endereco) throws ServiceException{
+    public void alterar(Fisica fisica) throws ServiceException{
         try {
             if(Validador.isEmpty(fisica.getNome()) || Validador.isEmpty(fisica.getProfissao())) {
                 throw new ValidationError("Alguns dados pessoais estão vazios");
             }
-            Validador.validarEndereco(endereco);
-            dao.alterarPessoaFisica(fisica,endereco);
+            Validador.validarEndereco(fisica.getEndereco());
+            dao.alterar(fisica);
         } catch(SQLException e) {
             throw new ServiceException(e.getMessage());
         }  catch (ValidationError e){
@@ -55,7 +54,7 @@ public class FisicaController implements ControllersInterface<Fisica>{
     @Override
     public List<Fisica> buscarTodos() throws ServiceException  {
         try{
-            List<Fisica> list = dao.obterTodasPessoasFisicas();
+            List<Fisica> list = dao.obterTodos();
             return list;
         } catch (SQLException e ){
             throw new ServiceException("Erro ao pegar clientes do banco");
@@ -66,7 +65,7 @@ public class FisicaController implements ControllersInterface<Fisica>{
     public Fisica buscarUm(String value) throws ServiceException{
         
         try{ 
-           Fisica fisica = dao.obterPessoaFisicaPorCPF(value);
+           Fisica fisica = dao.obterPorChave(value);
            if (fisica == null) {
                return null;
            } 

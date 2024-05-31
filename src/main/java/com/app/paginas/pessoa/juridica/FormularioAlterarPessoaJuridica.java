@@ -495,7 +495,8 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
             );
             juridica.setEndereco(endereco);
             JuridicaController controller = new JuridicaController();
-            controller.alterar(juridica, endereco);
+            controller.alterar(juridica);
+            limparInputs();
             habilitarBotoes(false);
             habilitarInputs(false);
         } catch (ServiceException e) {

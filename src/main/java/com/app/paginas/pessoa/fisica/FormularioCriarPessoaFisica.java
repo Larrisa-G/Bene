@@ -504,9 +504,7 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
             Fisica fisica = new Fisica(
                     jtNome.getText(),jtCPF.getText(), Genero.valueOf((String)jcbGenero.getSelectedItem()),
                     EstadoCivil.valueOf((String)jcbEstadoCivil.getSelectedItem()), jtRG.getText(), jtDataNascimento.getText(), 
-                    jtNacionalidade.getText(), jtProfissao.getText(), endereco
-                    
-            );
+                    jtNacionalidade.getText(), jtProfissao.getText(), endereco);
             
             
             fc.criar(fisica);

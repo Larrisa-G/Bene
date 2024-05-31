@@ -1,8 +1,6 @@
 package com.app.Banco;
 
 import com.app.entidades.endereco.Endereco;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,11 +9,11 @@ import java.util.List;
 
 import com.app.entidades.pessoas.Juridica;
 
-public class JuridicaDAO {
+public class JuridicaDAO implements DAOInterface<Juridica>{
 
    
-
-    public void inserirEmpresa(Juridica empresa) throws SQLException{
+    @Override
+    public void inserir(Juridica empresa) throws SQLException{
         String sql = "INSERT INTO empresas ("
                 + "nomeFantasia, cpfDiretor, cnpj, cadastroEstadual, logradouro, numero, complemento, bairro, cep, cidade, uf, estado) "
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -34,12 +32,12 @@ public class JuridicaDAO {
             statement.setString(12, empresa.getEndereco().getEstado());
             statement.execute();
         } catch (SQLException e){
-            
             throw new SQLException("Erro ao inserir pessoa jurídica ao banco de dados");
         }
     }
 
-    public Juridica obterEmpresaPorCnpj(String cnpj) throws SQLException{
+    @Override
+    public Juridica obterPorChave(String cnpj) throws SQLException{
         String sql = "SELECT nomeFantasia, cnpj, cpfDiretor, cadastroEstadual, logradouro, numero, complemento, bairro, cep, cidade, uf, estado FROM empresas WHERE cnpj = ?";
         try (PreparedStatement statment = Conector.openConnection().prepareStatement(sql)) {
             statment.setString(1, cnpj);
@@ -69,8 +67,9 @@ public class JuridicaDAO {
             throw new SQLException("Erro ao obter pessoa jurídica por CNPJ ");
         }
     }
-
-    public List<Juridica> obterTodasEmpresas() throws SQLException{
+    
+    @Override
+    public List<Juridica> obterTodos() throws SQLException{
         List<Juridica> empresas = new ArrayList<>();
         String sql = "SELECT nomeFantasia, cnpj, cpfDiretor, cadastroEstadual, logradouro, numero, complemento, bairro, cep, cidade, uf, estado FROM empresas";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
@@ -103,18 +102,19 @@ public class JuridicaDAO {
         return empresas;
     }
 
-    public void deletarEmpresa(String cnpj){
+    @Override
+    public void deletar(String cnpj) throws SQLException{
         String sql = "DELETE FROM empresas WHERE cnpj = ?";
         try(PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(3, cnpj);
             statement.executeUpdate();
         }catch(SQLException e){
-            System.err.println("Erro ao deletar pessoa jurídica: " + e.getMessage());
-            throw new RuntimeException("Erro ao deletar pessoa jurídica: ", e);
+            throw new SQLException("Erro ao deletar pessoa jurídica");
         }
     }
 
-    public void alterarPessoaJuridica(Juridica juridica) throws SQLException{
+    @Override
+    public void alterar(Juridica juridica) throws SQLException{
          String sql = "UPDATE empresas SET "
            + "nomeFantasia = ?, "
            + "cpfDiretor = ?, "
@@ -149,25 +149,5 @@ public class JuridicaDAO {
         }
     }
 
-    /*public void alterarEmpresa(String nomeFantasia, String cnpj, String cpfDiretor, String cadastroEstadual){
-        String sql = "UPDATE empresas SET nomeFantasia = ?, cpfDiretor = ?, cadastroEstadual = ? WHERE cnpj = ?";
-        try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
-            statement.setString(1, nomeFantasia);
-            statement.setString(2, cnpj);
-            statement.setString(3, cpfDiretor);
-            statement.setString(4, cadastroEstadual);
-            statement.setString("logradouro");
-            statement.setInt("numero");
-            statement.setString("complemento");
-            statement.setString("bairro");
-            statement.setString("cep");
-            statement.setString("cidade");
-            statement.setString("uf");
-            statement.setString("estado");
-            statement.execute();
-        } catch (SQLException e){
-            System.err.println("Erro ao alterar empresa no banco de dados:" + e.getMessage());
-            throw new RuntimeException("Erro ao alterar empresa no banco de dados, " + e);
-        }
-    }*/
+   
 }
