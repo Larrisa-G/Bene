@@ -14,16 +14,18 @@ import java.util.List;
 public class JuridicaController implements ControllersInterface<Juridica>{
     
     JuridicaDAO dao = new JuridicaDAO();
+    
     @Override
-    public void criar(Juridica empresa) throws ServiceException {
+    public void criar(Juridica juridica) throws ServiceException {
         try {
-            //if(buscarUm(fisica.getCpf()).getCpf().equals(fisica.getCpf())) {           
-            //   throw new ServiceException("Cliente já cadastrado");
-            //}    
-            Validador.validarEndereco(empresa.getEndereco());
-            Validador.validarPessoaJuridica(empresa);
+            if(buscarUm(juridica.getCnpj()).getCnpj().equals(juridica.getCnpj())) {           
+               throw new ServiceException("Cliente já cadastrado");
+            }  
+            
+            Validador.validarEndereco(juridica.getEndereco());
+            
                     
-            dao.inserirEmpresa(empresa);
+            dao.inserirEmpresa(juridica);
         } catch (SQLException e){
             throw new ServiceException(e.getMessage());
         } catch (ValidationError e){
@@ -37,8 +39,23 @@ public class JuridicaController implements ControllersInterface<Juridica>{
     }
 
     @Override
-    public void alterar(Juridica entidade, Endereco endereco) throws ServiceException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void alterar(Juridica juridica, Endereco endereco) throws ServiceException {
+        try {
+            if (Validador.isEmpty(juridica.getCpfDiretor())) {
+                throw new ValidationError("CPF não pode estar vazio");
+            }
+            if(new FisicaController().buscarUm(juridica.getCpfDiretor()) == null) {           
+                throw new ValidationError("CPF não cadastrado");
+            }
+            
+            
+            Validador.validarEndereco(endereco);
+            dao.alterarPessoaJuridica(juridica);
+        } catch (ValidationError e) {
+            throw new ServiceException("Erro de validação: " + e.getMessage());
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage());
+        }
     }
 
     @Override

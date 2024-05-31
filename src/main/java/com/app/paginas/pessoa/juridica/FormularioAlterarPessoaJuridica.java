@@ -479,11 +479,12 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         try{
            
-            Juridica juridica = new Juridica(
-                    jtNomeFantasia.getText(),jtCPFDiretor.getText(),null,null,null);
+            Juridica juridica = new Juridica();
+            juridica.setNomeFantasia(jtNomeFantasia.getText());
+            juridica.setCnpj(jtCNPJ.getText());
+            juridica.setCpfDiretor(jtCPFDiretor.getText());
             Endereco endereco = new Endereco(
                 jtLogradouro.getText(),
-
                 Integer.parseInt(jtNumero.getText()),
                 jtComplemento.getText(),      
                 jtBairro.getText(),
@@ -492,6 +493,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                 jtUF.getText(),
                 jtEstado.getText()
             );
+            juridica.setEndereco(endereco);
             JuridicaController controller = new JuridicaController();
             controller.alterar(juridica, endereco);
             habilitarBotoes(false);

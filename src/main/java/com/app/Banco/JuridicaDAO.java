@@ -114,65 +114,38 @@ public class JuridicaDAO {
         }
     }
 
-    public void alterarPessoaFisica(String nomeFantasia, String cpfDiretor, String cnpj, String cadastroEstadual, String logradouro, int numero, String complemento, String bairro, String cep, String cidade, String uf, String estado){
-        StringBuilder sqlBuilder = new StringBuilder("UPDATE pessoaFisica SET ");
-        List<Object> parametros = new ArrayList<>();
-        /*
-        if(nome !=null){
-            sqlBuilder.append("nomeFntasia = ?,");
-            parametros.add(nome);
-        }
-        if(nome !=null){
-            sqlBuilder.append("cpfDiretor = ?,");
-            parametros.add(nome);
-        }
-        if(nome !=null){
-            sqlBuilder.append("cadastroEstadual = ?,");
-            parametros.add(nome);
-        }
-        if( !=null){
-            sqlBuilder.append("logradouro = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("numero = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("complemento = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("bairro = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("cep = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("cidade = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("uf = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("estado = ?,");
-            parametros.add(rg);
-        }
-        sqlBuilder.append("WHERE cpf = ?");
-        parametros.add(cpf);
-        */
-        try(PreparedStatement statement = Conector.openConnection().prepareStatement(sqlBuilder.toString())){
-            for (int i = 0; i < parametros.size(); i++){
-                statement.setObject(i + 1, parametros.get(i));
-            }
+    public void alterarPessoaJuridica(Juridica juridica) throws SQLException{
+         String sql = "UPDATE empresas SET "
+           + "nomeFantasia = ?, "
+           + "cpfDiretor = ?, "
+           + "logradouro = ?, "
+           + "numero = ?, "
+           + "complemento = ?, "
+           + "bairro = ?, "
+           + "cep = ?, "
+           + "cidade = ?, "
+           + "uf = ?, "
+           + "estado = ? "
+           + "WHERE cnpj = ?";
+        
+        
+        try(PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
+            
+            statement.setString(1, juridica.getNomeFantasia());
+            statement.setString(2, juridica.getCpfDiretor());
+            statement.setString(3, juridica.getEndereco().getLogradouro());
+            statement.setInt(4, juridica.getEndereco().getNumero());
+            statement.setString(5, juridica.getEndereco().getComplemento());
+            statement.setString(6, juridica.getEndereco().getBairro());
+            statement.setString(7, juridica.getEndereco().getCep());
+            statement.setString(8, juridica.getEndereco().getCidade());
+            statement.setString(9, juridica.getEndereco().getUf());
+            statement.setString(10, juridica.getEndereco().getEstado());
+            statement.setString(11, juridica.getCnpj());
             statement.executeUpdate();
         }catch(SQLException e){
-            System.err.println("Erro ao alterar pessoa jurídica: " + e.getMessage());
-            throw new RuntimeException("Erro ao alterar pessoa jurídica: ", e);
+            
+            throw new SQLException("Erro ao alterar pessoa jurídica");
         }
     }
 
