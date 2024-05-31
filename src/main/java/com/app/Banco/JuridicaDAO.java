@@ -48,9 +48,9 @@ public class JuridicaDAO {
                     return null;
                 }
                 return new Juridica (
-                        result.getString("nomeFantasia"),
-                        result.getString("cnpj"),
+                        result.getString("nomeFantasia"),  
                         result.getString("cpfDiretor"),
+                         result.getString("cnpj"),
                         result.getString("cadastroEstadual"),
                         new Endereco(
                             result.getString("logradouro"),

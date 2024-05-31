@@ -341,7 +341,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
         jlCPF.setText("CPF");
 
         try {
-            jtCPFDiretor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+            jtCPFDiretor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -440,7 +440,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
-        
+        jbSalvar.setEnabled(true);
         jtCNPJ.setEnabled(true);
         jtCNPJ.requestFocus();
         jbAlterar.setEnabled(false);
@@ -477,8 +477,30 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     }//GEN-LAST:event_jbBuscarCepActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        habilitarBotoes(false);
-        habilitarInputs(false);
+        try{
+           
+            Juridica juridica = new Juridica(
+                    jtNomeFantasia.getText(),jtCPFDiretor.getText(),null,null,null);
+            Endereco endereco = new Endereco(
+                jtLogradouro.getText(),
+
+                Integer.parseInt(jtNumero.getText()),
+                jtComplemento.getText(),      
+                jtBairro.getText(),
+                jtCEP.getText(),
+                jtCidade.getText(),
+                jtUF.getText(),
+                jtEstado.getText()
+            );
+            JuridicaController controller = new JuridicaController();
+            controller.alterar(juridica, endereco);
+            habilitarBotoes(false);
+            habilitarInputs(false);
+        } catch (ServiceException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Número Inválido");
+        }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed

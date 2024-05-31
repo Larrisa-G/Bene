@@ -10,7 +10,6 @@ import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
 import com.app.exceptions.ServiceException;
-import com.app.util.Validador;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
@@ -479,8 +478,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbFecharActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        habilitarBotoes(false);
-        habilitarInputs(false);
+        
         
         try {
             Fisica fisica = new FisicaController().buscarUm(jtCPF.getText());
@@ -509,6 +507,9 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
         
             FisicaController controller = new FisicaController();
             controller.alterar(fisica, endereco);
+            limparInpunts();
+            habilitarBotoes(false);
+            habilitarInputs(false);
         } catch(IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Gênro ou Estado civil incorretos");
         }  catch (ServiceException e) {
