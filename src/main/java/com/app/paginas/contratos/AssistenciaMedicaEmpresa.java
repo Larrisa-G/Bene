@@ -78,25 +78,28 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     private String isPlural(Integer num,String text) {
         return num > 1 ? text+"s" : text;
     }
-    /*
-    private void validarDadosContratante() {
+    
+    private void validarDadosContratante() throws ValidationError {
         try {
             Juridica juridica = new Juridica(
                     jpContratanteNomeEmpresa.getText(),jpContratanteCPF.getText(), 
                     jpContratanteCNPJ.getText() ,jpContratanteCadastroEstadual.getText(),
                     new Endereco(
-                           
+                        jpContratanteEmpresaRua.getText(), Integer.valueOf(jpContratanteEmpresaNumero.getText()),"", jpContratanteEmpresaBairro.getText(),
+                        jpContratanteEmpresaCEP.getText(), jpContratanteEmpresaSedeEm.getText(), jpContratanteEmpresaEstado.getText()
                     )
-            ) 
+            ) ;
                 
-            );
+            
             Fisica fisica = new Fisica();
             controller.validarContratanteContratada(juridica,fisica);
         } catch(ValidationError e) {
-            JOptionPane.showMessageDialog(null, "Erro nos campos do Contratante: "+e.getMessage());
+           throw new ValidationError("Erro nos campos do Contratante: "+e.getMessage());
+        } catch(NumberFormatException e) {
+           throw new ValidationError("Erro nos campos do Contratante: Número inválido ");
         }
     }
-    */
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1357,7 +1360,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         try {
-            //validarDadosContratante();
+            validarDadosContratante();
             WordGenerator wg = new WordGenerator();
             wg.setInputFilePath(WordContractPath.ASSISTENCIAMEDICAEMPRESA);
             wg.openWord();
@@ -1380,7 +1383,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
             wg.close();
             JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso");
         }
-         catch(IOException e) {
+         catch(IOException | ValidationError e) {
              JOptionPane.showMessageDialog(null, e.getMessage());
          }
     }//GEN-LAST:event_jbSalvarActionPerformed

@@ -80,7 +80,7 @@ public class Conector {
             criarTabelaPessoaJuridica();
         }catch (SQLException e){
             
-            throw new SQLException("Erro na função criar tabelas: ", e);
+            throw new SQLException(e.getMessage());
         }
     }
 }
