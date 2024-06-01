@@ -165,11 +165,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtAssinoCartao" min="-2" pref="140" max="-2" attributes="0"/>
-                      <Component id="jtPerdaCartao" alignment="0" min="-2" pref="151" max="-2" attributes="0"/>
+                      <Component id="jtPerdaCartao" alignment="0" pref="151" max="32767" attributes="0"/>
                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtAssinoCartao" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="177" max="32767" attributes="0"/>
               </Group>
