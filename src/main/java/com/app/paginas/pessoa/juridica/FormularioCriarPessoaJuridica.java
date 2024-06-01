@@ -29,7 +29,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
 
         jtBairro.setText("");
         jtCidade.setText("");
-        jtUF.setText("");
 
         jtEstado.setText("");
         jtNomeFantasia.setText(""); 
@@ -60,7 +59,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
         
         jtBairro.setEnabled(value);
         jtCidade.setEnabled(value);
-        jtUF.setEnabled(value);
         
         jtEstado.setEnabled(value);
     }
@@ -97,8 +95,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
         jtBairro = new javax.swing.JTextField();
         jlCidade = new javax.swing.JLabel();
         jtCidade = new javax.swing.JTextField();
-        jlUF = new javax.swing.JLabel();
-        jtUF = new javax.swing.JTextField();
         jlEstado = new javax.swing.JLabel();
         jtEstado = new javax.swing.JTextField();
         jtCEP = new javax.swing.JFormattedTextField();
@@ -281,8 +277,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
 
         jlCidade.setText("Cidade");
 
-        jlUF.setText("UF");
-
         jlEstado.setText("Estado");
 
         try {
@@ -320,23 +314,18 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
                             .addComponent(jlCidade)
                             .addComponent(jtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlComplemento))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEnderecoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlBairro)
                                     .addComponent(jtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(128, 128, 128))
-                            .addGroup(jpEnderecoLayout.createSequentialGroup()
-                                .addGap(21, 21, 21)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEnderecoLayout.createSequentialGroup()
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlUF)
-                                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlEstado))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jlEstado)
+                                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(109, 109, 109))))))
         );
         jpEnderecoLayout.setVerticalGroup(
             jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,12 +351,10 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlCidade)
-                    .addComponent(jlUF)
                     .addComponent(jlEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -439,7 +426,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
 
             jtBairro.setText(endereco.getBairro());
             jtCidade.setText(endereco.getCidade());
-            jtUF.setText(endereco.getUf());
 
             jtEstado.setText(endereco.getEstado());
 
@@ -454,7 +440,7 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
             
             Endereco endereco = new Endereco(
                     jtLogradouro.getText(), Integer.valueOf(jtNumero.getText()), jtComplemento.getText(),
-                    jtBairro.getText(), jtCEP.getText(), jtCidade.getText(), jtUF.getText(), jtEstado.getText());
+                    jtBairro.getText(), jtCEP.getText(), jtCidade.getText(), jtEstado.getText());
 
             Juridica juridica = new Juridica(jtNomeFantasia.getText(), jtCPFDiretor.getText(), jtCNPJ.getText(), jtCadastroEstadual.getText(), endereco);
             JuridicaController controller = new JuridicaController();
@@ -514,7 +500,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlLogradouro;
     private javax.swing.JLabel jlNomeFantasia;
     private javax.swing.JLabel jlNumero;
-    private javax.swing.JLabel jlUF;
     private javax.swing.JPanel jpButoes;
     private javax.swing.JPanel jpDadosEmpresa;
     private javax.swing.JPanel jpEndereco;
@@ -529,6 +514,5 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtLogradouro;
     private javax.swing.JTextField jtNomeFantasia;
     private javax.swing.JTextField jtNumero;
-    private javax.swing.JTextField jtUF;
     // End of variables declaration//GEN-END:variables
 }

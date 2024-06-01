@@ -52,7 +52,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
         
         jtBairro.setEnabled(value);
         jtCidade.setEnabled(value);
-        jtUF.setEnabled(value);
         
         jtEstado.setEnabled(value);
     }
@@ -74,7 +73,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
         
         jtBairro.setText("");
         jtCidade.setText("");
-        jtUF.setText("");
         
         jtEstado.setText("");
     }
@@ -103,8 +101,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
         jtBairro = new javax.swing.JTextField();
         jlCidade = new javax.swing.JLabel();
         jtCidade = new javax.swing.JTextField();
-        jlUF = new javax.swing.JLabel();
-        jtUF = new javax.swing.JTextField();
         jlEstado = new javax.swing.JLabel();
         jtEstado = new javax.swing.JTextField();
         jtCEP = new javax.swing.JFormattedTextField();
@@ -217,8 +213,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
 
         jlCidade.setText("Cidade");
 
-        jlUF.setText("UF");
-
         jlEstado.setText("Estado");
 
         try {
@@ -264,10 +258,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
                                     .addComponent(jlBairro))
                                 .addContainerGap())
                             .addGroup(jpEnderecoLayout.createSequentialGroup()
-                                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlUF))
-                                .addGap(51, 51, 51)
+                                .addGap(151, 151, 151)
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlEstado)
                                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -297,12 +288,10 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlCidade)
-                    .addComponent(jlUF)
                     .addComponent(jlEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -501,7 +490,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
                 jtBairro.getText(),
                 jtCEP.getText(),
                 jtCidade.getText(),
-                jtUF.getText(),
                 jtEstado.getText()
             );
             fisica.setEndereco(endereco);
@@ -543,7 +531,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
 
             jtBairro.setText(fisica.getEndereco().getBairro());
             jtCidade.setText(fisica.getEndereco().getCidade());
-            jtUF.setText(fisica.getEndereco().getUf());
 
             jtEstado.setText(fisica.getEndereco().getEstado());
             habilitarInputs(true);
@@ -566,7 +553,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
 
             jtBairro.setText(endereco.getBairro());
             jtCidade.setText(endereco.getCidade());
-            jtUF.setText(endereco.getUf());
 
             jtEstado.setText(endereco.getEstado());
             
@@ -621,7 +607,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlNome;
     private javax.swing.JLabel jlNumero;
     private javax.swing.JLabel jlProfissao;
-    private javax.swing.JLabel jlUF;
     private javax.swing.JPanel jpButoes;
     private javax.swing.JPanel jpDadosPessoais;
     private javax.swing.JPanel jpEndereco;
@@ -635,6 +620,5 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtNome;
     private javax.swing.JTextField jtNumero;
     private javax.swing.JTextField jtProfissao;
-    private javax.swing.JTextField jtUF;
     // End of variables declaration//GEN-END:variables
 }

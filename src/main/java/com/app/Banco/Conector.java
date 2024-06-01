@@ -38,7 +38,6 @@ public class Conector {
                 + " bairro VARCHAR(100),"
                 + " cep VARCHAR(20),"
                 + " cidade VARCHAR(100),"
-                + " uf VARCHAR(2),"
                 + " estado VARCHAR(50)"
                 + ");";
         try(PreparedStatement statement = openConnection().prepareStatement(sql)) {
@@ -62,7 +61,6 @@ public class Conector {
                 + " bairro VARCHAR(20),"
                 + " cep VARCHAR(20),"
                 + " cidade VARCHAR(20),"
-                + " uf VARCHAR(20),"
                 + " estado VARCHAR(20),"
                 + "FOREIGN KEY (cpfDiretor) REFERENCES pessoaFisica(cpf)"
                 +")";
@@ -76,13 +74,13 @@ public class Conector {
         }
     }
 
-    public static void criarTabelas() {
+    public static void criarTabelas()throws SQLException {
         try {
             criarTabelaPessoaFisica();
             criarTabelaPessoaJuridica();
-        }catch (Exception e){
-            System.err.println("Erro na função criar tabelas: " + e.getMessage());
-            throw new RuntimeException("Erro na função criar tabelas: ", e);
+        }catch (SQLException e){
+            
+            throw new SQLException("Erro na função criar tabelas: ", e);
         }
     }
 }

@@ -15,7 +15,8 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
     @Override
     public void inserir(Juridica empresa) throws SQLException{
         String sql = "INSERT INTO empresas ("
-                + "nomeFantasia, cpfDiretor, cnpj, cadastroEstadual, logradouro, numero, complemento, bairro, cep, cidade, uf, estado) "
+                + "nomeFantasia, cpfDiretor, cnpj, cadastroEstadual, "
+                + "logradouro, numero, complemento, bairro, cep, cidade, estado) "
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(1, empresa.getNomeFantasia());
@@ -28,8 +29,7 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
             statement.setString(8, empresa.getEndereco().getBairro());
             statement.setString(9, empresa.getEndereco().getCep());
             statement.setString(10, empresa.getEndereco().getCidade());
-            statement.setString(11, empresa.getEndereco().getUf());
-            statement.setString(12, empresa.getEndereco().getEstado());
+            statement.setString(11, empresa.getEndereco().getEstado());
             statement.execute();
         } catch (SQLException e){
             throw new SQLException("Erro ao inserir pessoa jurídica ao banco de dados");
@@ -38,7 +38,8 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
 
     @Override
     public Juridica obterPorChave(String cnpj) throws SQLException{
-        String sql = "SELECT nomeFantasia, cnpj, cpfDiretor, cadastroEstadual, logradouro, numero, complemento, bairro, cep, cidade, uf, estado FROM empresas WHERE cnpj = ?";
+        String sql = "SELECT nomeFantasia, cnpj, cpfDiretor, cadastroEstadual,"
+                + " logradouro, numero, complemento, bairro, cep, cidade, estado FROM empresas WHERE cnpj = ?";
         try (PreparedStatement statment = Conector.openConnection().prepareStatement(sql)) {
             statment.setString(1, cnpj);
             try (ResultSet result = statment.executeQuery()) {
@@ -57,7 +58,6 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
                             result.getString("bairro"),
                             result.getString("cep"),
                             result.getString("cidade"),
-                            result.getString("uf"),
                             result.getString("estado")
                         )
                 );
@@ -71,7 +71,8 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
     @Override
     public List<Juridica> obterTodos() throws SQLException{
         List<Juridica> empresas = new ArrayList<>();
-        String sql = "SELECT nomeFantasia, cnpj, cpfDiretor, cadastroEstadual, logradouro, numero, complemento, bairro, cep, cidade, uf, estado FROM empresas";
+        String sql = "SELECT nomeFantasia, cnpj, cpfDiretor, cadastroEstadual, "
+                + "logradouro, numero, complemento, bairro, cep, cidade, estado FROM empresas";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             try (ResultSet result = statement.executeQuery()){
                 while(result.next()){
@@ -88,7 +89,6 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
                                 result.getString("bairro"),
                                 result.getString("cep"),
                                 result.getString("cidade"),
-                                result.getString("uf"),
                                 result.getString("estado")
                             )
                         )
@@ -124,7 +124,6 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
            + "bairro = ?, "
            + "cep = ?, "
            + "cidade = ?, "
-           + "uf = ?, "
            + "estado = ? "
            + "WHERE cnpj = ?";
         
@@ -139,9 +138,8 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
             statement.setString(6, juridica.getEndereco().getBairro());
             statement.setString(7, juridica.getEndereco().getCep());
             statement.setString(8, juridica.getEndereco().getCidade());
-            statement.setString(9, juridica.getEndereco().getUf());
-            statement.setString(10, juridica.getEndereco().getEstado());
-            statement.setString(11, juridica.getCnpj());
+            statement.setString(9, juridica.getEndereco().getEstado());
+            statement.setString(10, juridica.getCnpj());
             statement.executeUpdate();
         }catch(SQLException e){
             

@@ -27,7 +27,7 @@ public class Validador {
     }
     
     public static boolean isEmpty(String value) {
-        return (value.isBlank() || value.isEmpty() || value == null );
+        return (value.isBlank() || value.isEmpty());
     }
 
     public static boolean validarCPF(String cpf) {
@@ -188,9 +188,6 @@ public class Validador {
             throw new ValidationError("Cidade inválida");
         }
   
-        if (isEmpty(endereco.getUf()) || endereco.getUf().length() != 2) {
-            throw new ValidationError("UF inválido");
-        }
 
         if (isEmpty(endereco.getEstado())|| endereco.getEstado().length() > 50) {
             throw new ValidationError("Estado inválido");

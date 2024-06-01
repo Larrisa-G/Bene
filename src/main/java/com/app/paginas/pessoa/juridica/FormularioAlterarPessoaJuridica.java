@@ -42,7 +42,6 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
         
         jtBairro.setEnabled(value);
         jtCidade.setEnabled(value);
-        jtUF.setEnabled(value);
         
         jtEstado.setEnabled(value);
     }
@@ -56,7 +55,6 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
 
         jtBairro.setText("");
         jtCidade.setText("");
-        jtUF.setText("");
 
         jtEstado.setText("");
         jtNomeFantasia.setText(""); 
@@ -90,8 +88,6 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
         jtBairro = new javax.swing.JTextField();
         jlCidade = new javax.swing.JLabel();
         jtCidade = new javax.swing.JTextField();
-        jlUF = new javax.swing.JLabel();
-        jtUF = new javax.swing.JTextField();
         jlEstado = new javax.swing.JLabel();
         jtEstado = new javax.swing.JTextField();
         jtCEP = new javax.swing.JFormattedTextField();
@@ -237,8 +233,6 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
 
         jlCidade.setText("Cidade");
 
-        jlUF.setText("UF");
-
         jlEstado.setText("Estado");
 
         try {
@@ -265,11 +259,10 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlLogradouro))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlNumero))
-                        .addGap(16, 16, 16))
+                            .addComponent(jlNumero)))
                     .addGroup(jpEnderecoLayout.createSequentialGroup()
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,22 +270,18 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                             .addComponent(jtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlComplemento))
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEnderecoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jpEnderecoLayout.createSequentialGroup()
+                                .addGap(77, 77, 77)
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlBairro)
                                     .addComponent(jtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(128, 128, 128))
-                            .addGroup(jpEnderecoLayout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlUF)
-                                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 170, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEnderecoLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlEstado))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jlEstado)
+                                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(110, 110, 110))))))
         );
         jpEnderecoLayout.setVerticalGroup(
             jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,12 +307,10 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                 .addGap(35, 35, 35)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlCidade)
-                    .addComponent(jlUF)
                     .addComponent(jlEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -407,7 +394,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(100, 100, 100)
                                 .addComponent(jpEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 11, Short.MAX_VALUE)))
+                        .addGap(0, 65, Short.MAX_VALUE)))
                 .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
@@ -466,7 +453,6 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
 
             jtBairro.setText(endereco.getBairro());
             jtCidade.setText(endereco.getCidade());
-            jtUF.setText(endereco.getUf());
 
             jtEstado.setText(endereco.getEstado());
            
@@ -490,7 +476,6 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                 jtBairro.getText(),
                 jtCEP.getText(),
                 jtCidade.getText(),
-                jtUF.getText(),
                 jtEstado.getText()
             );
             juridica.setEndereco(endereco);
@@ -528,7 +513,6 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
 
             jtBairro.setText(juridica.getEndereco().getBairro());
             jtCidade.setText(juridica.getEndereco().getCidade());
-            jtUF.setText(juridica.getEndereco().getUf());
 
             jtEstado.setText(juridica.getEndereco().getEstado());
             jtNomeFantasia.setText(juridica.getNomeFantasia());
@@ -567,7 +551,6 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     private javax.swing.JLabel jlLogradouro;
     private javax.swing.JLabel jlNomeFantasia;
     private javax.swing.JLabel jlNumero;
-    private javax.swing.JLabel jlUF;
     private javax.swing.JPanel jpButoes;
     private javax.swing.JPanel jpCNPJ;
     private javax.swing.JPanel jpDadosEmpresa;
@@ -582,6 +565,5 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     private javax.swing.JTextField jtLogradouro;
     private javax.swing.JTextField jtNomeFantasia;
     private javax.swing.JTextField jtNumero;
-    private javax.swing.JTextField jtUF;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,7 +2,11 @@
 package com.app.paginas.contratos;
 
 import com.app.api.BuscaCep;
+import com.app.controller.AssistenciaMedicaController;
 import com.app.entidades.endereco.Endereco;
+import com.app.entidades.pessoas.Fisica;
+import com.app.entidades.pessoas.Juridica;
+import com.app.exceptions.ValidationError;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
 import com.app.word.WordContractPath;
@@ -11,7 +15,8 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
-
+    
+    private final AssistenciaMedicaController controller = new AssistenciaMedicaController();
     private final String contratanteTextWord = "(Nome da Contratante), com sede em (xxx), na Rua (xxx), nº (xxx), bairro (xxx), "
             + "Cep (xxx), no Estado (xxx), inscrita no C.N.P.J. sob o nº (xxx), e no"
             + " Cadastro Estadual sob o nº (xxx), neste ato representada pelo seu diretor (xxx), "
@@ -73,7 +78,25 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     private String isPlural(Integer num,String text) {
         return num > 1 ? text+"s" : text;
     }
-    
+    /*
+    private void validarDadosContratante() {
+        try {
+            Juridica juridica = new Juridica(
+                    jpContratanteNomeEmpresa.getText(),jpContratanteCPF.getText(), 
+                    jpContratanteCNPJ.getText() ,jpContratanteCadastroEstadual.getText(),
+                    new Endereco(
+                           
+                    )
+            ) 
+                
+            );
+            Fisica fisica = new Fisica();
+            controller.validarContratanteContratada(juridica,fisica);
+        } catch(ValidationError e) {
+            JOptionPane.showMessageDialog(null, "Erro nos campos do Contratante: "+e.getMessage());
+        }
+    }
+    */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1334,6 +1357,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         try {
+            //validarDadosContratante();
             WordGenerator wg = new WordGenerator();
             wg.setInputFilePath(WordContractPath.ASSISTENCIAMEDICAEMPRESA);
             wg.openWord();

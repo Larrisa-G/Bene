@@ -19,7 +19,7 @@ public class FisicaDAO implements DAOInterface<Fisica>{
     public void inserir(Fisica fisica) throws SQLException{
         String sql = "INSERT INTO pessoaFisica ("
                 + "nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, "
-                + "profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado"
+                + "profissao, logradouro, numero, complemento, bairro, cep, cidade, estado"
                 + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(1, fisica.getNome());
@@ -35,9 +35,8 @@ public class FisicaDAO implements DAOInterface<Fisica>{
             statement.setString(11, fisica.getEndereco().getComplemento());
             statement.setString(12, fisica.getEndereco().getBairro());
             statement.setString(13, fisica.getEndereco().getCep());
-            statement.setString(14, fisica.getEndereco().getCidade());
-            statement.setString(15, fisica.getEndereco().getUf());
-            statement.setString(16, fisica.getEndereco().getEstado());
+            statement.setString(14, fisica.getEndereco().getCidade());        
+            statement.setString(15, fisica.getEndereco().getEstado());
             statement.execute();
         } catch (SQLException e){        
             throw new SQLException("Erro ao inserir pessoa física no banco de dados");
@@ -50,7 +49,7 @@ public class FisicaDAO implements DAOInterface<Fisica>{
     public Fisica obterPorChave(String cpf) throws SQLException{
         String sql = "SELECT "
                 + "nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, "
-                + "profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado "
+                + "profissao, logradouro, numero, complemento, bairro, cep, cidade, estado "
                 + "FROM pessoaFisica WHERE cpf = ?";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)) {
             statement.setString(1,cpf);
@@ -74,7 +73,6 @@ public class FisicaDAO implements DAOInterface<Fisica>{
                         result.getString("bairro"),
                         result.getString("cep"),
                         result.getString("cidade"),
-                        result.getString("uf"),
                         result.getString("estado")
                     )
                 );
@@ -87,7 +85,8 @@ public class FisicaDAO implements DAOInterface<Fisica>{
     @Override
     public List<Fisica> obterTodos() throws SQLException{
         List<Fisica> pessoas = new ArrayList<>();
-        String sql = "SELECT nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado  FROM pessoaFisica";
+        String sql = "SELECT nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade,"
+                + " profissao, logradouro, numero, complemento, bairro, cep, cidade, estado  FROM pessoaFisica";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             try (ResultSet result = statement.executeQuery()){
                 while(result.next()){
@@ -107,7 +106,6 @@ public class FisicaDAO implements DAOInterface<Fisica>{
                             result.getString("bairro"),
                             result.getString("cep"),
                             result.getString("cidade"),
-                            result.getString("uf"),
                             result.getString("estado")
                         )
                     ));
@@ -145,7 +143,6 @@ public class FisicaDAO implements DAOInterface<Fisica>{
            + "bairro = ?, "
            + "cep = ?, "
            + "cidade = ?, "
-           + "uf = ?, "
            + "estado = ? "
            + "WHERE cpf = ?";
         try(PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
@@ -158,10 +155,9 @@ public class FisicaDAO implements DAOInterface<Fisica>{
             statement.setString(7, fisica.getEndereco().getComplemento());
             statement.setString(8, fisica.getEndereco().getBairro());
             statement.setString(9, fisica.getEndereco().getCep());
-            statement.setString(10, fisica.getEndereco().getCidade());
-            statement.setString(11, fisica.getEndereco().getUf());
-            statement.setString(12, fisica.getEndereco().getEstado());
-            statement.setString(13, fisica.getCpf());
+            statement.setString(10, fisica.getEndereco().getCidade());  
+            statement.setString(11, fisica.getEndereco().getEstado());
+            statement.setString(12, fisica.getCpf());
             statement.executeUpdate();
         }catch(SQLException e){     
             throw new SQLException("Erro ao alterar pessoa física ");
