@@ -2,16 +2,23 @@
 package com.app.paginas.contratos;
 
 import com.app.api.BuscaCep;
+import com.app.controller.contratos.ComodatoImovelController;
 import com.app.entidades.endereco.Endereco;
+import com.app.entidades.pessoas.EstadoCivil;
+import com.app.entidades.pessoas.Fisica;
+import com.app.entidades.pessoas.Juridica;
+import com.app.exceptions.ValidationError;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
+import com.app.util.ValoresEnum;
 import com.app.word.WordContractPath;
 import com.app.word.WordGenerator;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class ComodatoImovel extends javax.swing.JInternalFrame {
-
+    ComodatoImovelController controller = new ComodatoImovelController();
+    
     private final String comodanteTextWord = "(Nome da Comodante), com sede em (xxx), na Rua (xxx), nº (xxx), bairro (xxx), "
             + "Cep (xxx), no Estado (xxx), inscrita no C.N.P.J. sob o nº (xxx), e no"
             + " Cadastro Estadual sob o nº (xxx), neste ato representada pelo seu diretor (xxx), "
@@ -79,6 +86,78 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
     private String isPlural(Integer num,String text) {
         return num > 1 ? text+"s" : text;
     }
+    
+    private void validarDadosComodante() throws ValidationError {
+        try {
+            Juridica juridica = new Juridica(
+                    jtComodanteNomeEmpresa.getText(),jtContratanteComodanteCPF.getText(), 
+                    jtComodanteCNPJ.getText() ,jtComodanteCadastroEstadual.getText(),
+                    new Endereco(
+                       jtComodanteEmpresaRua.getText(), Integer.parseInt(jtComodanteEmpresaNumero.getText()),"", jtComodanteEmpresaBairro.getText(),
+                        jtComodanteEmpresaCEP.getText(),jtComodanteSedeEm.getText(), jtComodanteEmpresaEstado.getText()
+                    )
+            ) ;
+                
+            
+            Fisica fisica = new Fisica(
+                jtContratanteComodanteNome.getText(),jtContratanteComodanteCPF.getText(),null,EstadoCivil.valueOf((String)jtContratanteComodanteEstadoCivil.getSelectedItem()),
+               jtContratanteComodanteRG.getText(), DateUtilFormarter.dateToString(),jtContratanteComodanteNacionalidade.getText(), jtContratanteComodanteProfissao.getText(), 
+                new Endereco(
+                        jtContratanteComodanteRua.getText(),Integer.parseInt(jtContratanteComodanteNumero.getText()),"",
+                        jtContratanteComodanteBairro.getText(),jtContratanteComodanteCEP.getText(),
+                       jtContratanteComodanteCidade.getText(), jtContratanteComodanteEstado.getText()
+                )                    
+            );
+            controller.validarComodante(juridica,fisica);
+        } catch(ValidationError e) {
+           throw new ValidationError("Erro nos campos do Comodante: "+e.getMessage());
+        } catch(NumberFormatException e) {
+           throw new ValidationError("Erro nos campos do Comodante: Número inválido ");
+        } catch (IllegalArgumentException e) {
+            throw new ValidationError("Erro nos campos da Comodante: Estado Civil Inválido");
+        }
+    }
+    
+    private void validarDadosComodatario() throws ValidationError {
+        try {
+            
+                
+            
+            Fisica fisica = new Fisica(
+               jtComodatarioNome.getText(),jtComodatarioCPF.getText(),null,EstadoCivil.valueOf((String)jtComodatarioEstadoCivil.getSelectedItem()),
+                jtComodatarioRG.getText(), DateUtilFormarter.dateToString(),jtComodatarioNacionalidade.getText(), jtComodatarioProfissao.getText(), 
+                new Endereco(
+                        jtComodatarioRua.getText(), Integer.parseInt(jtComodatarioNumero.getText()),"",
+                        jtComodatarioBairro.getText(),jtComodatarioCEP.getText(),
+                        jtComodatarioCidade.getText(), jtComodatarioEstado.getText()
+                )                    
+            );
+            controller.validarComodatario(fisica, jtComodatarioCarteiraTrabalho.getText(),jtComodatarioSerieCarteiraTrabalho.getText());
+        } catch(ValidationError e) {
+           throw new ValidationError("Erro nos campos do Comodatário: "+e.getMessage());
+        } catch(NumberFormatException e) {
+           throw new ValidationError("Erro nos campos do Comodatário: Número inválido ");
+        } catch (IllegalArgumentException e) {
+            throw new ValidationError("Erro nos campos do Comodatário: Estado Civil Inválido");
+        }
+    }
+    
+    private void validarObjContrato() throws ValidationError {
+        try {
+            Endereco endereco = new Endereco(
+                    jtPropriedadeRua.getText(), Integer.parseInt(jtPropriedadeNumero.getText()), "",
+                    jtPropriedadeBairro.getText(),jtPropriedadeCEP.getText(),
+                    jtPropriedadeCidade.getText(),jtPropriedadeCidade.getText()
+            );
+            
+            controller.validarObjContrato(endereco, jtPropriedadeCartorio.getText(), jtPropriedadeRegistro.getText());
+        }catch(ValidationError e) {
+           throw new ValidationError("Erro nos campos do Objeto de contrato: "+e.getMessage());
+        } catch(NumberFormatException e) {
+           throw new ValidationError("Erro nos campos do Objeto de contrato: Número inválido ");
+        } 
+    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -405,7 +484,7 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
         jLabel17.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel17.setText("Estado Civil");
 
-        jtContratanteComodanteEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"--Selecione--"}));
+        jtContratanteComodanteEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(ValoresEnum.obterValoresEnum(EstadoCivil.class)));
 
         jLabel18.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel18.setText("Profissão");
@@ -663,7 +742,7 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
         jLabel65.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel65.setText("Estado Civil");
 
-        jtComodatarioEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"--Selecione--"}));
+        jtComodatarioEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(ValoresEnum.obterValoresEnum(EstadoCivil.class)));
 
         jLabel66.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel66.setText("Profissão");
@@ -906,7 +985,7 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
         jLabel92.setText("Cartório do Ofício de Registro de Imóveil");
 
         try {
-            jtPropriedadeCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+            jtPropriedadeCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -1119,6 +1198,10 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         try {
+            validarDadosComodante();
+            validarDadosComodatario();
+            validarObjContrato();
+            controller.validarForro(jtForroComarca.getText());
             WordGenerator wg = new WordGenerator();
             wg.setInputFilePath(WordContractPath.COMODATOIMOVEL);
             wg.openWord();
@@ -1132,7 +1215,7 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
             wg.close();
             JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso");
         }
-         catch(IOException e) {
+        catch(IOException | ValidationError e) {
              JOptionPane.showMessageDialog(null, e.getMessage());
          }
     }//GEN-LAST:event_jbSalvarActionPerformed

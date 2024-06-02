@@ -711,7 +711,7 @@
                     <Component class="javax.swing.JComboBox" name="jtContratanteComodanteEstadoCivil">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] {&quot;--Selecione--&quot;})" type="code"/>
+                          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(ValoresEnum.obterValoresEnum(EstadoCivil.class))" type="code"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -1134,7 +1134,7 @@
                     <Component class="javax.swing.JComboBox" name="jtComodatarioEstadoCivil">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] {&quot;--Selecione--&quot;})" type="code"/>
+                          <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(ValoresEnum.obterValoresEnum(EstadoCivil.class))" type="code"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -1506,7 +1506,7 @@
                 <Component class="javax.swing.JFormattedTextField" name="jtPropriedadeCEP">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                      <Format format="###-####" subtype="-1" type="5"/>
+                      <Format format="#####-###" subtype="-1" type="5"/>
                     </Property>
                   </Properties>
                 </Component>
