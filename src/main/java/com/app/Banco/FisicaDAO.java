@@ -20,7 +20,7 @@ public class FisicaDAO implements DAOInterface<Fisica>{
         String sql = "INSERT INTO pessoaFisica ("
                 + "nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, "
                 + "profissao, logradouro, numero, complemento, bairro, cep, cidade, estado"
-                + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(1, fisica.getNome());
             statement.setString(2, fisica.getCpf());

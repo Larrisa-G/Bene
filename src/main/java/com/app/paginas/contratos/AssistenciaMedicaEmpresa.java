@@ -3,10 +3,13 @@ package com.app.paginas.contratos;
 
 import com.app.api.BuscaCep;
 import com.app.controller.AssistenciaMedicaController;
+import com.app.controller.FisicaController;
+import com.app.controller.JuridicaController;
 import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Juridica;
+import com.app.exceptions.ServiceException;
 import com.app.exceptions.ValidationError;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
@@ -663,6 +666,11 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         );
 
         jbBuscarContratanteEmpresa.setText("Buscar Empresa");
+        jbBuscarContratanteEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarContratanteEmpresaActionPerformed(evt);
+            }
+        });
 
         jbBuscarCepContratanteEmpresa.setText("Buscar Cep Empresa");
         jbBuscarCepContratanteEmpresa.addActionListener(new java.awt.event.ActionListener() {
@@ -672,6 +680,11 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         });
 
         jbBuscarContratante.setText("Buscar Contratante");
+        jbBuscarContratante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarContratanteActionPerformed(evt);
+            }
+        });
 
         jbBuscarCepContratanteRepesentante.setText("Buscar Cep Representante");
         jbBuscarCepContratanteRepesentante.addActionListener(new java.awt.event.ActionListener() {
@@ -1521,6 +1534,49 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     private void jtQuantiaMensalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtQuantiaMensalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtQuantiaMensalActionPerformed
+
+    private void jbBuscarContratanteEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarContratanteEmpresaActionPerformed
+        
+        try {
+            JuridicaController juridicaController = new JuridicaController();
+            Juridica juridica = juridicaController.buscarUm(jpContratanteCNPJ.getText());
+            
+            jpContratanteCPF.setText(juridica.getCpfDiretor());
+            jpContratanteNomeEmpresa.setText(juridica.getNomeFantasia());
+            jpContratanteCadastroEstadual.setText(juridica.getCadastroEstadual());
+            jpContratanteEmpresaCEP.setText(juridica.getEndereco().getCep());
+            jpContratanteEmpresaRua.setText(juridica.getEndereco().getLogradouro());
+            jpContratanteEmpresaNumero.setText(String.valueOf(juridica.getEndereco().getNumero()));
+            jpContratanteEmpresaBairro.setText(juridica.getEndereco().getBairro());
+           jpContratanteEmpresaSedeEm.setText(juridica.getEndereco().getCidade());
+            jpContratanteEmpresaEstado.setText(juridica.getEndereco().getEstado());
+            
+        } catch (ServiceException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jbBuscarContratanteEmpresaActionPerformed
+
+    private void jbBuscarContratanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarContratanteActionPerformed
+       try {
+            FisicaController fisicaController = new FisicaController();
+            Fisica fisica = fisicaController.buscarUm(jpContratanteCPF.getText());
+            jpContratanteRepresentanteNome.setText(fisica.getNome());
+            jpContratanteCPF.setText(fisica.getNome());
+            jpContratanteRG.setText(fisica.getRg());
+            jpContratanteNacionalidade.setText(fisica.getNacionalidade()); 
+            jpContratanteProfissao.setText(fisica.getProfissao());
+                
+            jpContratanteRepresentanteCEP.setText(fisica.getEndereco().getCep());
+            jpContratanteRepresentanteRua.setText(fisica.getEndereco().getLogradouro());
+            jpContratanteRepresentanteNumero.setText(String.valueOf(fisica.getEndereco().getNumero()));
+            jpContratanteRepresentanteBairro.setText(fisica.getEndereco().getBairro());
+            jpContratanteRepresentanteCidade.setText(fisica.getEndereco().getCidade());
+            jpContratanteRepresentanteEstado.setText(fisica.getEndereco().getEstado());
+                                  
+       } catch (ServiceException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jbBuscarContratanteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -821,6 +821,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar Empresa"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarContratanteEmpresaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jbBuscarCepContratanteEmpresa">
                   <Properties>
@@ -834,6 +837,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar Contratante"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarContratanteActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jbBuscarCepContratanteRepesentante">
                   <Properties>

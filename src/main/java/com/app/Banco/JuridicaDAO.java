@@ -17,7 +17,7 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
         String sql = "INSERT INTO empresas ("
                 + "nomeFantasia, cpfDiretor, cnpj, cadastroEstadual, "
                 + "logradouro, numero, complemento, bairro, cep, cidade, estado) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(1, empresa.getNomeFantasia());
             statement.setString(2, empresa.getCpfDiretor());
