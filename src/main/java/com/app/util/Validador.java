@@ -137,7 +137,7 @@ public class Validador {
     
     public static void validarPessoaFisica(Fisica fisica) throws ValidationError{
        
-        if (isEmpty(fisica.getNome()) || fisica.getNome().length() > 100) {
+        if (isEmpty(fisica.getNome()) || fisica.getNome().length() > 255) {
             throw new ValidationError("Nome não pode ser nulo ou vazio.");
         }
 
@@ -155,11 +155,11 @@ public class Validador {
            throw new ValidationError("Data de nascimento inválida");
        }
 
-        if (isEmpty(fisica.getNacionalidade()) || fisica.getNacionalidade().length() > 50){
+        if (isEmpty(fisica.getNacionalidade()) || fisica.getNacionalidade().length() > 255){
             throw new ValidationError("Nacionalidade não pode ser nula ou vazia.");
         }
 
-        if (isEmpty(fisica.getProfissao()) || fisica.getNacionalidade().length() > 50) {
+        if (isEmpty(fisica.getProfissao()) || fisica.getNacionalidade().length() > 255) {
             throw new ValidationError("Profissão não pode ser nula ou vazia.");
         }
     }
@@ -168,7 +168,7 @@ public class Validador {
         
         
         
-        if (isEmpty(endereco.getLogradouro()) || endereco.getLogradouro().length() > 100) {
+        if (isEmpty(endereco.getLogradouro()) || endereco.getLogradouro().length() > 255) {
             throw new ValidationError("Logradouro inválido");
         }
          
@@ -178,25 +178,25 @@ public class Validador {
         
         
           
-        if (isEmpty(endereco.getBairro()) || endereco.getBairro().length() > 100) {
+        if (isEmpty(endereco.getBairro()) || endereco.getBairro().length() > 255) {
             throw new ValidationError("Bairro inválido");
         }
         
        validaCep(endereco.getCep());
   
-        if (isEmpty(endereco.getCidade()) ||  endereco.getCidade().length() > 100) {
+        if (isEmpty(endereco.getCidade()) ||  endereco.getCidade().length() > 255) {
             throw new ValidationError("Cidade inválida");
         }
   
 
-        if (isEmpty(endereco.getEstado())|| endereco.getEstado().length() > 50) {
+        if (isEmpty(endereco.getEstado())|| endereco.getEstado().length() > 255) {
             throw new ValidationError("Estado inválido");
         }
        
     }
     
     public static void validarPessoaJuridica(Juridica juridica) throws ValidationError {
-        if (isEmpty(juridica.getNomeFantasia()) || juridica.getNomeFantasia().length() > 100) {
+        if (isEmpty(juridica.getNomeFantasia()) || juridica.getNomeFantasia().length() > 255) {
             throw new ValidationError("Nome fantasia deve ter no ");
         }
         
