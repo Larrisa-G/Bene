@@ -38,7 +38,7 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
 
     @Override
     public Juridica obterPorChave(String cnpj) throws SQLException{
-        String sql = "SELECT nomeFantasia, cnpj, cpfDiretor, cadastroEstadual,"
+        String sql = "SELECT nomeFantasia,cpfDiretor, cnpj,  cadastroEstadual,"
                 + " logradouro, numero, complemento, bairro, cep, cidade, estado FROM empresas WHERE cnpj = ?";
         try (PreparedStatement statment = Conector.openConnection().prepareStatement(sql)) {
             statment.setString(1, cnpj);
@@ -49,7 +49,7 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
                 return new Juridica (
                         result.getString("nomeFantasia"),  
                         result.getString("cpfDiretor"),
-                         result.getString("cnpj"),
+                        result.getString("cnpj"),
                         result.getString("cadastroEstadual"),
                         new Endereco(
                             result.getString("logradouro"),
@@ -79,8 +79,8 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
                     empresas.add(
                         new Juridica (
                             result.getString("nomeFantasia"),
-                            result.getString("cnpj"),
                             result.getString("cpfDiretor"),
+                            result.getString("cnpj"),
                             result.getString("cadastroEstadual"),
                             new Endereco(
                                 result.getString("logradouro"),

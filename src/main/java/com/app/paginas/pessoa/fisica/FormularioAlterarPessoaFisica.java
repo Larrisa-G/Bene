@@ -498,6 +498,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
             limparInpunts();
             habilitarBotoes(false);
             habilitarInputs(false);
+            JOptionPane.showMessageDialog(null, "alterado com sucesso");
         } catch(IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Gênro ou Estado civil incorretos");
         }  catch (ServiceException e) {

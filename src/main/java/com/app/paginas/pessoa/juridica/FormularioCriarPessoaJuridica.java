@@ -448,7 +448,7 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
             limparInputs();
             habilitarBotoes(false); 
             habilitarInputs(false);
-            
+            JOptionPane.showMessageDialog(null, "empresa cadastrada com sucesso");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Número Inválido");
         } catch(ServiceException e) {

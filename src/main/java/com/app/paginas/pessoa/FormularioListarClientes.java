@@ -2,7 +2,10 @@
 package com.app.paginas.pessoa;
 
 import com.app.controller.FisicaController;
+import com.app.controller.JuridicaController;
 import com.app.entidades.pessoas.Fisica;
+import com.app.entidades.pessoas.Juridica;
+import com.app.exceptions.ServiceException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import com.app.util.Tabela;
@@ -27,9 +30,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                 new Object[] {"CPF","Nome"}
         ); 
         
-        model = (DefaultTableModel) table.getModel();
-        
-        
+        model = (DefaultTableModel) table.getModel();       
         try {
             FisicaController controller = new FisicaController();
             List<Fisica> list = controller.buscarTodos();
@@ -37,10 +38,9 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
             for (Fisica f : list) {
                 model.addRow(new Object[] {f.getCpf(),f.getNome()});
             }
-        } catch (Exception e) {
+        } catch (ServiceException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
     }
    
     @SuppressWarnings("unchecked")
@@ -161,7 +161,19 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbFecharActionPerformed
 
     private void jrbFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbFisicaActionPerformed
-       searchLabel.setText("CPF");
+        searchLabel.setText("CPF");
+        model.setNumRows(0);
+        model.setColumnIdentifiers(new Object[] {"CPF", "Nome"});
+        try {
+            FisicaController controller = new FisicaController();
+            List<Fisica> list = controller.buscarTodos();
+            
+            for (Fisica f : list) {
+                model.addRow(new Object[] {f.getCpf(),f.getNome()});
+            }
+        } catch (ServiceException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jrbFisicaActionPerformed
 
     private void jbListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListarActionPerformed
@@ -170,6 +182,20 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
 
     private void jrbJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbJuridicaActionPerformed
         searchLabel.setText("CNPJ");
+        model.setNumRows(0);
+        model.setColumnIdentifiers(new Object[] {"CNPJ", "Empresa","Diretor"});
+        try {
+            JuridicaController jc = new JuridicaController();
+            List<Juridica> list = jc.buscarTodos();
+            
+            
+            for (Juridica j : list) {
+                FisicaController fc = new FisicaController();
+                model.addRow(new Object[] {j.getCnpj(),j.getNomeFantasia(), fc.buscarUm(j.getCpfDiretor()).getNome()});
+            }
+        } catch (ServiceException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jrbJuridicaActionPerformed
 
 

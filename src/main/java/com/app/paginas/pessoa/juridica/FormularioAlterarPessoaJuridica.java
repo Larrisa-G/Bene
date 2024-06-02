@@ -305,9 +305,9 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                     .addComponent(jtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlCidade)
-                    .addComponent(jlEstado))
+                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlEstado, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlCidade))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -484,6 +484,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
             limparInputs();
             habilitarBotoes(false);
             habilitarInputs(false);
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso");
         } catch (ServiceException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }catch (NumberFormatException e) {
