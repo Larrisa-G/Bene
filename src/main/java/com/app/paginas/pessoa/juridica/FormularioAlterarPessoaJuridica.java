@@ -2,7 +2,10 @@
 package com.app.paginas.pessoa.juridica;
 
 import com.app.api.BuscaCep;
+import com.app.controller.JuridicaController;
 import com.app.entidades.endereco.Endereco;
+import com.app.entidades.pessoas.Juridica;
+import com.app.exceptions.ServiceException;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
@@ -28,6 +31,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     }
     
     private void habilitarInputs(boolean value) {
+        jtCPFDiretor.setEnabled(value);
         jtCNPJ.setEnabled(value);
         jtNomeFantasia.setEnabled(value);
         jtCEP.setEnabled(value);
@@ -38,9 +42,24 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
         
         jtBairro.setEnabled(value);
         jtCidade.setEnabled(value);
-        jtUF.setEnabled(value);
         
         jtEstado.setEnabled(value);
+    }
+    
+    private void limparInputs() {
+        jtCEP.setText("");
+
+        jtLogradouro.setText("");
+        jtNumero.setText("");
+        jtComplemento.setText("");
+
+        jtBairro.setText("");
+        jtCidade.setText("");
+
+        jtEstado.setText("");
+        jtNomeFantasia.setText(""); 
+        jtCPFDiretor.setText(""); 
+        jtCNPJ.setText(""); 
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -69,14 +88,14 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
         jtBairro = new javax.swing.JTextField();
         jlCidade = new javax.swing.JLabel();
         jtCidade = new javax.swing.JTextField();
-        jlUF = new javax.swing.JLabel();
-        jtUF = new javax.swing.JTextField();
         jlEstado = new javax.swing.JLabel();
         jtEstado = new javax.swing.JTextField();
         jtCEP = new javax.swing.JFormattedTextField();
         jpCNPJ = new javax.swing.JPanel();
         jlCNPJ = new javax.swing.JLabel();
         jtCNPJ = new javax.swing.JFormattedTextField();
+        jlCPF = new javax.swing.JLabel();
+        jtCPFDiretor = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -141,19 +160,19 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
         jpButoesLayout.setHorizontalGroup(
             jpButoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpButoesLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(136, 136, 136)
                 .addComponent(jbAlterar)
-                .addGap(49, 49, 49)
+                .addGap(30, 30, 30)
                 .addComponent(jbSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbBuscarCNPJ)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbBuscarCep)
                 .addGap(18, 18, 18)
                 .addComponent(jbFechar)
-                .addGap(24, 24, 24))
+                .addGap(180, 180, 180))
         );
         jpButoesLayout.setVerticalGroup(
             jpButoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,8 +233,6 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
 
         jlCidade.setText("Cidade");
 
-        jlUF.setText("UF");
-
         jlEstado.setText("Estado");
 
         try {
@@ -242,11 +259,10 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlLogradouro))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlNumero))
-                        .addGap(16, 16, 16))
+                            .addComponent(jlNumero)))
                     .addGroup(jpEnderecoLayout.createSequentialGroup()
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,22 +270,18 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                             .addComponent(jtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlComplemento))
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEnderecoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jpEnderecoLayout.createSequentialGroup()
+                                .addGap(77, 77, 77)
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlBairro)
                                     .addComponent(jtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(128, 128, 128))
-                            .addGroup(jpEnderecoLayout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlUF)
-                                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 170, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEnderecoLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlEstado))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jlEstado)
+                                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(110, 110, 110))))))
         );
         jpEnderecoLayout.setVerticalGroup(
             jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,14 +305,12 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                     .addComponent(jtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlCidade)
-                    .addComponent(jlUF)
-                    .addComponent(jlEstado))
+                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlEstado, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlCidade))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -315,6 +325,14 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
             ex.printStackTrace();
         }
 
+        jlCPF.setText("CPF");
+
+        try {
+            jtCPFDiretor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jpCNPJLayout = new javax.swing.GroupLayout(jpCNPJ);
         jpCNPJ.setLayout(jpCNPJLayout);
         jpCNPJLayout.setHorizontalGroup(
@@ -322,17 +340,27 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
             .addGroup(jpCNPJLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpCNPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlCNPJ)
-                    .addComponent(jtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                    .addGroup(jpCNPJLayout.createSequentialGroup()
+                        .addComponent(jlCNPJ)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jtCNPJ, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jpCNPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlCPF)
+                    .addComponent(jtCPFDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
         );
         jpCNPJLayout.setVerticalGroup(
             jpCNPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCNPJLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jlCNPJ)
+                .addGroup(jpCNPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlCNPJ)
+                    .addComponent(jlCPF))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpCNPJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtCPFDiretor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -366,7 +394,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(100, 100, 100)
                                 .addComponent(jpEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 11, Short.MAX_VALUE)))
+                        .addGap(0, 65, Short.MAX_VALUE)))
                 .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
@@ -399,7 +427,7 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
-        
+        jbSalvar.setEnabled(true);
         jtCNPJ.setEnabled(true);
         jtCNPJ.requestFocus();
         jbAlterar.setEnabled(false);
@@ -425,10 +453,9 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
 
             jtBairro.setText(endereco.getBairro());
             jtCidade.setText(endereco.getCidade());
-            jtUF.setText(endereco.getUf());
 
             jtEstado.setText(endereco.getEstado());
-
+           
         } catch(IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -436,17 +463,67 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     }//GEN-LAST:event_jbBuscarCepActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        habilitarBotoes(false);
-        habilitarInputs(false);
+        try{
+           
+            Juridica juridica = new Juridica();
+            juridica.setNomeFantasia(jtNomeFantasia.getText());
+            juridica.setCnpj(jtCNPJ.getText());
+            juridica.setCpfDiretor(jtCPFDiretor.getText());
+            Endereco endereco = new Endereco(
+                jtLogradouro.getText(),
+                Integer.parseInt(jtNumero.getText()),
+                jtComplemento.getText(),      
+                jtBairro.getText(),
+                jtCEP.getText(),
+                jtCidade.getText(),
+                jtEstado.getText()
+            );
+            juridica.setEndereco(endereco);
+            JuridicaController controller = new JuridicaController();
+            controller.alterar(juridica);
+            limparInputs();
+            habilitarBotoes(false);
+            habilitarInputs(false);
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso");
+        } catch (ServiceException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Número Inválido");
+        }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
+        limparInputs();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbBuscarCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCNPJActionPerformed
-        //JOptionPane.showMessageDialog(null, "Buscando Pessoa");
+        try {
+            JuridicaController controller = new JuridicaController();
+            Juridica juridica = controller.buscarUm(jtCNPJ.getText());
+            if( juridica == null){
+                throw  new ServiceException("Enpresa não encontrada");
+            } 
+           
+            jtCEP.setText(juridica.getEndereco().getCep());
+
+            jtLogradouro.setText(juridica.getEndereco().getLogradouro());
+            jtNumero.setText(String.valueOf(juridica.getEndereco().getNumero()));
+            jtComplemento.setText(juridica.getEndereco().getComplemento());
+
+            jtBairro.setText(juridica.getEndereco().getBairro());
+            jtCidade.setText(juridica.getEndereco().getCidade());
+
+            jtEstado.setText(juridica.getEndereco().getEstado());
+            jtNomeFantasia.setText(juridica.getNomeFantasia());
+            jtCPFDiretor.setText(juridica.getCpfDiretor());
+            habilitarInputs(true);
+            jtCNPJ.setEnabled(false);
+       } catch (ServiceException e) {
+           JOptionPane.showMessageDialog(null, e.getMessage());
+           
+       }
     }//GEN-LAST:event_jbBuscarCNPJActionPerformed
 
     private void jtNomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNomeFantasiaActionPerformed
@@ -468,13 +545,13 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     private javax.swing.JLabel jlBairro;
     private javax.swing.JLabel jlCEP;
     private javax.swing.JLabel jlCNPJ;
+    private javax.swing.JLabel jlCPF;
     private javax.swing.JLabel jlCidade;
     private javax.swing.JLabel jlComplemento;
     private javax.swing.JLabel jlEstado;
     private javax.swing.JLabel jlLogradouro;
     private javax.swing.JLabel jlNomeFantasia;
     private javax.swing.JLabel jlNumero;
-    private javax.swing.JLabel jlUF;
     private javax.swing.JPanel jpButoes;
     private javax.swing.JPanel jpCNPJ;
     private javax.swing.JPanel jpDadosEmpresa;
@@ -482,12 +559,12 @@ public class FormularioAlterarPessoaJuridica extends javax.swing.JInternalFrame 
     private javax.swing.JTextField jtBairro;
     private javax.swing.JFormattedTextField jtCEP;
     private javax.swing.JFormattedTextField jtCNPJ;
+    private javax.swing.JFormattedTextField jtCPFDiretor;
     private javax.swing.JTextField jtCidade;
     private javax.swing.JTextField jtComplemento;
     private javax.swing.JTextField jtEstado;
     private javax.swing.JTextField jtLogradouro;
     private javax.swing.JTextField jtNomeFantasia;
     private javax.swing.JTextField jtNumero;
-    private javax.swing.JTextField jtUF;
     // End of variables declaration//GEN-END:variables
 }

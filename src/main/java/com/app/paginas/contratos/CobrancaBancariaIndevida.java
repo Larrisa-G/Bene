@@ -1,6 +1,8 @@
 
 package com.app.paginas.contratos;
 
+import com.app.controller.CobrancaIndevidaController;
+import com.app.exceptions.ValidationError;
 import com.app.word.WordGenerator;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
@@ -38,7 +40,7 @@ public class CobrancaBancariaIndevida extends javax.swing.JInternalFrame {
         jbGerar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jtPrazoDevolucao = new javax.swing.JTextField();
+        jtPrazoDevolucao = new javax.swing.JSpinner();
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
 
@@ -162,6 +164,8 @@ public class CobrancaBancariaIndevida extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Prazo de devolução (dias)");
 
+        jtPrazoDevolucao.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -170,7 +174,7 @@ public class CobrancaBancariaIndevida extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtPrazoDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtPrazoDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -224,6 +228,8 @@ public class CobrancaBancariaIndevida extends javax.swing.JInternalFrame {
        
         
         try {
+            CobrancaIndevidaController controller = new CobrancaIndevidaController();
+            controller.validarCampos(jtContratante.getText(), jtContratado.getText(), jtPrazoDevolucao.getValue().toString(),  jtDataContratacao.getText(), jtDataCobranca.getText());
             WordGenerator wg = new WordGenerator();
             wg.setInputFilePath(WordContractPath.COBRANCABANCARIAINDEVIDA);
             
@@ -232,7 +238,7 @@ public class CobrancaBancariaIndevida extends javax.swing.JInternalFrame {
             wg.modifyWord("CONTRATADO", jtContratado.getText());
             wg.modifyWord("No dia (xxx)", String.format("no dia %s", jtDataContratacao.getText()));
             wg.modifyWord("Em (xxx)", String.format("Em %s", jtDataCobranca.getText()));
-            wg.modifyWord("no prazo de (xxx)",String.format("no prazo de %s",jtPrazoDevolucao.getText()));
+            wg.modifyWord("no prazo de (xxx)",String.format("no prazo de %s",jtPrazoDevolucao.getValue()));
             wg.modifyWord("(Local, data e ano)", DateUtilFormarter.dateToStringContract());
 
             
@@ -243,6 +249,8 @@ public class CobrancaBancariaIndevida extends javax.swing.JInternalFrame {
             
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch  (ValidationError e) {
+            JOptionPane.showMessageDialog(null, "Erro de validação: "+e.getMessage());
         }
         
     }//GEN-LAST:event_jbGerarActionPerformed
@@ -268,6 +276,6 @@ public class CobrancaBancariaIndevida extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtContratante;
     private javax.swing.JFormattedTextField jtDataCobranca;
     private javax.swing.JFormattedTextField jtDataContratacao;
-    private javax.swing.JTextField jtPrazoDevolucao;
+    private javax.swing.JSpinner jtPrazoDevolucao;
     // End of variables declaration//GEN-END:variables
 }

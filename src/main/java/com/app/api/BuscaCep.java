@@ -55,8 +55,7 @@ public class BuscaCep {
         endereco.setBairro(json.optString("bairro", null));
         endereco.setCep(json.optString("cep", null));
         endereco.setCidade(json.optString("localidade", null));
-        endereco.setUf(json.optString("uf", null));
-        endereco.setEstado(pegarEstado(endereco.getUf()));
+        endereco.setEstado(pegarEstado(json.optString("uf")));
         return endereco;
     }
     

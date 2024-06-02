@@ -4,10 +4,14 @@ package com.app.util;
 import com.app.api.UF;
 import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.Fisica;
+import com.app.entidades.pessoas.Juridica;
+import com.app.exceptions.ValidationError;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 public class Validador {
@@ -23,7 +27,7 @@ public class Validador {
     }
     
     public static boolean isEmpty(String value) {
-        return (value.isBlank() || value.isEmpty() || value == null );
+        return (value.isBlank() || value.isEmpty());
     }
 
     public static boolean validarCPF(String cpf) {
@@ -95,7 +99,7 @@ public class Validador {
         int mes = Integer.parseInt(partes[1]);
         int ano = Integer.parseInt(partes[2]);
 
-        int anoAtual = java.time.LocalDate.now().getYear();
+        int anoAtual = LocalDate.now().getYear();
         if (ano < 1900 || ano > anoAtual) {
             return false;
         }
@@ -105,6 +109,7 @@ public class Validador {
         }
 
         int[] diasPorMes = {31, 28 + (ano % 4 == 0 && (ano % 100 != 0 || ano % 400 == 0) ? 1 : 0), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        
         if (dia < 1 || dia > diasPorMes[mes - 1]) {
             return false;
         }
@@ -130,81 +135,81 @@ public class Validador {
         return !dataFimLocalDate.isBefore(dataInicioLocalDate);
     }
     
-    public static void validarPessoaFisica(Fisica fisica) {
+    public static void validarPessoaFisica(Fisica fisica) throws ValidationError{
        
         if (isEmpty(fisica.getNome()) || fisica.getNome().length() > 100) {
-            throw new IllegalArgumentException("Nome não pode ser nulo ou vazio.");
+            throw new ValidationError("Nome não pode ser nulo ou vazio.");
         }
 
         if (isEmpty(fisica.getCpf()) || !fisica.getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}") || !validarCPF(fisica.getCpf())) {
-            throw new IllegalArgumentException("CPF inválido.");
+            throw new ValidationError("CPF inválido.");
         }
         
-        
-
 
         if (isEmpty(fisica.getRg()) || !fisica.getRg().matches("\\d{2}\\.\\d{3}\\.\\d{3}-\\d{1}")) {
-            throw new IllegalArgumentException("RG inválido");
+            throw new ValidationError("RG inválido");
         }
 
         // Validação da data de nascimento
-        try {
-            LocalDate dataNascimento = LocalDate.parse(fisica.getDataNascimento(),DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            LocalDate hoje = LocalDate.now();
-    
-            Period periodo = Period.between(dataNascimento, hoje);
-            if (periodo.getYears() < 18){
-                throw new IllegalArgumentException("O cliente deve ter pelo menos de 18 anos");
-            }
-        } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Data de nascimento inválida.");
-        }
+       if (!validarData(fisica.getDataNascimento())) {
+           throw new ValidationError("Data de nascimento inválida");
+       }
 
         if (isEmpty(fisica.getNacionalidade()) || fisica.getNacionalidade().length() > 50){
-            throw new IllegalArgumentException("Nacionalidade não pode ser nula ou vazia.");
+            throw new ValidationError("Nacionalidade não pode ser nula ou vazia.");
         }
 
         if (isEmpty(fisica.getProfissao()) || fisica.getNacionalidade().length() > 50) {
-            throw new IllegalArgumentException("Profissão não pode ser nula ou vazia.");
+            throw new ValidationError("Profissão não pode ser nula ou vazia.");
         }
     }
 
-
-    
-    
-    public static void validarEndereco(Endereco endereco) throws IllegalArgumentException{
+    public static void validarEndereco(Endereco endereco) throws ValidationError{
         
         
         
         if (isEmpty(endereco.getLogradouro()) || endereco.getLogradouro().length() > 100) {
-            throw new IllegalArgumentException("Logradouro inválido");
+            throw new ValidationError("Logradouro inválido");
         }
          
         if (endereco.getNumero() <= 0) {
-            throw new IllegalArgumentException("Número inválido");
+            throw new ValidationError("Número inválido");
         }
         
-        if (isEmpty(endereco.getComplemento()) || endereco.getComplemento().length() > 20) {
-            throw new IllegalArgumentException("Complemento inválido");
-        }
+        
           
         if (isEmpty(endereco.getBairro()) || endereco.getBairro().length() > 100) {
-            throw new IllegalArgumentException("Bairro inválido");
+            throw new ValidationError("Bairro inválido");
         }
         
        validaCep(endereco.getCep());
   
         if (isEmpty(endereco.getCidade()) ||  endereco.getCidade().length() > 100) {
-            throw new IllegalArgumentException("Cidade inválida");
+            throw new ValidationError("Cidade inválida");
         }
   
-        if (isEmpty(endereco.getUf()) || endereco.getUf().length() != 2) {
-            throw new IllegalArgumentException("UF inválido");
-        }
 
         if (isEmpty(endereco.getEstado())|| endereco.getEstado().length() > 50) {
-            throw new IllegalArgumentException("Estado inválido");
+            throw new ValidationError("Estado inválido");
         }
        
+    }
+    
+    public static void validarPessoaJuridica(Juridica juridica) throws ValidationError {
+        if (isEmpty(juridica.getNomeFantasia()) || juridica.getNomeFantasia().length() > 100) {
+            throw new ValidationError("Nome fantasia deve ter no ");
+        }
+        
+         if (isEmpty(juridica.getCadastroEstadual())) {
+            throw new ValidationError("Cadastro estadua não pode estar vazio");
+        }
+         
+          if (!validarCNPJ(juridica.getCnpj())) {
+            throw new ValidationError("CNPJ inválido");
+        }
+          
+           if (!validarCPF(juridica.getCpfDiretor())) {
+            throw new ValidationError("CPF inválido");
+        }
     }
 }

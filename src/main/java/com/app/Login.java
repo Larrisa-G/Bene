@@ -2,14 +2,20 @@
 package com.app;
 
 import com.app.Banco.Conector;
+import java.sql.SQLException;
 
 
 public class Login extends javax.swing.JFrame {
 
     
-    public Login() {
+    public Login(){
+        
         initComponents();
-        Conector.criarTabelas();
+        try {
+            Conector.criarTabelas();
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        } 
     }
 
     

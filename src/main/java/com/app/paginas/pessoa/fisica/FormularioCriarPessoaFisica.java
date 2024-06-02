@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
+import com.app.exceptions.ServiceException;
+import com.app.exceptions.ValidationError;
 import com.app.util.Validador;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
@@ -52,7 +54,6 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
         
         jtBairro.setEnabled(value);
         jtCidade.setEnabled(value);
-        jtUF.setEnabled(value);
         
         jtEstado.setEnabled(value);
     }
@@ -76,7 +77,6 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
         
         jtBairro.setText("");
         jtCidade.setText("");
-        jtUF.setText("");
         
         jtEstado.setText("");
     }
@@ -105,8 +105,6 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
         jtBairro = new javax.swing.JTextField();
         jlCidade = new javax.swing.JLabel();
         jtCidade = new javax.swing.JTextField();
-        jlUF = new javax.swing.JLabel();
-        jtUF = new javax.swing.JTextField();
         jlEstado = new javax.swing.JLabel();
         jtEstado = new javax.swing.JTextField();
         jtCEP = new javax.swing.JFormattedTextField();
@@ -223,8 +221,6 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
 
         jlCidade.setText("Cidade");
 
-        jlUF.setText("UF");
-
         jlEstado.setText("Estado");
 
         try {
@@ -270,10 +266,7 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
                                     .addComponent(jlBairro))
                                 .addContainerGap())
                             .addGroup(jpEnderecoLayout.createSequentialGroup()
-                                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlUF))
-                                .addGap(51, 51, 51)
+                                .addGap(151, 151, 151)
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlEstado)
                                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -303,12 +296,10 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlCidade)
-                    .addComponent(jlUF)
                     .addComponent(jlEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -490,38 +481,57 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbFecharActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        habilitarBotoes(false);
-        habilitarInputs(false);
+        
         
         try {
             FisicaController fc = new FisicaController();
              Endereco endereco = new Endereco(
                     jtLogradouro.getText(), Integer.valueOf(jtNumero.getText()), jtComplemento.getText(),
-                    jtBairro.getText(), jtCEP.getText(), jtCidade.getText(), jtUF.getText(), jtEstado.getText());
-             Validador.validarEndereco(endereco);
+                    jtBairro.getText(), jtCEP.getText(), jtCidade.getText(), jtEstado.getText());
+             
              
             Fisica fisica = new Fisica(
                     jtNome.getText(),jtCPF.getText(), Genero.valueOf((String)jcbGenero.getSelectedItem()),
                     EstadoCivil.valueOf((String)jcbEstadoCivil.getSelectedItem()), jtRG.getText(), jtDataNascimento.getText(), 
-                    jtNacionalidade.getText(), jtProfissao.getText(), endereco
-                    
-            );
-            Validador.validarPessoaFisica(fisica);
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+                    jtNacionalidade.getText(), jtProfissao.getText(), endereco);
+            
+            
             fc.criar(fisica);
             limparCampos();
-        } catch(Exception e) {
+            habilitarBotoes(false);
+            habilitarInputs(false);
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Número Inválido");
+        } catch(ServiceException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Gênero ou Estado Civil Inválidos");
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
+        limparCampos();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbBuscarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPessoaActionPerformed
-        JOptionPane.showMessageDialog(null, "Buscando Pessoa");
+       try {
+           FisicaController fc = new FisicaController();
+           if(fc.buscarUm(jtCPF.getText()) == null){
+               throw  new ServiceException("Cliente não encontrado");
+           } else {
+               JOptionPane.showMessageDialog(null, "Cliente já cadastrado");
+           }
+            
+           
+       } catch (ServiceException e) {
+           JOptionPane.showMessageDialog(null, e.getMessage());
+           habilitarBotoes(false);
+           habilitarInputs(false);
+           limparCampos();
+       }
     }//GEN-LAST:event_jbBuscarPessoaActionPerformed
 
     private void jbBuscarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepActionPerformed
@@ -535,7 +545,6 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
 
             jtBairro.setText(endereco.getBairro());
             jtCidade.setText(endereco.getCidade());
-            jtUF.setText(endereco.getUf());
 
             jtEstado.setText(endereco.getEstado());
             
@@ -591,7 +600,6 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlNumero;
     private javax.swing.JLabel jlProfissao;
     private javax.swing.JLabel jlRG;
-    private javax.swing.JLabel jlUF;
     private javax.swing.JPanel jpButoes;
     private javax.swing.JPanel jpDadosPessoais;
     private javax.swing.JPanel jpEndereco;
@@ -608,6 +616,5 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtNumero;
     private javax.swing.JTextField jtProfissao;
     private javax.swing.JFormattedTextField jtRG;
-    private javax.swing.JTextField jtUF;
     // End of variables declaration//GEN-END:variables
 }

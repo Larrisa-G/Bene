@@ -7,7 +7,7 @@ import java.util.Date;
 
 
 public class DateUtilFormarter {
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
    
     
     public static String dateToString() {
@@ -31,7 +31,8 @@ public class DateUtilFormarter {
     
     public static Date stringToDate(String s) throws ParseException{
          try {
-             return dateFormat.parse(s);
+            Date date = dateFormat.parse(s);
+            return date;
          }catch(ParseException e) {
              throw new ParseException("Data inválida",1);
              

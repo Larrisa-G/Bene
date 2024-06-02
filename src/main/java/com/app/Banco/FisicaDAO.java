@@ -13,13 +13,14 @@ import com.app.util.DateUtilFormarter;
 import java.sql.Date;
 import java.text.ParseException;
 
-public class FisicaDAO  {
+public class FisicaDAO implements DAOInterface<Fisica>{
 
-    public void inserirPessoaFisica(Fisica fisica) throws SQLException,ParseException{
+    @Override
+    public void inserir(Fisica fisica) throws SQLException{
         String sql = "INSERT INTO pessoaFisica ("
                 + "nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, "
-                + "profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado"
-                + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "profissao, logradouro, numero, complemento, bairro, cep, cidade, estado"
+                + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(1, fisica.getNome());
             statement.setString(2, fisica.getCpf());
@@ -34,19 +35,21 @@ public class FisicaDAO  {
             statement.setString(11, fisica.getEndereco().getComplemento());
             statement.setString(12, fisica.getEndereco().getBairro());
             statement.setString(13, fisica.getEndereco().getCep());
-            statement.setString(14, fisica.getEndereco().getCidade());
-            statement.setString(15, fisica.getEndereco().getUf());
-            statement.setString(16, fisica.getEndereco().getEstado());
+            statement.setString(14, fisica.getEndereco().getCidade());        
+            statement.setString(15, fisica.getEndereco().getEstado());
             statement.execute();
         } catch (SQLException e){        
-            throw new SQLException("Erro ao inserir pessoa física no banco de dados, " + e);
+            throw new SQLException("Erro ao inserir pessoa física no banco de dados");
+        } catch (ParseException e) {
+            throw new SQLException("Data inválida");
         }
     }
 
-    public Fisica obterPessoaFisicaPorCPF(String cpf) throws SQLException{
+    @Override
+    public Fisica obterPorChave(String cpf) throws SQLException{
         String sql = "SELECT "
                 + "nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, "
-                + "profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado "
+                + "profissao, logradouro, numero, complemento, bairro, cep, cidade, estado "
                 + "FROM pessoaFisica WHERE cpf = ?";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)) {
             statement.setString(1,cpf);
@@ -70,19 +73,20 @@ public class FisicaDAO  {
                         result.getString("bairro"),
                         result.getString("cep"),
                         result.getString("cidade"),
-                        result.getString("uf"),
                         result.getString("estado")
                     )
                 );
             }
         } catch (SQLException e) {    
-            throw new SQLException("Erro ao obter pessoa física pelo CPF"+e.getMessage());
+            throw new SQLException("Erro ao obter pessoa física pelo CPF");
         }
     }
 
-    public List<Fisica> obterTodasPessoasFisicas(){
+    @Override
+    public List<Fisica> obterTodos() throws SQLException{
         List<Fisica> pessoas = new ArrayList<>();
-        String sql = "SELECT nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade, profissao, logradouro, numero, complemento, bairro, cep, cidade, uf, estado  FROM pessoaFisica";
+        String sql = "SELECT nome, cpf, genero, estadoCivil, rg, dataNascimento, nacionalidade,"
+                + " profissao, logradouro, numero, complemento, bairro, cep, cidade, estado  FROM pessoaFisica";
         try (PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             try (ResultSet result = statement.executeQuery()){
                 while(result.next()){
@@ -102,7 +106,6 @@ public class FisicaDAO  {
                             result.getString("bairro"),
                             result.getString("cep"),
                             result.getString("cidade"),
-                            result.getString("uf"),
                             result.getString("estado")
                         )
                     ));
@@ -110,98 +113,54 @@ public class FisicaDAO  {
             }
         }catch (SQLException e){
            
-            throw new RuntimeException("Eroo ao obter todas as pessoas físicas");
+            throw new SQLException("Erro ao obter todas as pessoas físicas");
         }
         return pessoas;
     }
 
-    public void deletarPessoaFisica(String cpf){
+    @Override
+    public void deletar(String cpf) throws SQLException{
         String sql = "DELETE FROM pessoaFisica WHERE cpf = ?";
         try(PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
-            statement.setString(2, cpf);
+            statement.setString(1, cpf);
             statement.executeUpdate();
         }catch(SQLException e){
-            System.err.println("Erro ao deletar pessoa física: " + e.getMessage());
-            throw new RuntimeException("Erro ao deletar pessoa física: ", e);
+            
+            throw new SQLException("Erro ao deletar pessoa física");
         }
     }
 
-    public void alterarPessoaFisica(String nome, String cpf, String genero, String estadoCivil, String rg, String dataNascimento, String nacionalidade, String profissao, String logradouro, int numero, String complemento, String bairro, String cep, String cidade, String uf, String estado){
-        StringBuilder sqlBuilder = new StringBuilder("UPDATE pessoaFisica SET ");
-       
-        List<Object> parametros = new ArrayList<>();
-         /*
-        if(nome !=null){
-            sqlBuilder.append("nome = ?,");
-            parametros.add(nome);
-        }
-        if(nome !=null){
-            sqlBuilder.append("genero = ?,");
-            parametros.add(nome);
-        }
-        if(nome !=null){
-            sqlBuilder.append("estadoCivil = ?,");
-            parametros.add(nome);
-        }
-        if(rg !=null){
-            sqlBuilder.append("rg = ?,");
-            parametros.add(rg);
-        }
-        if(dataNascimento !=null){
-            sqlBuilder.append("dataNascimento = ?,");
-            parametros.add(dataNascimento);
-        }
-        if(nacionalidade !=null){
-            sqlBuilder.append("nacionalidade = ?,");
-            parametros.add(nacionalidade);
-        }
-        if(profissao !=null){
-            sqlBuilder.append("profissao = ? ");
-            parametros.add(profissao);
-        }
-        if( !=null){
-            sqlBuilder.append("logradouro = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("numero = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("complemento = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("bairro = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("cep = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("cidade = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("uf = ?,");
-            parametros.add(rg);
-        }
-        if( !=null){
-            sqlBuilder.append("estado = ?,");
-            parametros.add(rg);
-        }
-        sqlBuilder.append("WHERE cpf = ?");
-        parametros.add(cpf);
-        */
-        try(PreparedStatement statement = Conector.openConnection().prepareStatement(sqlBuilder.toString())){
-            for (int i = 0; i < parametros.size(); i++){
-                statement.setObject(i + 1, parametros.get(i));
-            }
+    @Override
+    public void alterar(Fisica fisica) throws SQLException{
+        String sql = "UPDATE pessoaFisica SET "
+           + "nome = ?, "
+           + "estadoCivil = ?, "
+           + "genero = ?, "
+           + "profissao = ?, "
+           + "logradouro = ?, "
+           + "numero = ?, "
+           + "complemento = ?, "
+           + "bairro = ?, "
+           + "cep = ?, "
+           + "cidade = ?, "
+           + "estado = ? "
+           + "WHERE cpf = ?";
+        try(PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
+            statement.setString(1, fisica.getNome());
+            statement.setString(2, fisica.getEstadoCivil().toString());
+            statement.setString(3, fisica.getGenero().toString());
+            statement.setString(4, fisica.getProfissao());
+            statement.setString(5, fisica.getEndereco().getLogradouro());
+            statement.setInt(6, fisica.getEndereco().getNumero());
+            statement.setString(7, fisica.getEndereco().getComplemento());
+            statement.setString(8, fisica.getEndereco().getBairro());
+            statement.setString(9, fisica.getEndereco().getCep());
+            statement.setString(10, fisica.getEndereco().getCidade());  
+            statement.setString(11, fisica.getEndereco().getEstado());
+            statement.setString(12, fisica.getCpf());
             statement.executeUpdate();
-        }catch(SQLException e){
-            System.err.println("Erro ao alterar pessoa física: " + e.getMessage());
-            throw new RuntimeException("Erro ao alterar pessoa física: ", e);
+        }catch(SQLException e){     
+            throw new SQLException("Erro ao alterar pessoa física ");
         }
     }
 }

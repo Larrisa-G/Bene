@@ -22,7 +22,7 @@ public class Conector {
         return connection;
     }
 
-    public static void criarTabelaPessoaFisica() {
+    public static void criarTabelaPessoaFisica() throws SQLException{
         String sql = "CREATE TABLE IF NOT EXISTS pessoaFisica ("
                 + " nome VARCHAR(100),"
                 + " cpf VARCHAR(20) PRIMARY KEY,"
@@ -38,31 +38,29 @@ public class Conector {
                 + " bairro VARCHAR(100),"
                 + " cep VARCHAR(20),"
                 + " cidade VARCHAR(100),"
-                + " uf VARCHAR(2),"
                 + " estado VARCHAR(50)"
                 + ");";
         try(PreparedStatement statement = openConnection().prepareStatement(sql)) {
             statement.execute();
             statement.close();
         }catch (SQLException e){
-            System.err.println("Erro ao criar tabela pessoaFísica: " + e.getMessage() );
-            throw new RuntimeException("Erro ao criar tabela pessoaFísica,", e);
+            
+            throw new SQLException("Erro ao criar tabela pessoaFísica");
         }
     }
 
-    private static void criarTabelaPessoaJuridica(){
+    private static void criarTabelaPessoaJuridica() throws SQLException{
         String sql = "CREATE TABLE IF NOT EXISTS empresas ("
                 + "nomeFantasia VARCHAR(50),"
                 + "cpfDiretor VARCHAR(20),"
                 + "cnpj VARCHAR(50) PRIMARY KEY,"
-                + "cadastroEstadual INTEGER, "
+                + "cadastroEstadual varchar(50), "
                 + " logradouro VARCHAR(20),"
                 + " numero INTEGER,"
                 + " complemento VARCHAR(20),"
                 + " bairro VARCHAR(20),"
                 + " cep VARCHAR(20),"
                 + " cidade VARCHAR(20),"
-                + " uf VARCHAR(20),"
                 + " estado VARCHAR(20),"
                 + "FOREIGN KEY (cpfDiretor) REFERENCES pessoaFisica(cpf)"
                 +")";
@@ -71,18 +69,18 @@ public class Conector {
             statement.close();
             openConnection().close();
         }catch (SQLException e){
-            System.err.println("Erro ao criar tabela pessoas: " + e.getMessage() );
-            throw new RuntimeException("Erro ao criar tabela pessoas,", e);
+            
+            throw new SQLException("Erro ao criar tabela empresas");
         }
     }
 
-    public static void criarTabelas() {
+    public static void criarTabelas()throws SQLException {
         try {
             criarTabelaPessoaFisica();
             criarTabelaPessoaJuridica();
-        }catch (Exception e){
-            System.err.println("Erro na função criar tabelas: " + e.getMessage());
-            throw new RuntimeException("Erro na função criar tabelas: ", e);
+        }catch (SQLException e){
+            
+            throw new SQLException(e.getMessage());
         }
     }
 }
