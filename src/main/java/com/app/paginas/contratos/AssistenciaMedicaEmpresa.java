@@ -88,7 +88,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                     jpContratanteNomeEmpresa.getText(),jpContratanteCPF.getText(), 
                     jpContratanteCNPJ.getText() ,jpContratanteCadastroEstadual.getText(),
                     new Endereco(
-                        jpContratanteEmpresaRua.getText(), Integer.valueOf(jpContratanteEmpresaNumero.getText()),"", jpContratanteEmpresaBairro.getText(),
+                        jpContratanteEmpresaRua.getText(), Integer.parseInt(jpContratanteEmpresaNumero.getText()),"", jpContratanteEmpresaBairro.getText(),
                         jpContratanteEmpresaCEP.getText(), jpContratanteEmpresaSedeEm.getText(), jpContratanteEmpresaEstado.getText()
                     )
             ) ;
@@ -98,7 +98,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 jpContratanteRepresentanteNome.getText(),jpContratanteCPF.getText(),null,EstadoCivil.valueOf((String)jpContratanteEstadoCivil.getSelectedItem()),
                 jpContratanteRG.getText(), DateUtilFormarter.dateToString(),jpContratanteNacionalidade.getText(), jpContratanteProfissao.getText(), 
                 new Endereco(
-                        jpContratanteRepresentanteRua.getText(),Integer.valueOf(jpContratanteRepresentanteNumero.getText()),"",
+                        jpContratanteRepresentanteRua.getText(),Integer.parseInt(jpContratanteRepresentanteNumero.getText()),"",
                         jpContratanteRepresentanteBairro.getText(),jpContratanteRepresentanteCEP.getText(),
                         jpContratanteRepresentanteCidade.getText(), jpContratanteRepresentanteEstado.getText()
                 )                    
@@ -108,9 +108,52 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
            throw new ValidationError("Erro nos campos do Contratante: "+e.getMessage());
         } catch(NumberFormatException e) {
            throw new ValidationError("Erro nos campos do Contratante: Número inválido ");
+        } catch (IllegalArgumentException e) {
+            throw new ValidationError("Erro nos campos da Contratante: Estado Civil Inválido");
         }
     }
     
+    private void validarDadosContratada() throws ValidationError {
+        try {
+            Juridica juridica = new Juridica(
+                    jpContratadaNomeEmpresa.getText(),jpContratadaCPF.getText(), 
+                    jpContratadaCNPJ.getText() ,jpContratadaCadastroEstadual.getText(),
+                    new Endereco(
+                       jpContratadaEmpresaRua.getText(), Integer.parseInt(jpContratadaEmpresaNumero.getText()),"", jpContratadaEmpresaBairro.getText(),
+                        jpContratadaEmpresaCEP.getText(), jpContratadaEmpresaSedeEm.getText(), jpContratadaEmpresaEstado.getText()
+                    )
+            ) ;
+                
+            
+            Fisica fisica = new Fisica(
+               jpContratadaRepresentanteNome.getText(),jpContratadaCPF.getText(),null,EstadoCivil.valueOf((String)jpContratadaEstadoCivil.getSelectedItem()),
+                jpContratadaRG.getText(), DateUtilFormarter.dateToString(),jpContratadaNacionalidade.getText(), jpContratadaProfissao.getText(), 
+                new Endereco(
+                        jpContratadaRepresentanteRua.getText(), Integer.parseInt(jpContratadaRepresentanteNumero.getText()),"",
+                        jpContratadaRepresentanteBairro.getText(),jpContratadaRepresentanteCEP.getText(),
+                        jpContratadaRepresentanteCidade.getText(), jpContratadaRepresentanteEstado.getText()
+                )                    
+            );
+            controller.validarContratanteContratada(juridica,fisica);
+        } catch(ValidationError e) {
+           throw new ValidationError("Erro nos campos da Contratada: "+e.getMessage());
+        } catch(NumberFormatException e) {
+           throw new ValidationError("Erro nos campos da Contratada: Número inválido ");
+        } catch (IllegalArgumentException e) {
+            throw new ValidationError("Erro nos campos da Contratada: Estado Civil Inválido");
+        }
+    }
+    
+    private void validarClausulasPagamento() throws ValidationError {
+        try {
+            
+            if (jtForroComarca.getText().isBlank()) {
+                throw new ValidationError("Erro no campo Comarca: Campo está vazio");
+            }
+        }catch(NumberFormatException e) {
+           throw new ValidationError("Erro nos campos  do Pagamento: Valor inválido ");
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -227,7 +270,6 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         jLabel74 = new javax.swing.JLabel();
         jLabel75 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jtQuantiaMensal = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jtDiaPagamento = new javax.swing.JSpinner();
@@ -235,6 +277,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         jLabel29 = new javax.swing.JLabel();
         jtPorcentagemMulta = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
+        jtQuantiaMensal = new javax.swing.JFormattedTextField();
         jpRescissao = new javax.swing.JPanel();
         jLabel79 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
@@ -849,7 +892,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         jLabel65.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel65.setText("Estado Civil");
 
-        jpContratadaEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"--Selecione--"}));
+        jpContratadaEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(ValoresEnum.obterValoresEnum(EstadoCivil.class)));
 
         jLabel66.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel66.setText("Profissão");
@@ -1083,6 +1126,14 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
 
         jLabel30.setText("%");
 
+        jtQuantiaMensal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        jtQuantiaMensal.setText("jtQuantiaMensal");
+        jtQuantiaMensal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtQuantiaMensalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpPagamentoLayout = new javax.swing.GroupLayout(jpPagamento);
         jpPagamento.setLayout(jpPagamentoLayout);
         jpPagamentoLayout.setHorizontalGroup(
@@ -1115,8 +1166,8 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                                     .addGroup(jpPagamentoLayout.createSequentialGroup()
                                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jtQuantiaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jtQuantiaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
                                 .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel28)
                                     .addComponent(jtDiaPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -1135,9 +1186,9 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                     .addComponent(jLabel28))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpPagamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtQuantiaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27)
-                    .addComponent(jtDiaPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtDiaPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtQuantiaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(jLabel76)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1372,6 +1423,8 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         try {
             validarDadosContratante();
+            validarDadosContratada();
+            validarClausulasPagamento();
             WordGenerator wg = new WordGenerator();
             wg.setInputFilePath(WordContractPath.ASSISTENCIAMEDICAEMPRESA);
             wg.openWord();
@@ -1380,12 +1433,12 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
             wg.modifyWord(contratadaTextWord,contratadaInfo());
             
             wg.modifyWord("(xxx) (Valor Expresso)", jtQuantiaMensal.getText());
-            wg.modifyWord("todo dia (xxx)",String.format("todo dia %d",jtDiaPagamento.getValue())) ;
+            wg.modifyWord("todo dia (xxx)",String.format("todo dia %s",jtDiaPagamento.getValue().toString())) ;
             wg.modifyWord("(xxx)%", jtPorcentagemMulta.getText()+"%");
             
-            wg.modifyWord("(xxx) (Nº de mensalidades) mensalidades", String.format("%d %s", jtQtdMeses.getValue(), isPlural((Integer)jtQtdMeses.getValue(), "mensalidade")));
-            wg.modifyWord("(xxx) ano", String.format("%d %s", jtQtdPrazoContrato.getValue(), isPlural((Integer)jtQtdPrazoContrato.getValue(), "ano")));
-            wg.modifyWord("(xxx) dias", String.format("%d %s", jtQtdPrazoProrrogacao.getValue(), isPlural((Integer)jtQtdPrazoProrrogacao.getValue(), "dia")));
+            wg.modifyWord("(xxx) (Nº de mensalidades) mensalidades", String.format("%s %s", jtQtdMeses.getValue().toString(), isPlural((Integer)jtQtdMeses.getValue(), "mensalidade")));
+            wg.modifyWord("(xxx) ano", String.format("%s %s", jtQtdPrazoContrato.getValue().toString(), isPlural((Integer)jtQtdPrazoContrato.getValue(), "ano")));
+            wg.modifyWord("(xxx) dias", String.format("%s %s", jtQtdPrazoProrrogacao.getValue().toString(), isPlural((Integer)jtQtdPrazoProrrogacao.getValue(), "dia")));
             
             wg.modifyWord("comarca de (xxx)", String.format("comarca de %s", jtForroComarca.getText()));
             
@@ -1462,6 +1515,10 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
+
+    private void jtQuantiaMensalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtQuantiaMensalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtQuantiaMensalActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1604,6 +1661,6 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner jtQtdMeses;
     private javax.swing.JSpinner jtQtdPrazoContrato;
     private javax.swing.JSpinner jtQtdPrazoProrrogacao;
-    private javax.swing.JTextField jtQuantiaMensal;
+    private javax.swing.JFormattedTextField jtQuantiaMensal;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,4 +15,5 @@ public class AssistenciaMedicaController {
             Validador.validarEndereco(fisica.getEndereco());
         
     }
+    
 }
