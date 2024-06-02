@@ -4,11 +4,13 @@ package com.app.paginas.contratos;
 import com.app.api.BuscaCep;
 import com.app.controller.AssistenciaMedicaController;
 import com.app.entidades.endereco.Endereco;
+import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Juridica;
 import com.app.exceptions.ValidationError;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
+import com.app.util.ValoresEnum;
 import com.app.word.WordContractPath;
 import com.app.word.WordGenerator;
 import java.io.IOException;
@@ -32,6 +34,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
     public AssistenciaMedicaEmpresa() {
         initComponents();
         setTitle("Assistência Médica à Empresa");
+     
     }
     
     private String contratanteInfo() {
@@ -91,7 +94,15 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
             ) ;
                 
             
-            Fisica fisica = new Fisica();
+            Fisica fisica = new Fisica(
+                jpContratanteRepresentanteNome.getText(),jpContratanteCPF.getText(),null,EstadoCivil.valueOf((String)jpContratanteEstadoCivil.getSelectedItem()),
+                jpContratanteRG.getText(), DateUtilFormarter.dateToString(),jpContratanteNacionalidade.getText(), jpContratanteProfissao.getText(), 
+                new Endereco(
+                        jpContratanteRepresentanteRua.getText(),Integer.valueOf(jpContratanteRepresentanteNumero.getText()),"",
+                        jpContratanteRepresentanteBairro.getText(),jpContratanteRepresentanteCEP.getText(),
+                        jpContratanteRepresentanteCidade.getText(), jpContratanteRepresentanteEstado.getText()
+                )                    
+            );
             controller.validarContratanteContratada(juridica,fisica);
         } catch(ValidationError e) {
            throw new ValidationError("Erro nos campos do Contratante: "+e.getMessage());
@@ -449,7 +460,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         jLabel17.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel17.setText("Estado Civil");
 
-        jpContratanteEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"--Selecione--"}));
+        jpContratanteEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(ValoresEnum.obterValoresEnum(EstadoCivil.class)));
 
         jLabel18.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel18.setText("Profissão");
