@@ -27,7 +27,8 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         table = utilTabela.criarTabela(jpnConsulta, 
                
                 new Object[] {"centro","esquerda"}, 
-                new Object[] {"CPF","Nome"}
+                new Object[] {"CPF","Nome"},
+                jtCPF
         ); 
         
         model = (DefaultTableModel) table.getModel();       
@@ -123,6 +124,8 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        jpnConsulta.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
+
         javax.swing.GroupLayout jpnConsultaLayout = new javax.swing.GroupLayout(jpnConsulta);
         jpnConsulta.setLayout(jpnConsultaLayout);
         jpnConsultaLayout.setHorizontalGroup(
@@ -150,7 +153,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jpnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,6 +165,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
 
     private void jrbFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbFisicaActionPerformed
         searchLabel.setText("CPF");
+        jtCPF.setText("");
         model.setNumRows(0);
         model.setColumnIdentifiers(new Object[] {"CPF", "Nome"});
         try {
@@ -182,6 +186,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
 
     private void jrbJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbJuridicaActionPerformed
         searchLabel.setText("CNPJ");
+        jtCPF.setText("");
         model.setNumRows(0);
         model.setColumnIdentifiers(new Object[] {"CNPJ", "Empresa","Diretor"});
         try {
@@ -197,7 +202,8 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jrbJuridicaActionPerformed
-
+    
+    // achar um jeito de listar todos os 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup;

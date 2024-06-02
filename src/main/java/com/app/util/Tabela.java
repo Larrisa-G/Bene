@@ -1,11 +1,13 @@
 
 package com.app.util;
 
-import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.RowSorter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -13,8 +15,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
 public class Tabela {
-     public JTable criarTabela(JPanel jpn, Object[] pos, Object[] col) throws NullPointerException {
+     public JTable criarTabela(JPanel jpn, Object[] pos, Object[] col,JTextField textField) throws NullPointerException {
         
         JTable tabela = new JTable(new DefaultTableModel());
         tabela.setVisible(true);
@@ -68,6 +71,18 @@ public class Tabela {
                     (TableCellRenderer) pos[i]);
 
         }
+        
+         tabela.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = tabela.rowAtPoint(e.getPoint());
+                int col = 0; // Altere para o índice da coluna que deseja capturar
+                if (row >= 0) {
+                    Object valorSelecionado = tabela.getValueAt(row, col);
+                    textField.setText(valorSelecionado.toString());
+                }
+            }
+        });
         return tabela;
     }
 }
