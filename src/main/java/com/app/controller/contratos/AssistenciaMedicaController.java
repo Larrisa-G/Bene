@@ -1,5 +1,5 @@
 
-package com.app.controller;
+package com.app.controller.contratos;
 
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Juridica;

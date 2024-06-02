@@ -1,8 +1,8 @@
 
 package com.app.paginas.pessoa;
 
-import com.app.controller.FisicaController;
-import com.app.controller.JuridicaController;
+import com.app.controller.entidades.FisicaController;
+import com.app.controller.entidades.JuridicaController;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Juridica;
 import com.app.exceptions.ServiceException;

@@ -1,7 +1,7 @@
 
 package com.app.paginas.contratos;
 
-import com.app.controller.CobrancaIndevidaController;
+import com.app.controller.contratos.CobrancaIndevidaController;
 import com.app.exceptions.ValidationError;
 import com.app.word.WordGenerator;
 import com.app.util.DateUtilFormarter;

@@ -2,9 +2,9 @@
 package com.app.paginas.contratos;
 
 import com.app.api.BuscaCep;
-import com.app.controller.AssistenciaMedicaController;
-import com.app.controller.FisicaController;
-import com.app.controller.JuridicaController;
+import com.app.controller.contratos.AssistenciaMedicaController;
+import com.app.controller.entidades.FisicaController;
+import com.app.controller.entidades.JuridicaController;
 import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;

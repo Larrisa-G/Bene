@@ -2,7 +2,7 @@
 package com.app.paginas.pessoa.fisica;
 
 import com.app.api.BuscaCep;
-import com.app.controller.FisicaController;
+import com.app.controller.entidades.FisicaController;
 import com.app.entidades.endereco.Endereco;
 import javax.swing.JOptionPane;
 import com.app.entidades.pessoas.EstadoCivil;

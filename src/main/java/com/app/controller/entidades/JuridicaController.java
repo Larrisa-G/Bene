@@ -1,5 +1,5 @@
 
-package com.app.controller;
+package com.app.controller.entidades;
 
 import com.app.Banco.JuridicaDAO;
 import com.app.entidades.pessoas.Juridica;

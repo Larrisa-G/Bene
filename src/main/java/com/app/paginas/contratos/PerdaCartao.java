@@ -1,7 +1,7 @@
 
 package com.app.paginas.contratos;
 
-import com.app.controller.PerdaCartaoController;
+import com.app.controller.contratos.PerdaCartaoController;
 import com.app.exceptions.ValidationError;
 import com.app.word.WordGenerator;
 import com.app.util.DateUtilFormarter;

@@ -1,5 +1,5 @@
 
-package com.app.controller;
+package com.app.controller.entidades;
 
 import com.app.exceptions.ServiceException;
 import java.util.List;

@@ -2,7 +2,7 @@
 package com.app.paginas.pessoa.juridica;
 
 import com.app.api.BuscaCep;
-import com.app.controller.JuridicaController;
+import com.app.controller.entidades.JuridicaController;
 import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.Juridica;
 import com.app.exceptions.ServiceException;
