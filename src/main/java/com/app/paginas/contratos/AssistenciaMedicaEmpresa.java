@@ -150,6 +150,9 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
             if (jtForroComarca.getText().isBlank()) {
                 throw new ValidationError("Erro no campo Comarca: Campo está vazio");
             }
+            if (jtPorcentagemMulta.getText().isBlank()) {
+                throw new ValidationError("Erro nos campos do Pagamento: campo Porcentagem está vazio");
+            }
         }catch(NumberFormatException e) {
            throw new ValidationError("Erro nos campos  do Pagamento: Valor inválido ");
         }
@@ -1127,7 +1130,6 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         jLabel30.setText("%");
 
         jtQuantiaMensal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
-        jtQuantiaMensal.setText("jtQuantiaMensal");
         jtQuantiaMensal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtQuantiaMensalActionPerformed(evt);
