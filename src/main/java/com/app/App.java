@@ -5,6 +5,7 @@ import com.app.paginas.cliente.FormularioPessoaFisica;
 import com.app.paginas.cliente.FormularioPessoaJuridica;
 import com.app.paginas.cliente.FormularioListarClientes;
 import com.app.paginas.contratos.PerdaCartao;
+import com.app.paginas.email.EnviarEmail;
 import com.app.util.CentralizarForm;
 import javax.swing.JFrame;
 
@@ -30,6 +31,7 @@ public class App extends javax.swing.JFrame {
         jmListarrCliente = new javax.swing.JMenuItem();
         jmContratos = new javax.swing.JMenu();
         jmcPerdaCartao = new javax.swing.JMenuItem();
+        jmcEnviarEmail = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +87,15 @@ public class App extends javax.swing.JFrame {
         });
         jmContratos.add(jmcPerdaCartao);
 
+        jmcEnviarEmail.setText("Email");
+        jmcEnviarEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcEnviarEmailPerformed(evt);
+            }
+        });
+
+        jmContratos.add(jmcEnviarEmail);
+
         jMenuBar1.add(jmContratos);
 
         setJMenuBar(jMenuBar1);
@@ -123,6 +134,12 @@ public class App extends javax.swing.JFrame {
         FormularioPessoaJuridica formularioPessoaJuridica;
         centralizarForm.abrirFormulario(formularioPessoaJuridica=new FormularioPessoaJuridica(), jDesktop);
     }//GEN-LAST:event_jmcPessoaJuridicaActionPerformed
+
+    private void jmcEnviarEmailPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPessoaJuridicaActionPerformed
+        EnviarEmail enviarEmail;
+        centralizarForm.abrirFormulario(enviarEmail=new EnviarEmail(), jDesktop);
+    }//GEN-LAST:event_jmcPessoaJuridicaActionPerformed
+    
 
     /**
      * @param args the command line arguments
@@ -168,5 +185,6 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmcPerdaCartao;
     private javax.swing.JMenuItem jmcPessoaFisica;
     private javax.swing.JMenuItem jmcPessoaJuridica;
+    private javax.swing.JMenuItem jmcEnviarEmail;
     // End of variables declaration//GEN-END:variables
 }
