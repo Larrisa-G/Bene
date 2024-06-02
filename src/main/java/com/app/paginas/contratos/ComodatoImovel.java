@@ -83,9 +83,7 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
         
         return s;
     }   
-    private String isPlural(Integer num,String text) {
-        return num > 1 ? text+"s" : text;
-    }
+    
     
     private void validarDadosComodante() throws ValidationError {
         try {
