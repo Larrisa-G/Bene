@@ -33,8 +33,13 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                 jtSearch
         ); 
         
-        model = (DefaultTableModel) table.getModel();       
-        try {
+        model = (DefaultTableModel) table.getModel(); 
+        preencherTabelaFisica();
+       
+    }
+    
+    private void preencherTabelaFisica() {
+         try {
             FisicaController controller = new FisicaController();
             List<Fisica> list = controller.buscarTodos();
             
@@ -46,11 +51,28 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         }
     }
     
+    private void preencherTabelaJuridica() {
+        try {
+            JuridicaController jc = new JuridicaController();
+            List<Juridica> list = jc.buscarTodos();
+            
+            
+            for (Juridica j : list) {
+                FisicaController fc = new FisicaController();
+                
+                model.addRow(new Object[] {j.getCnpj(),j.getNomeFantasia(),j.getCpfDiretor(),fc.buscarUm(j.getCpfDiretor()).getNome()});
+            }
+        } catch (ServiceException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
     private void preencherDadosFisica(String cpf) {
         FisicaController fc = new FisicaController();
             try {
                 Fisica f = fc.buscarUm(cpf);
                 jlRg.setText(f.getRg());
+                jlNome.setText(f.getNome());
                 jlCPF.setText(f.getCpf());
                 jlGenero.setText(f.getGenero().name());
                 jlEstadoCivil.setText(f.getEstadoCivil().name());
@@ -120,7 +142,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         jlProfissao = new javax.swing.JLabel();
         jlDataNascimento = new javax.swing.JLabel();
         jlNacionalidade = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbDeletarFisica = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jlRua = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -137,10 +159,12 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         jlEstado = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jlCPF = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jlNome = new javax.swing.JLabel();
         jpDadosEmpresa = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jlCadastroEstadual = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jbDeletarJuridica = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jlEmpresaRua = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -257,7 +281,12 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel6.setText("Data de Nascimento");
 
-        jButton1.setText("Deletar Cliente");
+        jbDeletarFisica.setText("Deletar Cliente");
+        jbDeletarFisica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDeletarFisicaActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Rua");
 
@@ -276,6 +305,9 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel8.setText("CFF");
 
+        jLabel11.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jLabel11.setText("Nome");
+
         javax.swing.GroupLayout jpDadosPessoaisLayout = new javax.swing.GroupLayout(jpDadosPessoais);
         jpDadosPessoais.setLayout(jpDadosPessoaisLayout);
         jpDadosPessoaisLayout.setHorizontalGroup(
@@ -284,44 +316,52 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                 .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1))
+                        .addComponent(jbDeletarFisica)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jlCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(116, 116, 116)
-                                    .addComponent(jLabel3))
-                                .addComponent(jLabel4)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDadosPessoaisLayout.createSequentialGroup()
-                                    .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jlRg, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jlGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel1)))
-                                .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
-                                    .addComponent(jlProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jlEstadoCivil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
-                                    .addComponent(jlNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jlRua, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jlNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlRua, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlDataNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
                                         .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jlDataNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addGap(0, 0, Short.MAX_VALUE)))))))))
+                                            .addComponent(jlRg, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlNome, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel11)))
+                                    .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
+                                            .addComponent(jLabel8)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jlCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel4)
+                                        .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
+                                            .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jlProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel5))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel1)
+                                                .addComponent(jLabel6)
+                                                .addComponent(jlGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDadosPessoaisLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jlEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -355,33 +395,40 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
             .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel10))
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jlGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlRg, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlComplemento))
-                    .addComponent(jlNumero))
+                    .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jlRg, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jlComplemento))
+                            .addComponent(jlNumero)))
+                    .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
+                        .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlNome)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
                         .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jlCPF))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                            .addComponent(jlCPF)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
@@ -389,11 +436,11 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                         .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jlNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 22, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(jbDeletarFisica)
                             .addComponent(jlRua))
                         .addGap(10, 10, 10))
                     .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
@@ -420,7 +467,12 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         jLabel18.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel18.setText("Cadastro Estadual");
 
-        jButton2.setText("Deletar Empresa");
+        jbDeletarJuridica.setText("Deletar Empresa");
+        jbDeletarJuridica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDeletarJuridicaActionPerformed(evt);
+            }
+        });
 
         jLabel20.setText("Rua");
 
@@ -453,10 +505,10 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                     .addComponent(jLabel21)
                     .addGroup(jpDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jlEmpresaNumero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbDeletarJuridica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel19)
                     .addComponent(jlCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpDadosEmpresaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpDadosEmpresaLayout.createSequentialGroup()
                         .addComponent(jlEmpresaCep, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -513,15 +565,15 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlEmpresaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 18, Short.MAX_VALUE)
+                        .addComponent(jbDeletarJuridica)
                         .addGap(19, 19, 19))
                     .addGroup(jpDadosEmpresaLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel26)
                         .addGap(18, 18, 18)
                         .addComponent(jlEmpresaEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(39, Short.MAX_VALUE))))
+                        .addContainerGap(40, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -566,16 +618,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         jpDadosEmpresa.setVisible(false);
         model.setNumRows(0);
         model.setColumnIdentifiers(new Object[] {"CPF", "Nome"});
-        try {
-            FisicaController controller = new FisicaController();
-            List<Fisica> list = controller.buscarTodos();
-            
-            for (Fisica f : list) {
-                model.addRow(new Object[] {f.getCpf(),f.getNome()});
-            }
-        } catch (ServiceException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        preencherTabelaFisica();
     }//GEN-LAST:event_jrbFisicaActionPerformed
 
     private void jbListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListarActionPerformed
@@ -593,29 +636,43 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         jpDadosEmpresa.setVisible(false);
         model.setNumRows(0);
         model.setColumnIdentifiers(new Object[] {"CNPJ", "Empresa","CPF Diretor","Diretor"});
-        try {
-            JuridicaController jc = new JuridicaController();
-            List<Juridica> list = jc.buscarTodos();
-            
-            
-            for (Juridica j : list) {
-                FisicaController fc = new FisicaController();
-                
-                model.addRow(new Object[] {j.getCnpj(),j.getNomeFantasia(),j.getCpfDiretor(),fc.buscarUm(j.getCpfDiretor()).getNome()});
-            }
-        } catch (ServiceException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        preencherTabelaJuridica();
+        
     }//GEN-LAST:event_jrbJuridicaActionPerformed
+
+    private void jbDeletarFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeletarFisicaActionPerformed
+        int res = JOptionPane.showConfirmDialog(null, String.format("Deseja mesmo excluir este %s? Essa ação é permanente", jlNome.getText()));
+        if(res == 0) {
+            try{
+                FisicaController fc = new FisicaController();
+                fc.deletar(jlCPF.getText());
+                preencherTabelaFisica();
+            } catch (ServiceException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jbDeletarFisicaActionPerformed
+
+    private void jbDeletarJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeletarJuridicaActionPerformed
+       int res = JOptionPane.showConfirmDialog(null, "Deseja mesmo excluir esta empresa? Essa ação é permanente");
+        if(res == 0) {
+            try{
+                JuridicaController jc = new JuridicaController();
+                jc.deletar(jlCPF.getText());
+                preencherTabelaJuridica();
+            } catch (ServiceException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jbDeletarJuridicaActionPerformed
     
     // achar um jeito de listar todos os 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -638,6 +695,8 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbDeletarFisica;
+    private javax.swing.JButton jbDeletarJuridica;
     private javax.swing.JButton jbFechar;
     private javax.swing.JButton jbListar;
     private javax.swing.JLabel jlBairro;
@@ -659,6 +718,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlEstadoCivil;
     private javax.swing.JLabel jlGenero;
     private javax.swing.JLabel jlNacionalidade;
+    private javax.swing.JLabel jlNome;
     private javax.swing.JLabel jlNumero;
     private javax.swing.JLabel jlProfissao;
     private javax.swing.JLabel jlRg;

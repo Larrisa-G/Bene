@@ -124,8 +124,7 @@ public class FisicaDAO implements DAOInterface<Fisica>{
         try(PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             statement.setString(1, cpf);
             statement.executeUpdate();
-        }catch(SQLException e){
-            
+        }catch(SQLException e){      
             throw new SQLException("Erro ao deletar pessoa física");
         }
     }

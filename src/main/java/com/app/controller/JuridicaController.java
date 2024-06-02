@@ -33,8 +33,13 @@ public class JuridicaController implements ControllersInterface<Juridica>{
     }
 
     @Override
-    public void deletar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void deletar(String value)throws ServiceException {
+        try {
+            dao.deletar(value);
+            
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage());
+        }
     }
 
     @Override
