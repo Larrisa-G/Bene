@@ -155,22 +155,38 @@ public class EnviarEmail extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbEscolherAnexoActionPerformed
 
     private void jbEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEnviarActionPerformed
-        String destinatario = jtDestinatario.getText();
-        String assunto = jtAssunto.getText();
-        String mensagem = jtMensagem.getText();
-        String anexo = jtAnexo.getText();
+        String destinatario = jtDestinatario.getText().trim();
+        String assunto = jtAssunto.getText().trim();
+        String mensagem = jtMensagem.getText().trim();
+        String anexo = jtAnexo.getText().trim();
 
-        try {
-            EmailSender.sendEmail(destinatario, assunto, mensagem, anexo);
-            JOptionPane.showMessageDialog(null, "E-mail enviado com sucesso!");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        if (isValidEmail(destinatario)) {
+            try {
+                EmailSender.sendEmail(destinatario, assunto, mensagem, anexo);
+                JOptionPane.showMessageDialog(null, "E-mail enviado com sucesso!");
+                clearFields();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Endereço de e-mail inválido!");
         }
     }//GEN-LAST:event_jbEnviarActionPerformed
 
     private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed
         dispose();
     }//GEN-LAST:event_jbFecharActionPerformed
+
+    private boolean isValidEmail(String email) {
+        return email.contains("@") && email.contains(".") && email.indexOf("@") < email.lastIndexOf(".");
+    }
+
+    private void clearFields() {
+        jtDestinatario.setText("");
+        jtAssunto.setText("");
+        jtMensagem.setText("");
+        jtAnexo.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -186,5 +202,5 @@ public class EnviarEmail extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtAssunto;
     private javax.swing.JTextArea jtMensagem;
     private javax.swing.JTextField jtAnexo;
-    // End of variables declaration//GEN-END:variables
+    // End of variables
 }

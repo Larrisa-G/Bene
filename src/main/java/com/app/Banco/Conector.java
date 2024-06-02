@@ -1,4 +1,4 @@
-/*package com.app.Banco;
+package com.app.Banco;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,34 +6,66 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 
 public class Conector {
-    private static String url = "jdbc:sqlite:dbTeste.db";
+
+    private static String url = "jdbc:sqlite:Base_de_clientes.db";
 
     public static Connection openConnection() {
+
         Connection connection = null;
 
         try {
             connection = DriverManager.getConnection(url);
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
         return connection;
     }
-    public static void criarTabelas() {
-        criarTabelaPessoaFisica();
-    }
-    private static void criarTabelaPessoaFisica() {
 
-        String sql = "CREATE TABLE IF NOT EXISTS pessoas ("
-                + "id INTEGER PRIMARY KEY,"
-                + "nome VARCHAR(50),"
-                + "cpf VARCHAR(20),"
-                + "rg VARCHAR(20),"
-                + "dataNascimento VARCHAR(20),"
-                + "nacionalidade VARCHAR(20),"
-                + "profissao VARCHAR(20)"
-                + ")";
+    public static void criarTabelaPessoaFisica() {
+        String sql = "CREATE TABLE IF NOT EXISTS pessoaFisica ("
+                + " nome VARCHAR(100),"
+                + " cpf VARCHAR(20) PRIMARY KEY,"
+                + " genero VARCHAR(20),"
+                + " estadoCivil VARCHAR(20),"
+                + " rg VARCHAR(20),"
+                + " dataNascimento DATE,"
+                + " nacionalidade VARCHAR(50),"
+                + " profissao VARCHAR(50),"
+                + " logradouro VARCHAR(100),"
+                + " numero INTEGER,"
+                + " complemento VARCHAR(20),"
+                + " bairro VARCHAR(100),"
+                + " cep VARCHAR(20),"
+                + " cidade VARCHAR(100),"
+                + " uf VARCHAR(2),"
+                + " estado VARCHAR(50)"
+                + ");";
+        try(PreparedStatement statement = openConnection().prepareStatement(sql)) {
+            statement.execute();
+            statement.close();
+        }catch (SQLException e){
+            System.err.println("Erro ao criar tabela pessoaFísica: " + e.getMessage() );
+            throw new RuntimeException("Erro ao criar tabela pessoaFísica,", e);
+        }
+    }
+
+    private static void criarTabelaPessoaJuridica(){
+        String sql = "CREATE TABLE IF NOT EXISTS empresas ("
+                + "nomeFantasia VARCHAR(50),"
+                + "cpfDiretor VARCHAR(20),"
+                + "cnpj VARCHAR(50) PRIMARY KEY,"
+                + "cadastroEstadual INTEGER, "
+                + " logradouro VARCHAR(20),"
+                + " numero INTEGER,"
+                + " complemento VARCHAR(20),"
+                + " bairro VARCHAR(20),"
+                + " cep VARCHAR(20),"
+                + " cidade VARCHAR(20),"
+                + " uf VARCHAR(20),"
+                + " estado VARCHAR(20),"
+                + "FOREIGN KEY (cpfDiretor) REFERENCES pessoaFisica(cpf)"
+                +")";
         try(PreparedStatement statement = openConnection().prepareStatement(sql)) {
             statement.execute();
             statement.close();
@@ -43,8 +75,14 @@ public class Conector {
             throw new RuntimeException("Erro ao criar tabela pessoas,", e);
         }
     }
-    private static void criarTabelaPessoaJuridica(){
 
+    public static void criarTabelas() {
+        try {
+            criarTabelaPessoaFisica();
+            criarTabelaPessoaJuridica();
+        }catch (Exception e){
+            System.err.println("Erro na função criar tabelas: " + e.getMessage());
+            throw new RuntimeException("Erro na função criar tabelas: ", e);
+        }
     }
 }
- */

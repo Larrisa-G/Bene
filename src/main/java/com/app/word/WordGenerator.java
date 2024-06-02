@@ -1,5 +1,5 @@
 
-package com.app.pdfs;
+package com.app.word;
 
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.usermodel.Range;
@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import lombok.Setter;
 
-public class PDFGenerator {
+public class WordGenerator {
     
     private HWPFDocument document;
     @Setter
