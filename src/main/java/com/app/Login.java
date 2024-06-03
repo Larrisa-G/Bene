@@ -131,7 +131,7 @@ public class Login extends javax.swing.JFrame {
             if (usuario == null) {
                 throw new ServiceException("Usuário não encontrado");
             }
-            new App(userName).setVisible(true);
+            new App(usuario).setVisible(true);
             dispose();
         } catch (ServiceException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

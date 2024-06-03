@@ -1,6 +1,7 @@
 
 package com.app;
 
+import com.app.entidades.usuario.Usuario;
 import com.app.paginas.contratos.AssistenciaMedicaEmpresa;
 import com.app.paginas.contratos.CobrancaBancariaIndevida;
 import com.app.paginas.contratos.ComodatoImovel;
@@ -16,13 +17,14 @@ import javax.swing.JFrame;
 
 
 public class App extends javax.swing.JFrame {
-    CentralizarForm centralizarForm = new CentralizarForm();
-    
-    public App(String text) {
+    private CentralizarForm centralizarForm = new CentralizarForm();
+    private Usuario user;
+    public App(Usuario user) {
         
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        jlUsername.setText("Olá, "+text);
+        this.user = user;
+        jlUsername.setText("Olá, "+user.getNome());
     }
 
     
@@ -282,7 +284,7 @@ public class App extends javax.swing.JFrame {
 
     private void jmUsuarioConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmUsuarioConfiguracaoActionPerformed
         ConfigurarUsuario configurarUsuario;
-        centralizarForm.abrirFormulario(configurarUsuario = new ConfigurarUsuario(), jDesktop);
+        centralizarForm.abrirFormulario(configurarUsuario = new ConfigurarUsuario(user), jDesktop);
     }//GEN-LAST:event_jmUsuarioConfiguracaoActionPerformed
 
     

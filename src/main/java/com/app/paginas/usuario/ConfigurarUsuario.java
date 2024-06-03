@@ -4,21 +4,25 @@
  */
 package com.app.paginas.usuario;
 
+import com.app.controller.entidades.UsuarioController;
+import com.app.entidades.usuario.Usuario;
+import com.app.exceptions.ServiceException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 202108083852
  */
 public class ConfigurarUsuario extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ConfigurarUsuario
-     */
-    public ConfigurarUsuario() {
+    private Usuario user;
+    public ConfigurarUsuario(Usuario user) {
         initComponents();
         setTitle("Configurações");
         habilitarBotoes(false);
         habilitarInputs(false);
-
+        this.user = user;
+        
     }
     
     private void habilitarBotoes(boolean value){
@@ -68,6 +72,11 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         });
 
         jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarActionPerformed(evt);
+            }
+        });
 
         jbFechar.setText("Fechar");
         jbFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -104,10 +113,6 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
-
-        jtUsuario.setText("jTextField1");
-
-        jtNovaSenha.setText("jTextField2");
 
         jtConfirmarSenha.setText("jTextField3");
 
@@ -192,7 +197,8 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
         habilitarBotoes(true);
         habilitarInputs(true);
-
+        jtUsuario.setText(user.getNome());
+        
     }//GEN-LAST:event_jbAlterarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
@@ -200,6 +206,19 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         habilitarInputs(false);
 
     }//GEN-LAST:event_jbCancelarActionPerformed
+
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+
+        
+        try {
+            Usuario newUser = new Usuario(jtUsuario.getText(), jtConfirmarSenha.getText());
+            UsuarioController controller = new UsuarioController();
+            controller.alterar(newUser);
+            JOptionPane.showMessageDialog(null, "Usuario alterado com sucesso");
+        } catch (ServiceException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jbSalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

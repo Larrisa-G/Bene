@@ -20,4 +20,13 @@ public class UsuarioController {
             throw new ServiceException(e.getMessage());
         }
     }
+    
+    public void alterar(Usuario usuario)throws ServiceException  {
+       try{ 
+           dao.alterar(usuario);
+          
+        } catch (SQLException e) {
+            throw new ServiceException(e.getMessage());
+        } 
+    }
 }

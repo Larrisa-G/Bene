@@ -43,4 +43,5 @@ public class UsuarioDAO {
             throw new SQLException("Erro ao obter usuário");
         }
     }
+    
 }
