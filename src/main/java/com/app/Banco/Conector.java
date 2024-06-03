@@ -1,4 +1,5 @@
-package org.example;
+package com.app.Banco;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -21,67 +22,65 @@ public class Conector {
         return connection;
     }
 
-    public static void criarTabelaPessoaFisica() {
+    public static void criarTabelaPessoaFisica() throws SQLException{
         String sql = "CREATE TABLE IF NOT EXISTS pessoaFisica ("
-                + " nome VARCHAR(100),"
+                + " nome VARCHAR(255),"
                 + " cpf VARCHAR(20) PRIMARY KEY,"
                 + " genero VARCHAR(20),"
                 + " estadoCivil VARCHAR(20),"
                 + " rg VARCHAR(20),"
                 + " dataNascimento DATE,"
-                + " nacionalidade VARCHAR(20),"
-                + " profissao VARCHAR(20),"
-                + " logradouro VARCHAR(20),"
+                + " nacionalidade VARCHAR(255),"
+                + " profissao VARCHAR(255),"
+                + " logradouro VARCHAR(255),"
                 + " numero INTEGER,"
-                + " complemento VARCHAR(20),"
-                + " bairro VARCHAR(20),"
+                + " complemento VARCHAR(50),"
+                + " bairro VARCHAR(255),"
                 + " cep VARCHAR(20),"
-                + " cidade VARCHAR(20),"
-                + " uf VARCHAR(20),"
-                + " estado VARCHAR(20)"
+                + " cidade VARCHAR(255),"
+                + " estado VARCHAR(255)"
                 + ");";
         try(PreparedStatement statement = openConnection().prepareStatement(sql)) {
             statement.execute();
             statement.close();
         }catch (SQLException e){
-            System.err.println("Erro ao criar tabela pessoaFísica: " + e.getMessage() );
-            throw new RuntimeException("Erro ao criar tabela pessoaFísica,", e);
+            
+            throw new SQLException("Erro ao criar tabela pessoaFísica");
         }
     }
 
-    private static void criarTabelaPessoaJuridica(){
+    private static void criarTabelaPessoaJuridica() throws SQLException{
         String sql = "CREATE TABLE IF NOT EXISTS empresas ("
-                + "nomeFantasia VARCHAR(50),"
-                + "cpfDiretor VARCHAR(50),"
+                + "nomeFantasia VARCHAR(255),"
+                + "cpfDiretor VARCHAR(20),"
                 + "cnpj VARCHAR(50) PRIMARY KEY,"
-                + "cadastroEstadual INTEGER, "
-                + " logradouro VARCHAR(20),"
+                + "cadastroEstadual varchar(255), "
+                + " logradouro VARCHAR(255),"
                 + " numero INTEGER,"
-                + " complemento VARCHAR(20),"
-                + " bairro VARCHAR(20),"
+                + " complemento VARCHAR(50),"
+                + " bairro VARCHAR(255),"
                 + " cep VARCHAR(20),"
-                + " cidade VARCHAR(20),"
-                + " uf VARCHAR(20),"
-                + " estado VARCHAR(20),"
-                + "FOREIGN KEY (cpfDiretor) REFERENCES pessoas(cpf)"
+                + " cidade VARCHAR(255),"
+                + " estado VARCHAR(255),"
+                + "FOREIGN KEY (cpfDiretor) REFERENCES pessoaFisica(cpf)"
                 +")";
         try(PreparedStatement statement = openConnection().prepareStatement(sql)) {
             statement.execute();
             statement.close();
             openConnection().close();
         }catch (SQLException e){
-            System.err.println("Erro ao criar tabela pessoas: " + e.getMessage() );
-            throw new RuntimeException("Erro ao criar tabela pessoas,", e);
+            
+            throw new SQLException("Erro ao criar tabela empresas");
         }
     }
 
-    public static void criarTabelas() {
+    public static void criarTabelas()throws SQLException {
         try {
             criarTabelaPessoaFisica();
             criarTabelaPessoaJuridica();
-        }catch (Exception e){
-            System.err.println("Erro na função criar tabelas: " + e.getMessage());
-            throw new RuntimeException("Erro na função criar tabelas: ", e);
+        }catch (SQLException e){
+            
+            throw new SQLException(e.getMessage());
         }
     }
 }
