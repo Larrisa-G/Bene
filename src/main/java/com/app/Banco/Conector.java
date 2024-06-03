@@ -22,7 +22,7 @@ public class Conector {
         return connection;
     }
 
-    public static void criarTabelaPessoaFisica() throws SQLException{
+    private static void criarTabelaPessoaFisica() throws SQLException{
         String sql = "CREATE TABLE IF NOT EXISTS pessoaFisica ("
                 + " nome VARCHAR(255),"
                 + " cpf VARCHAR(20) PRIMARY KEY,"
@@ -78,9 +78,24 @@ public class Conector {
         try {
             criarTabelaPessoaFisica();
             criarTabelaPessoaJuridica();
+            criarTabelaUsuario();
         }catch (SQLException e){
             
             throw new SQLException(e.getMessage());
+        }
+    }
+    
+    private static void criarTabelaUsuario() throws SQLException{
+        String sql = "CREATE TABLE IF NOT EXISTS usuario ("
+                + " nome VARCHAR(255),"
+                + " senha VARCHAR(255)"
+                + ");";
+        try(PreparedStatement statement = openConnection().prepareStatement(sql)) {
+            statement.execute();
+            statement.close();
+        }catch (SQLException e){
+            
+            throw new SQLException("Erro ao criar tabela pessoaFísica");
         }
     }
 }

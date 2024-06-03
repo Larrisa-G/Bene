@@ -10,6 +10,7 @@ import com.app.paginas.pessoa.FormularioListarClientes;
 import com.app.paginas.contratos.PerdaCartao;
 import com.app.paginas.pessoa.fisica.FormularioAlterarPessoaFisica;
 import com.app.paginas.pessoa.juridica.FormularioAlterarPessoaJuridica;
+import com.app.paginas.usuario.ConfigurarUsuario;
 import com.app.util.CentralizarForm;
 import javax.swing.JFrame;
 
@@ -48,6 +49,8 @@ public class App extends javax.swing.JFrame {
         jmiCobrancaBancariaIndevida = new javax.swing.JMenuItem();
         jmiAssistenciaMedicaEmpresa = new javax.swing.JMenuItem();
         jmiComodatoImovel = new javax.swing.JMenuItem();
+        jmUsuario = new javax.swing.JMenu();
+        jmUsuarioConfiguracao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -193,6 +196,18 @@ public class App extends javax.swing.JFrame {
 
         jMenuBar1.add(jmContratos);
 
+        jmUsuario.setText("Usuario");
+
+        jmUsuarioConfiguracao.setText("configurações");
+        jmUsuarioConfiguracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmUsuarioConfiguracaoActionPerformed(evt);
+            }
+        });
+        jmUsuario.add(jmUsuarioConfiguracao);
+
+        jMenuBar1.add(jmUsuario);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,6 +280,11 @@ public class App extends javax.swing.JFrame {
        centralizarForm.abrirFormulario(comodatoImovel = new ComodatoImovel(), jDesktop);
     }//GEN-LAST:event_jmiComodatoImovelActionPerformed
 
+    private void jmUsuarioConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmUsuarioConfiguracaoActionPerformed
+        ConfigurarUsuario configurarUsuario;
+        centralizarForm.abrirFormulario(configurarUsuario = new ConfigurarUsuario(), jDesktop);
+    }//GEN-LAST:event_jmUsuarioConfiguracaoActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -279,6 +299,8 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmListarrCliente;
     private javax.swing.JMenu jmPessoaFisica;
     private javax.swing.JMenu jmPessoaJuridica;
+    private javax.swing.JMenu jmUsuario;
+    private javax.swing.JMenuItem jmUsuarioConfiguracao;
     private javax.swing.JMenuItem jmcPFAlterar;
     private javax.swing.JMenuItem jmcPFCriar;
     private javax.swing.JMenuItem jmcPJAlterar;
