@@ -1,5 +1,5 @@
 
-package com.app.controller;
+package com.app.controller.contratos;
 import com.app.exceptions.ValidationError;
 import com.app.util.Validador;
 

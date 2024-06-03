@@ -106,7 +106,7 @@ public class JuridicaDAO implements DAOInterface<Juridica>{
     public void deletar(String cnpj) throws SQLException{
         String sql = "DELETE FROM empresas WHERE cnpj = ?";
         try(PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
-            statement.setString(3, cnpj);
+            statement.setString(1, cnpj);
             statement.executeUpdate();
         }catch(SQLException e){
             throw new SQLException("Erro ao deletar pessoa jurídica");
