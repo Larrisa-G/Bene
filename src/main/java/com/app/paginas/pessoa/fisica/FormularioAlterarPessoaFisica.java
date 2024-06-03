@@ -3,13 +3,13 @@ package com.app.paginas.pessoa.fisica;
 
 
 import com.app.api.BuscaCep;
-import com.app.controller.FisicaController;
+import com.app.controller.entidades.FisicaController;
 import com.app.entidades.endereco.Endereco;
 import javax.swing.JOptionPane;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
-import com.app.util.Validador;
+import com.app.exceptions.ServiceException;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
@@ -52,9 +52,29 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
         
         jtBairro.setEnabled(value);
         jtCidade.setEnabled(value);
-        jtUF.setEnabled(value);
         
         jtEstado.setEnabled(value);
+    }
+    
+    private void limparInpunts() {
+        jtNome.setText("");
+        jtCPF.setText("");
+        
+        
+        jcbGenero.setSelectedIndex(0);
+        jcbEstadoCivil.setSelectedIndex(0);
+        
+        jtProfissao.setText("");
+        jtCEP.setText("");
+        
+        jtLogradouro.setText("");
+        jtNumero.setText("");
+        jtComplemento.setText("");
+        
+        jtBairro.setText("");
+        jtCidade.setText("");
+        
+        jtEstado.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -81,8 +101,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
         jtBairro = new javax.swing.JTextField();
         jlCidade = new javax.swing.JLabel();
         jtCidade = new javax.swing.JTextField();
-        jlUF = new javax.swing.JLabel();
-        jtUF = new javax.swing.JTextField();
         jlEstado = new javax.swing.JLabel();
         jtEstado = new javax.swing.JTextField();
         jtCEP = new javax.swing.JFormattedTextField();
@@ -195,8 +213,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
 
         jlCidade.setText("Cidade");
 
-        jlUF.setText("UF");
-
         jlEstado.setText("Estado");
 
         try {
@@ -242,10 +258,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
                                     .addComponent(jlBairro))
                                 .addContainerGap())
                             .addGroup(jpEnderecoLayout.createSequentialGroup()
-                                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlUF))
-                                .addGap(51, 51, 51)
+                                .addGap(151, 151, 151)
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlEstado)
                                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -275,12 +288,10 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlCidade)
-                    .addComponent(jlUF)
                     .addComponent(jlEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
@@ -456,31 +467,41 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbFecharActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        habilitarBotoes(false);
-        habilitarInputs(false);
-        Fisica fisica = new Fisica();
-        fisica.setNome(jtNome.getText());
-        fisica.setProfissao(jtProfissao.getText());
-        fisica.setEstadoCivil(EstadoCivil.valueOf((String)jcbEstadoCivil.getSelectedItem()));
-        fisica.setGenero(Genero.valueOf((String) jcbGenero.getSelectedItem()));
         
-        Endereco endereco = new Endereco(
-            jtLogradouro.getText(),
-            
-            Integer.parseInt(jtNumero.getText()),
-            jtComplemento.getText(),      
-            jtBairro.getText(),
-            jtCEP.getText(),
-            jtCidade.getText(),
-            jtUF.getText(),
-            jtEstado.getText()
-        );
         
         try {
-           
+            Fisica fisica = new FisicaController().buscarUm(jtCPF.getText());
+            fisica.setNome(jtNome.getText());
+            fisica.setProfissao(jtProfissao.getText());
+            if (!"--Selecione--".equals((String)jcbEstadoCivil.getSelectedItem())) {
+                fisica.setEstadoCivil(EstadoCivil.valueOf((String)jcbEstadoCivil.getSelectedItem()));
+            } 
+
+            if(!"--Selecione--".equals((String)jcbGenero.getSelectedItem())) {
+                fisica.setGenero(Genero.valueOf((String)jcbGenero.getSelectedItem()));
+            } 
+            
+            
+            Endereco endereco = new Endereco(
+                jtLogradouro.getText(),
+
+                Integer.parseInt(jtNumero.getText()),
+                jtComplemento.getText(),      
+                jtBairro.getText(),
+                jtCEP.getText(),
+                jtCidade.getText(),
+                jtEstado.getText()
+            );
+            fisica.setEndereco(endereco);
             FisicaController controller = new FisicaController();
-            controller.alterar(fisica, endereco);
-        } catch (IllegalArgumentException e) {
+            controller.alterar(fisica);
+            limparInpunts();
+            habilitarBotoes(false);
+            habilitarInputs(false);
+            JOptionPane.showMessageDialog(null, "alterado com sucesso");
+        } catch(IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Gênro ou Estado civil incorretos");
+        }  catch (ServiceException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
@@ -489,12 +510,16 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
+        limparInpunts();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbBuscarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPessoaActionPerformed
         try {
             FisicaController controller = new FisicaController();
             Fisica fisica = controller.buscarUm(jtCPF.getText());
+            if (fisica == null) {
+                throw new ServiceException("Cliente não encontrado");
+            }
             jtCPF.setEnabled(false);
             jtNome.setText(fisica.getNome());
 
@@ -507,14 +532,13 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
 
             jtBairro.setText(fisica.getEndereco().getBairro());
             jtCidade.setText(fisica.getEndereco().getCidade());
-            jtUF.setText(fisica.getEndereco().getUf());
 
             jtEstado.setText(fisica.getEndereco().getEstado());
             habilitarInputs(true);
             jtCPF.setEnabled(false);
             habilitarBotoes(true);
             jbBuscarPessoa.setEnabled(false);
-        } catch(Exception e) {
+        } catch (ServiceException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jbBuscarPessoaActionPerformed
@@ -530,7 +554,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
 
             jtBairro.setText(endereco.getBairro());
             jtCidade.setText(endereco.getCidade());
-            jtUF.setText(endereco.getUf());
 
             jtEstado.setText(endereco.getEstado());
             
@@ -585,7 +608,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlNome;
     private javax.swing.JLabel jlNumero;
     private javax.swing.JLabel jlProfissao;
-    private javax.swing.JLabel jlUF;
     private javax.swing.JPanel jpButoes;
     private javax.swing.JPanel jpDadosPessoais;
     private javax.swing.JPanel jpEndereco;
@@ -599,6 +621,5 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtNome;
     private javax.swing.JTextField jtNumero;
     private javax.swing.JTextField jtProfissao;
-    private javax.swing.JTextField jtUF;
     // End of variables declaration//GEN-END:variables
 }

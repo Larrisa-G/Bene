@@ -236,11 +236,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jtUF" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <Component id="jlUF" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jlEstado" min="-2" max="-2" attributes="0"/>
                                       <Component id="jtEstado" min="-2" pref="150" max="-2" attributes="0"/>
@@ -281,13 +277,11 @@
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlUF" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jtCidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtUF" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
@@ -335,13 +329,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtCidade">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlUF">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="UF"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtUF">
         </Component>
         <Component class="javax.swing.JLabel" name="jlEstado">
           <Properties>

@@ -2,7 +2,10 @@
 package com.app.paginas.pessoa.juridica;
 
 import com.app.api.BuscaCep;
+import com.app.controller.entidades.JuridicaController;
 import com.app.entidades.endereco.Endereco;
+import com.app.entidades.pessoas.Juridica;
+import com.app.exceptions.ServiceException;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
@@ -16,7 +19,23 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
         habilitarBotoes(false);
         habilitarInputs(false);
     }
+    
+    private void limparInputs() {
+        jtCEP.setText("");
 
+        jtLogradouro.setText("");
+        jtNumero.setText("");
+        jtComplemento.setText("");
+
+        jtBairro.setText("");
+        jtCidade.setText("");
+
+        jtEstado.setText("");
+        jtNomeFantasia.setText(""); 
+        jtCPFDiretor.setText(""); 
+        jtCNPJ.setText(""); 
+        jtCadastroEstadual.setText("");
+    }
     private void habilitarBotoes(boolean value) {
         jbNovo.setEnabled(!value);
         
@@ -40,7 +59,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
         
         jtBairro.setEnabled(value);
         jtCidade.setEnabled(value);
-        jtUF.setEnabled(value);
         
         jtEstado.setEnabled(value);
     }
@@ -55,6 +73,7 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
         jbBuscarCep = new javax.swing.JButton();
         jbSalvar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
+        jbBuscarCNPJ = new javax.swing.JButton();
         jpDadosEmpresa = new javax.swing.JPanel();
         jlCPFDiretor = new javax.swing.JLabel();
         jlNomeFantasia = new javax.swing.JLabel();
@@ -76,8 +95,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
         jtBairro = new javax.swing.JTextField();
         jlCidade = new javax.swing.JLabel();
         jtCidade = new javax.swing.JTextField();
-        jlUF = new javax.swing.JLabel();
-        jtUF = new javax.swing.JTextField();
         jlEstado = new javax.swing.JLabel();
         jtEstado = new javax.swing.JTextField();
         jtCEP = new javax.swing.JFormattedTextField();
@@ -132,22 +149,31 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
             }
         });
 
+        jbBuscarCNPJ.setText("Buscar CNPJ");
+        jbBuscarCNPJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarCNPJActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpButoesLayout = new javax.swing.GroupLayout(jpButoes);
         jpButoes.setLayout(jpButoesLayout);
         jpButoesLayout.setHorizontalGroup(
             jpButoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpButoesLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(131, 131, 131)
                 .addComponent(jbNovo)
-                .addGap(34, 34, 34)
+                .addGap(104, 104, 104)
                 .addComponent(jbSalvar)
                 .addGap(18, 18, 18)
                 .addComponent(jbCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbBuscarCep)
+                .addComponent(jbBuscarCNPJ)
                 .addGap(18, 18, 18)
+                .addComponent(jbBuscarCep)
+                .addGap(65, 65, 65)
                 .addComponent(jbFechar)
-                .addGap(52, 52, 52))
+                .addGap(222, 222, 222))
         );
         jpButoesLayout.setVerticalGroup(
             jpButoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +184,8 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
                     .addComponent(jbFechar)
                     .addComponent(jbBuscarCep)
                     .addComponent(jbSalvar)
-                    .addComponent(jbCancelar))
+                    .addComponent(jbCancelar)
+                    .addComponent(jbBuscarCNPJ))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -250,8 +277,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
 
         jlCidade.setText("Cidade");
 
-        jlUF.setText("UF");
-
         jlEstado.setText("Estado");
 
         try {
@@ -289,23 +314,18 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
                             .addComponent(jlCidade)
                             .addComponent(jtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlComplemento))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEnderecoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlBairro)
                                     .addComponent(jtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(128, 128, 128))
-                            .addGroup(jpEnderecoLayout.createSequentialGroup()
-                                .addGap(21, 21, 21)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEnderecoLayout.createSequentialGroup()
                                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlUF)
-                                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlEstado))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(jlEstado)
+                                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(109, 109, 109))))))
         );
         jpEnderecoLayout.setVerticalGroup(
             jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,12 +351,10 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlCidade)
-                    .addComponent(jlUF)
                     .addComponent(jlEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -408,7 +426,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
 
             jtBairro.setText(endereco.getBairro());
             jtCidade.setText(endereco.getCidade());
-            jtUF.setText(endereco.getUf());
 
             jtEstado.setText(endereco.getEstado());
 
@@ -419,20 +436,54 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarCepActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        habilitarBotoes(false);
-        habilitarInputs(false);
+        try{
+            
+            Endereco endereco = new Endereco(
+                    jtLogradouro.getText(), Integer.valueOf(jtNumero.getText()), jtComplemento.getText(),
+                    jtBairro.getText(), jtCEP.getText(), jtCidade.getText(), jtEstado.getText());
+
+            Juridica juridica = new Juridica(jtNomeFantasia.getText(), jtCPFDiretor.getText(), jtCNPJ.getText(), jtCadastroEstadual.getText(), endereco);
+            JuridicaController controller = new JuridicaController();
+            controller.criar(juridica);
+            limparInputs();
+            habilitarBotoes(false); 
+            habilitarInputs(false);
+            JOptionPane.showMessageDialog(null, "empresa cadastrada com sucesso");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Número Inválido");
+        } catch(ServiceException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } 
+       
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
+        limparInputs();
     }//GEN-LAST:event_jbCancelarActionPerformed
+
+    private void jbBuscarCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCNPJActionPerformed
+         try {
+           JuridicaController controller = new JuridicaController();
+           if(controller.buscarUm(jtCNPJ.getText()) == null){
+               throw  new ServiceException("Enpresa não encontrada");
+           } else {
+               JOptionPane.showMessageDialog(null, "Empreja já cadastrada");
+           }
+           
+       } catch (ServiceException e) {
+           JOptionPane.showMessageDialog(null, e.getMessage());
+           
+       }
+    }//GEN-LAST:event_jbBuscarCNPJActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbBuscarCNPJ;
     private javax.swing.JButton jbBuscarCep;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbFechar;
@@ -449,7 +500,6 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlLogradouro;
     private javax.swing.JLabel jlNomeFantasia;
     private javax.swing.JLabel jlNumero;
-    private javax.swing.JLabel jlUF;
     private javax.swing.JPanel jpButoes;
     private javax.swing.JPanel jpDadosEmpresa;
     private javax.swing.JPanel jpEndereco;
@@ -464,6 +514,5 @@ public class FormularioCriarPessoaJuridica extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtLogradouro;
     private javax.swing.JTextField jtNomeFantasia;
     private javax.swing.JTextField jtNumero;
-    private javax.swing.JTextField jtUF;
     // End of variables declaration//GEN-END:variables
 }

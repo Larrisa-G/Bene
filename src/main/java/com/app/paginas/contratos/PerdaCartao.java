@@ -1,6 +1,8 @@
 
 package com.app.paginas.contratos;
 
+import com.app.controller.contratos.PerdaCartaoController;
+import com.app.exceptions.ValidationError;
 import com.app.word.WordGenerator;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
@@ -105,11 +107,11 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4)
-                    .addComponent(jtAssinoCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtPerdaCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jtPerdaCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addComponent(jtAssinoCartao))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -210,6 +212,8 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
        
         
         try {
+            PerdaCartaoController controller = new PerdaCartaoController();
+            controller.validarCampos(jtContratante.getText(),  jtContratado.getText(), jtMotivo.getText(), jtAssinoCartao.getText(), jtPerdaCartao.getText());
             WordGenerator wg = new WordGenerator();
             wg.setInputFilePath(WordContractPath.PERDACARTAO);
             
@@ -231,6 +235,8 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
             
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (ValidationError e) {
+            JOptionPane.showMessageDialog(null, "Erro de validação: "+e.getMessage());
         }
         
     }//GEN-LAST:event_jbGerarActionPerformed
