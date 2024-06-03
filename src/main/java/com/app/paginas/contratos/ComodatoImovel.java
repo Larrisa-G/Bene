@@ -3,10 +3,13 @@ package com.app.paginas.contratos;
 
 import com.app.api.BuscaCep;
 import com.app.controller.contratos.ComodatoImovelController;
+import com.app.controller.entidades.FisicaController;
+import com.app.controller.entidades.JuridicaController;
 import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Juridica;
+import com.app.exceptions.ServiceException;
 import com.app.exceptions.ValidationError;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
@@ -272,6 +275,7 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
         jtPropriedadeNumero = new javax.swing.JTextField();
         jtPropriedadeCartorio = new javax.swing.JTextField();
         jtPropriedadeRegistro = new javax.swing.JTextField();
+        jbBuscarCepObjContrato = new javax.swing.JButton();
         jpForro = new javax.swing.JPanel();
         jLabel78 = new javax.swing.JLabel();
         jLabel83 = new javax.swing.JLabel();
@@ -639,6 +643,11 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
         );
 
         jbBuscarContratanteEmpresa.setText("Buscar Empresa");
+        jbBuscarContratanteEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarContratanteEmpresaActionPerformed(evt);
+            }
+        });
 
         jbBuscarCepContratanteEmpresa.setText("Buscar Cep Empresa");
         jbBuscarCepContratanteEmpresa.addActionListener(new java.awt.event.ActionListener() {
@@ -648,6 +657,11 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
         });
 
         jbBuscarContratante.setText("Buscar Contratante");
+        jbBuscarContratante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarContratanteActionPerformed(evt);
+            }
+        });
 
         jbBuscarCepContratanteRepesentante.setText("Buscar Cep Representante");
         jbBuscarCepContratanteRepesentante.addActionListener(new java.awt.event.ActionListener() {
@@ -988,6 +1002,13 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        jbBuscarCepObjContrato.setText("Buscar Cep");
+        jbBuscarCepObjContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarCepObjContratoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpObjContratoLayout = new javax.swing.GroupLayout(jpObjContrato);
         jpObjContrato.setLayout(jpObjContratoLayout);
         jpObjContratoLayout.setHorizontalGroup(
@@ -1038,7 +1059,10 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
                             .addGroup(jpObjContratoLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel1))
-                            .addComponent(jLabel75)
+                            .addGroup(jpObjContratoLayout.createSequentialGroup()
+                                .addComponent(jLabel75)
+                                .addGap(131, 131, 131)
+                                .addComponent(jbBuscarCepObjContrato))
                             .addGroup(jpObjContratoLayout.createSequentialGroup()
                                 .addComponent(jLabel92)
                                 .addGap(88, 88, 88)
@@ -1055,9 +1079,11 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
         jpObjContratoLayout.setVerticalGroup(
             jpObjContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpObjContratoLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(jLabel75)
-                .addGap(41, 41, 41)
+                .addGap(8, 8, 8)
+                .addGroup(jpObjContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel75)
+                    .addComponent(jbBuscarCepObjContrato))
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
                 .addGap(24, 24, 24)
                 .addGroup(jpObjContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1267,6 +1293,62 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
        dispose();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
+    private void jbBuscarContratanteEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarContratanteEmpresaActionPerformed
+        try {
+            JuridicaController jc = new JuridicaController();
+            Juridica juridica = jc.buscarUm(jtComodanteCNPJ.getText());
+            jtComodanteNomeEmpresa.setText(juridica.getNomeFantasia());
+            jtComodanteCadastroEstadual.setText(juridica.getCadastroEstadual());
+            jtComodanteEmpresaCEP.setText(juridica.getEndereco().getCep());
+            jtComodanteEmpresaRua.setText(juridica.getEndereco().getLogradouro());
+            jtComodanteEmpresaNumero.setText( String.valueOf((Object)juridica.getEndereco().getNumero()));
+            jtComodanteEmpresaBairro.setText(juridica.getEndereco().getBairro());
+            jtComodanteSedeEm.setText(juridica.getEndereco().getCidade());
+            jtComodanteEmpresaEstado.setText(juridica.getEndereco().getEstado());
+            
+            jtContratanteComodanteCPF.setText(juridica.getCpfDiretor());
+            
+        } catch(ServiceException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_jbBuscarContratanteEmpresaActionPerformed
+
+    private void jbBuscarContratanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarContratanteActionPerformed
+      
+       try {
+            FisicaController fc = new FisicaController();
+            Fisica fisica = fc.buscarUm(jtContratanteComodanteCPF.getText());
+            jtContratanteComodanteNome.setText(fisica.getNome());
+            jtContratanteComodanteRG.setText(fisica.getRg());
+            jtContratanteComodanteNacionalidade.setText(fisica.getNacionalidade());
+            jtContratanteComodanteProfissao.setText(fisica.getProfissao()); 
+            jtContratanteComodanteCEP.setText(fisica.getEndereco().getCep());
+            jtContratanteComodanteRua.setText(fisica.getEndereco().getLogradouro());
+            jtContratanteComodanteNumero.setText( String.valueOf((Object)fisica.getEndereco().getNumero()));
+            jtContratanteComodanteBairro.setText(fisica.getEndereco().getBairro());
+            jtContratanteComodanteCidade.setText(fisica.getEndereco().getCidade());
+            jtContratanteComodanteEstado.setText(fisica.getEndereco().getEstado());
+                
+       } catch(ServiceException e){
+           JOptionPane.showMessageDialog(null, e.getMessage());
+       }
+    }//GEN-LAST:event_jbBuscarContratanteActionPerformed
+
+    private void jbBuscarCepObjContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCepObjContratoActionPerformed
+         try {
+            Endereco endereco = BuscaCep.buscar(jtPropriedadeCEP.getText().trim());
+            jtPropriedadeCEP.setText(endereco.getCep());
+            jtPropriedadeRua.setText(endereco.getLogradouro());
+            jtPropriedadeNumero.setText( String.valueOf((Object)endereco.getNumero()));
+            jtPropriedadeBairro.setText(endereco.getBairro());
+            jtPropriedadeCidade.setText(endereco.getCidade());
+            jtPropriedadeEstado.setText(endereco.getEstado());
+            
+        } catch(IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } 
+    }//GEN-LAST:event_jbBuscarCepObjContratoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -1330,6 +1412,7 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbBuscarCepComodatario;
     private javax.swing.JButton jbBuscarCepContratanteEmpresa;
     private javax.swing.JButton jbBuscarCepContratanteRepesentante;
+    private javax.swing.JButton jbBuscarCepObjContrato;
     private javax.swing.JButton jbBuscarContratante;
     private javax.swing.JButton jbBuscarContratanteEmpresa;
     private javax.swing.JButton jbCancelar;

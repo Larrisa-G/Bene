@@ -71,6 +71,9 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         FisicaController fc = new FisicaController();
             try {
                 Fisica f = fc.buscarUm(cpf);
+                if (f == null) {
+                    throw new ServiceException("CPF inválido");
+                }
                 jlRg.setText(f.getRg());
                 jlNome.setText(f.getNome());
                 jlCPF.setText(f.getCpf());
@@ -97,7 +100,10 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
     private void preencherDadosJuridica(String cnpj) {
         JuridicaController jc = new JuridicaController();
             try{
-                Juridica j = jc.buscarUm(jtSearch.getText());
+                Juridica j = jc.buscarUm(cnpj);
+                if (j == null) {
+                    throw new ServiceException("CNPJ inválido");
+                }
                 preencherDadosFisica(j.getCpfDiretor());
                 jlCadastroEstadual.setText(j.getCadastroEstadual());
                 jlCNPJ.setText(j.getCnpj());
@@ -290,16 +296,22 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Rua");
 
+        jLabel9.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel9.setText("Número");
 
+        jLabel10.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel10.setText("Complemento");
 
+        jLabel12.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel12.setText("Bairro");
 
+        jLabel13.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel13.setText("Cep");
 
+        jLabel14.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel14.setText("Cidade");
 
+        jLabel15.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel15.setText("Estado");
 
         jLabel8.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
@@ -325,10 +337,11 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
                                 .addComponent(jlNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlRua, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jlDataNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
-                                        .addComponent(jLabel7)
+                                        .addGroup(jpDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlRua, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jpDadosPessoaisLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -474,18 +487,25 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel20.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel20.setText("Rua");
 
+        jLabel21.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel21.setText("Número");
 
+        jLabel22.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel22.setText("Complemento");
 
+        jLabel23.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel23.setText("Bairro");
 
+        jLabel24.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel24.setText("Cep");
 
+        jLabel25.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel25.setText("Cidade");
 
+        jLabel26.setFont(new java.awt.Font("Courier New", 1, 14));
         jLabel26.setText("Estado");
 
         jLabel19.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
@@ -622,6 +642,7 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jrbFisicaActionPerformed
 
     private void jbListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbListarActionPerformed
+        
         if (searchLabel.getText() == "CPF") {
             preencherDadosFisica(jtSearch.getText());
         } else {
@@ -646,6 +667,8 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
             try{
                 FisicaController fc = new FisicaController();
                 fc.deletar(jlCPF.getText());
+                model.setNumRows(0);
+                jpDadosPessoais.setVisible(false);
                 preencherTabelaFisica();
             } catch (ServiceException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -658,7 +681,10 @@ public class FormularioListarClientes extends javax.swing.JInternalFrame {
         if(res == 0) {
             try{
                 JuridicaController jc = new JuridicaController();
-                jc.deletar(jlCPF.getText());
+                jc.deletar(jlCNPJ.getText());
+                 model.setNumRows(0);
+                jpDadosPessoais.setVisible(false);
+                jpDadosEmpresa.setVisible(false);
                 preencherTabelaJuridica();
             } catch (ServiceException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());

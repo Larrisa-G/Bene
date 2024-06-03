@@ -197,10 +197,12 @@
                                   <Component id="jlNacionalidade" min="-2" pref="177" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jlRua" min="-2" pref="163" max="-2" attributes="0"/>
                                       <Component id="jlDataNascimento" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jlRua" min="-2" pref="163" max="-2" attributes="0"/>
+                                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -461,11 +463,17 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Courier New" size="14" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="N&#xfa;mero"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Complemento"/>
           </Properties>
         </Component>
@@ -473,21 +481,33 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Bairro"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Courier New" size="14" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cep"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cidade"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Estado"/>
           </Properties>
         </Component>
@@ -659,6 +679,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel20">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Rua"/>
           </Properties>
         </Component>
@@ -666,11 +689,17 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel21">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="N&#xfa;mero"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel22">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Complemento"/>
           </Properties>
         </Component>
@@ -678,21 +707,33 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Bairro"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel24">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cep"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel25">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cidade"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel26">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new java.awt.Font(&quot;Courier New&quot;, 1, 14)" type="code"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Estado"/>
           </Properties>
         </Component>
