@@ -24,20 +24,15 @@ public class UsuarioDAO {
         }
     }
     
-    public Usuario buscar(Usuario usuario) throws SQLException{
-        String sql = "SELECT nome, senha FROM usuario WHERE nome = ? AND senha = ?";
+    public Usuario buscar() throws SQLException{
+        String sql = "SELECT nome, senha FROM usuario LIMIT 1";
         try (PreparedStatement statment = Conector.openConnection().prepareStatement(sql)) {
-            statment.setString(1, usuario.getNome());
-            statment.setString(2, usuario.getSenha());
             try (ResultSet result = statment.executeQuery()) {
-                if (!result.next()) {
-                    return null;
-                }
-                return new Usuario (
-                        result.getString("nome"),  
-                        result.getString("senha")
-                );
+                System.out.println(result.toString());
+                return new Usuario(result.getString("nome"), result.getString("senha"));
+                
             }
+            
         } catch (SQLException e) {
             
             throw new SQLException("Erro ao obter usuário");

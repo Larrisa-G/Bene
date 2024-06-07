@@ -41,8 +41,6 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setText("Usuário");
 
-        jtUsuario.setText("jTextField1");
-
         jLabel2.setText("Senha");
 
         jtSenha.setText("jTextField2");
@@ -127,11 +125,11 @@ public class Login extends javax.swing.JFrame {
         String userPassword = jtSenha.getText().trim();
         try {
             UsuarioController controller = new UsuarioController();
-            Usuario usuario = controller.buscarUm(new Usuario(userName, userPassword));
+            Usuario usuario = controller.buscarUm();
             if (usuario == null) {
                 throw new ServiceException("Usuário não encontrado");
             }
-            new App(usuario).setVisible(true);
+            new App().setVisible(true);
             dispose();
         } catch (ServiceException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

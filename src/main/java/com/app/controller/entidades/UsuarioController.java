@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class UsuarioController {
     UsuarioDAO dao = new UsuarioDAO();
-    public Usuario buscarUm(Usuario user) throws ServiceException {
+    public Usuario buscarUm() throws ServiceException {
          try{ 
-           Usuario usuario = dao.buscar(user);
+           Usuario usuario = dao.buscar();
            if (usuario == null) {
                return null;
            } 

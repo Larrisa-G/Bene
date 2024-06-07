@@ -15,14 +15,25 @@ import javax.swing.JOptionPane;
  */
 public class ConfigurarUsuario extends javax.swing.JInternalFrame {
 
-    private Usuario user;
-    public ConfigurarUsuario(Usuario user) {
+    private final Usuario user;
+    private UsuarioController controller = new UsuarioController();
+    public ConfigurarUsuario(){
         initComponents();
         setTitle("Configurações");
         habilitarBotoes(false);
         habilitarInputs(false);
-        this.user = user;
+        this.user = pegarUsuario();
         
+    }
+    
+    private Usuario pegarUsuario() {
+        try {
+             
+             return controller.buscarUm();
+        } catch(ServiceException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return null;       
     }
     
     private void habilitarBotoes(boolean value){
@@ -113,8 +124,6 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
-
-        jtConfirmarSenha.setText("jTextField3");
 
         jLabel1.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel1.setText("Usuario");
@@ -212,7 +221,7 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         
         try {
             Usuario newUser = new Usuario(jtUsuario.getText(), jtConfirmarSenha.getText());
-            UsuarioController controller = new UsuarioController();
+            controller = new UsuarioController();
             controller.alterar(newUser);
             JOptionPane.showMessageDialog(null, "Usuario alterado com sucesso");
         } catch (ServiceException e) {
