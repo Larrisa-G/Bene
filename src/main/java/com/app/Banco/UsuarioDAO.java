@@ -10,12 +10,15 @@ import java.sql.SQLException;
 public class UsuarioDAO {
     public void alterar(Usuario usuario )throws SQLException {
         String sql = "UPDATE usuario SET "
-                +"nome = ?,"
-                +"senha = ?";    
+                + "nome = ?,"
+                + "senha = ?,"
+                + "email = ?";
+                
         try(PreparedStatement statement = Conector.openConnection().prepareStatement(sql)){
             
             statement.setString(1, usuario.getNome());
             statement.setString(2, usuario.getSenha());
+            statement.setString(3, usuario.getEmail());
            
             statement.executeUpdate();
         }catch(SQLException e){
@@ -25,11 +28,11 @@ public class UsuarioDAO {
     }
     
     public Usuario buscar() throws SQLException{
-        String sql = "SELECT nome, senha FROM usuario LIMIT 1";
+        String sql = "SELECT nome, senha,email FROM usuario LIMIT 1";
         try (PreparedStatement statment = Conector.openConnection().prepareStatement(sql)) {
             try (ResultSet result = statment.executeQuery()) {
-                System.out.println(result.toString());
-                return new Usuario(result.getString("nome"), result.getString("senha"));
+               
+                return new Usuario(result.getString("nome"), result.getString("senha"),  result.getString("email"));
                 
             }
             

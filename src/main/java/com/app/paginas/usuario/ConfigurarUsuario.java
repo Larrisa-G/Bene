@@ -5,6 +5,7 @@ import com.app.controller.entidades.UsuarioController;
 import com.app.entidades.usuario.Usuario;
 import com.app.exceptions.ServiceException;
 import com.app.exceptions.ValidationError;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 
@@ -20,6 +21,7 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         habilitarInputs(false);
         this.user = pegarUsuario();
         jtUsuario.setText(user.getNome());
+        jtEmail.setText(user.getEmail());
     }
     
     private Usuario pegarUsuario() {
@@ -41,10 +43,15 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
     
     private void habilitarInputs(boolean value){
         jtUsuario.setEnabled(value);
+        jtEmail.setEnabled(value);
         jtNovaSenha.setEnabled(value);
         jtConfirmarSenha.setEnabled(value);
     }
 
+    private void limparSenha() {
+        jtNovaSenha.setText("");
+        jtConfirmarSenha.setText("");
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -58,11 +65,13 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         jbAlterarSenha = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jtUsuario = new javax.swing.JTextField();
-        jtNovaSenha = new javax.swing.JTextField();
-        jtConfirmarSenha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jtConfirmarSenha = new javax.swing.JPasswordField();
+        jtNovaSenha = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
+        jtEmail = new javax.swing.JTextField();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), null));
 
@@ -142,6 +151,9 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
         jLabel3.setText("Nova Senha");
 
+        jLabel4.setFont(new java.awt.Font("Courier New", 1, 14)); // NOI18N
+        jLabel4.setText("Email");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -150,28 +162,37 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addGap(167, 167, 167))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jtConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                                .addComponent(jtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jtNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jtConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(79, 79, 79))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jLabel1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -217,25 +238,32 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         habilitarBotoes(true);
         habilitarInputs(false);
         jtUsuario.setEnabled(true);
-        
+        jtEmail.setEnabled(true);
+
     }//GEN-LAST:event_jbAlterarNomeUsuarioActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         habilitarBotoes(false);
         habilitarInputs(false);
-
+        limparSenha();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
         
         
         try {
-            if (!jtConfirmarSenha.getText().equals(jtNovaSenha.getText())) {
+            if (!Arrays.equals(jtConfirmarSenha.getPassword(), jtNovaSenha.getPassword())) {
                 throw new ValidationError("As senhas são diferentes");
             }
-            Usuario newUser = new Usuario(jtUsuario.getText(), jtConfirmarSenha.getText().length() > 0 ? jtConfirmarSenha.getText() : user.getSenha() );
+            Usuario newUser = new Usuario(jtUsuario.getText(), 
+                    jtConfirmarSenha.getPassword().length > 0 ? new String(jtConfirmarSenha.getPassword()): user.getSenha(),
+                    jtEmail.getText()
+            );
             controller.alterar(newUser);
             JOptionPane.showMessageDialog(null, "Usuario alterado com sucesso");
+            limparSenha();
+            habilitarInputs(false);
+            habilitarBotoes(false);
         } catch (ServiceException | ValidationError e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -248,6 +276,7 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         habilitarBotoes(true);
         habilitarInputs(true);
         jtUsuario.setEnabled(false);
+        jtEmail.setEnabled(false);
     }//GEN-LAST:event_jbAlterarSenhaActionPerformed
 
 
@@ -255,6 +284,7 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbAlterarNomeUsuario;
@@ -262,8 +292,9 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbFechar;
     private javax.swing.JButton jbSalvar;
-    private javax.swing.JTextField jtConfirmarSenha;
-    private javax.swing.JTextField jtNovaSenha;
+    private javax.swing.JPasswordField jtConfirmarSenha;
+    private javax.swing.JTextField jtEmail;
+    private javax.swing.JPasswordField jtNovaSenha;
     private javax.swing.JTextField jtUsuario;
     // End of variables declaration//GEN-END:variables
 }
