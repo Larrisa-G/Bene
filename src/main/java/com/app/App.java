@@ -1,7 +1,6 @@
 
 package com.app;
 
-import com.app.entidades.usuario.Usuario;
 import com.app.paginas.contratos.AssistenciaMedicaEmpresa;
 import com.app.paginas.contratos.CobrancaBancariaIndevida;
 import com.app.paginas.contratos.ComodatoImovel;

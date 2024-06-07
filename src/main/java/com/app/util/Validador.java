@@ -1,18 +1,12 @@
 
 package com.app.util;
 
-import com.app.api.UF;
 import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Juridica;
 import com.app.entidades.usuario.Usuario;
 import com.app.exceptions.ValidationError;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Date;
 import java.util.regex.Pattern;
 
 public class Validador {

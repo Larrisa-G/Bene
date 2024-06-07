@@ -7,14 +7,14 @@ import java.sql.DriverManager;
 
 public class Conector {
 
-    private static String url = "jdbc:sqlite:Base_de_clientes.db";
+    private static final String URL = "jdbc:sqlite:Base_de_clientes.db";
 
     public static Connection openConnection() {
 
         Connection connection = null;
 
         try {
-            connection = DriverManager.getConnection(url);
+            connection = DriverManager.getConnection(URL);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
