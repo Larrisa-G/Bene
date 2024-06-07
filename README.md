@@ -9,8 +9,7 @@ das hard skills citadas acima,  também soft skills como trabalho em equipe, com
 ## Contribuintes
 Este projeto teve a contribuição de:
 -  <a href="https://github.com/gabrielssconceicao" target="_blank">Gabriel Conceição</a>
--  <a href="https://github.com/Larrisa-G" target="_blank">Larrisa-G
-</a>
+-  <a href="https://github.com/Larrisa-G" target="_blank">Larrisa-G</a>
 - <a href="https://github.com/EricEdu" target="_blank">EricEdu</a>
 
 ## Visão Geral
