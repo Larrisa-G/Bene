@@ -4,6 +4,8 @@ package com.app.controller.entidades;
 import com.app.Banco.UsuarioDAO;
 import com.app.entidades.usuario.Usuario;
 import com.app.exceptions.ServiceException;
+import com.app.exceptions.ValidationError;
+import com.app.util.Validador;
 import java.sql.SQLException;
 
 public class UsuarioController {
@@ -21,11 +23,12 @@ public class UsuarioController {
         }
     }
     
-    public void alterar(Usuario usuario)throws ServiceException  {
+    public void alterar(Usuario usuario)throws ServiceException,ValidationError  {
        try{ 
-           dao.alterar(usuario);
+          Validador.validarUsuario(usuario);
+          dao.alterar(usuario);
           
-        } catch (SQLException e) {
+        } catch (SQLException | ValidationError e) {
             throw new ServiceException(e.getMessage());
         } 
     }

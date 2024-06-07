@@ -43,8 +43,6 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Senha");
 
-        jtSenha.setText("jTextField2");
-
         jbLogin.setText("login");
         jbLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

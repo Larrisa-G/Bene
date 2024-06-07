@@ -5,6 +5,7 @@ import com.app.api.UF;
 import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Juridica;
+import com.app.entidades.usuario.Usuario;
 import com.app.exceptions.ValidationError;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -211,5 +212,15 @@ public class Validador {
            if (!validarCPF(juridica.getCpfDiretor())) {
             throw new ValidationError("CPF inválido");
         }
+    }
+    
+    public static void validarUsuario(Usuario usuario) throws ValidationError{
+        if(isEmpty(usuario.getNome()) || usuario.getNome().length() < 6 ){
+            throw new ValidationError("Campo Usuário deve ter pelo menos 6 caracters");
+        }
+        if(isEmpty(usuario.getSenha()) || usuario.getSenha().length() < 8 ){
+            throw new ValidationError("Campo Senha deve ter pelo menos 8 caracters");
+        }
+        
     }
 }
