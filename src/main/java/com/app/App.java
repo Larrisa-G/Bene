@@ -8,6 +8,7 @@ import com.app.paginas.pessoa.fisica.FormularioCriarPessoaFisica;
 import com.app.paginas.pessoa.juridica.FormularioCriarPessoaJuridica;
 import com.app.paginas.pessoa.FormularioListarClientes;
 import com.app.paginas.contratos.PerdaCartao;
+import com.app.paginas.email.EnviarEmail;
 import com.app.paginas.pessoa.fisica.FormularioAlterarPessoaFisica;
 import com.app.paginas.pessoa.juridica.FormularioAlterarPessoaJuridica;
 import com.app.paginas.usuario.ConfigurarUsuario;
@@ -45,9 +46,10 @@ public class App extends javax.swing.JFrame {
         jmiCobrancaBancariaIndevida = new javax.swing.JMenuItem();
         jmiAssistenciaMedicaEmpresa = new javax.swing.JMenuItem();
         jmiComodatoImovel = new javax.swing.JMenuItem();
+        jmcEnviarEmail = new javax.swing.JMenuItem();
         jmUsuario = new javax.swing.JMenu();
-        jmUsuarioConfiguracao = new javax.swing.JMenuItem();
-        jmLogOut = new javax.swing.JMenuItem();
+        jmiUsuarioConfiguracao = new javax.swing.JMenuItem();
+        jmiLogOut = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,25 +165,33 @@ public class App extends javax.swing.JFrame {
         });
         jmContratos.add(jmiComodatoImovel);
 
+        jmcEnviarEmail.setText("Enviar contrato");
+        jmcEnviarEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmcEnviarEmailActionPerformed(evt);
+            }
+        });
+        jmContratos.add(jmcEnviarEmail);
+
         jMenuBar1.add(jmContratos);
 
         jmUsuario.setText("Usuario");
 
-        jmUsuarioConfiguracao.setText("configurações");
-        jmUsuarioConfiguracao.addActionListener(new java.awt.event.ActionListener() {
+        jmiUsuarioConfiguracao.setText("configurações");
+        jmiUsuarioConfiguracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmUsuarioConfiguracaoActionPerformed(evt);
+                jmiUsuarioConfiguracaoActionPerformed(evt);
             }
         });
-        jmUsuario.add(jmUsuarioConfiguracao);
+        jmUsuario.add(jmiUsuarioConfiguracao);
 
-        jmLogOut.setText("Log Out");
-        jmLogOut.addActionListener(new java.awt.event.ActionListener() {
+        jmiLogOut.setText("Log Out");
+        jmiLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmLogOutActionPerformed(evt);
+                jmiLogOutActionPerformed(evt);
             }
         });
-        jmUsuario.add(jmLogOut);
+        jmUsuario.add(jmiLogOut);
 
         jMenuBar1.add(jmUsuario);
 
@@ -222,6 +232,35 @@ public class App extends javax.swing.JFrame {
         centralizarForm.abrirFormulario(criarPessoaJuridica=new FormularioCriarPessoaJuridica(), jDesktop);
     }//GEN-LAST:event_jmcPJCriarActionPerformed
 
+    
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(App.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+        //</editor-fold>
     private void jmcPFAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcPFAlterarActionPerformed
         FormularioAlterarPessoaFisica formularioAlterarPessoaFisica;
         centralizarForm.abrirFormulario(formularioAlterarPessoaFisica=new FormularioAlterarPessoaFisica(), jDesktop);
@@ -247,16 +286,21 @@ public class App extends javax.swing.JFrame {
        centralizarForm.abrirFormulario(comodatoImovel = new ComodatoImovel(), jDesktop);
     }//GEN-LAST:event_jmiComodatoImovelActionPerformed
 
-    private void jmUsuarioConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmUsuarioConfiguracaoActionPerformed
+    private void jmiUsuarioConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUsuarioConfiguracaoActionPerformed
         ConfigurarUsuario configurarUsuario;
         centralizarForm.abrirFormulario(configurarUsuario = new ConfigurarUsuario(), jDesktop);
-    }//GEN-LAST:event_jmUsuarioConfiguracaoActionPerformed
+    }//GEN-LAST:event_jmiUsuarioConfiguracaoActionPerformed
 
-    private void jmLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLogOutActionPerformed
+    private void jmiLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiLogOutActionPerformed
         dispose();
         Login login = new Login();
         login.setVisible(true);
-    }//GEN-LAST:event_jmLogOutActionPerformed
+    }//GEN-LAST:event_jmiLogOutActionPerformed
+
+    private void jmcEnviarEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmcEnviarEmailActionPerformed
+         EnviarEmail enviarEmail;
+        centralizarForm.abrirFormulario(enviarEmail=new EnviarEmail(), jDesktop);
+    }//GEN-LAST:event_jmcEnviarEmailActionPerformed
 
     
 
@@ -267,11 +311,10 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenu jmClientes;
     private javax.swing.JMenu jmContratos;
     private javax.swing.JMenuItem jmListarrCliente;
-    private javax.swing.JMenuItem jmLogOut;
     private javax.swing.JMenu jmPessoaFisica;
     private javax.swing.JMenu jmPessoaJuridica;
     private javax.swing.JMenu jmUsuario;
-    private javax.swing.JMenuItem jmUsuarioConfiguracao;
+    private javax.swing.JMenuItem jmcEnviarEmail;
     private javax.swing.JMenuItem jmcPFAlterar;
     private javax.swing.JMenuItem jmcPFCriar;
     private javax.swing.JMenuItem jmcPJAlterar;
@@ -279,6 +322,8 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiAssistenciaMedicaEmpresa;
     private javax.swing.JMenuItem jmiCobrancaBancariaIndevida;
     private javax.swing.JMenuItem jmiComodatoImovel;
+    private javax.swing.JMenuItem jmiLogOut;
     private javax.swing.JMenuItem jmiPerdaCartao;
+    private javax.swing.JMenuItem jmiUsuarioConfiguracao;
     // End of variables declaration//GEN-END:variables
 }

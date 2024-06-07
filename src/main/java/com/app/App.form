@@ -117,6 +117,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiComodatoImovelActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jmcEnviarEmail">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Enviar contrato"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmcEnviarEmailActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmUsuario">
@@ -124,20 +132,20 @@
             <Property name="text" type="java.lang.String" value="Usuario"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jmUsuarioConfiguracao">
+            <MenuItem class="javax.swing.JMenuItem" name="jmiUsuarioConfiguracao">
               <Properties>
                 <Property name="text" type="java.lang.String" value="configura&#xe7;&#xf5;es"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmUsuarioConfiguracaoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiUsuarioConfiguracaoActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmLogOut">
+            <MenuItem class="javax.swing.JMenuItem" name="jmiLogOut">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Log Out"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmLogOutActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiLogOutActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
