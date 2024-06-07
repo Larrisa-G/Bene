@@ -6,6 +6,13 @@ contexto real, consolidando o aprendizado uma vez que envolve conceitos acadêmi
 O projeto não apenas resolve uma demanda real da parte interessada, mas também enriquece a experiência acadêmica dos alunos, que ao longo do projeto desenvolveram além
 das hard skills citadas acima,  também soft skills como trabalho em equipe, comunicação e empatia. preparando-os para desafios futuros na área de desenvolvimento de software.
 
+## Contribuintes
+Este projeto teve a contribuição de:
+-  <a href="https://github.com/gabrielssconceicao" target="_blank">Gabriel Conceição</a>
+-  <a href="https://github.com/Larrisa-G" target="_blank">Larrisa-G
+</a>
+-  <a href="https://github.com/EricEdu" target="_blank">EricEdu</a>
+
 ## Visão Geral
 Este projeto tem como objetivo desenvolver um sistema em Java para a criação e gerenciamento de contratos. Ele permite aos usuários criar, visualizar, editar e deletar contratos, além de fornecer funcionalidades para a validação e armazenamento seguro dos mesmos.
 
@@ -75,3 +82,4 @@ Este projeto utiliza várias bibliotecas para fornecer funcionalidades adicionai
   - **Uso**: Manipulação de formatos adicionais de documentos do Microsoft Office, como Word.
 
 Estas dependências são configuradas no arquivo `pom.xml` e são gerenciadas pelo Maven, garantindo que todas as bibliotecas necessárias sejam baixadas e incluídas no projeto.
+
