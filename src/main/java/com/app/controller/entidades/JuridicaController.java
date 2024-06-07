@@ -4,7 +4,7 @@ package com.app.controller.entidades;
 import com.app.Banco.JuridicaDAO;
 import com.app.entidades.pessoas.Juridica;
 import com.app.exceptions.ServiceException;
-import com.app.exceptions.ValidationError;
+import com.app.exceptions.ValidationException;
 import com.app.util.Validador;
 import java.sql.SQLException;
 import java.util.List;
@@ -27,7 +27,7 @@ public class JuridicaController implements ControllersInterface<Juridica>{
             dao.inserir(juridica);
         } catch (SQLException e){
             throw new ServiceException(e.getMessage());
-        } catch (ValidationError e){
+        } catch (ValidationException e){
             throw new ServiceException("Erro de validação: "+e.getMessage());
         }
     }
@@ -46,16 +46,16 @@ public class JuridicaController implements ControllersInterface<Juridica>{
     public void alterar(Juridica juridica) throws ServiceException {
         try {
             if (Validador.isEmpty(juridica.getCpfDiretor())) {
-                throw new ValidationError("CPF não pode estar vazio");
+                throw new ValidationException("CPF não pode estar vazio");
             }
             if(new FisicaController().buscarUm(juridica.getCpfDiretor()) == null) {           
-                throw new ValidationError("CPF não cadastrado");
+                throw new ValidationException("CPF não cadastrado");
             }
             
             
             Validador.validarEndereco(juridica.getEndereco());
             dao.alterar(juridica);
-        } catch (ValidationError e) {
+        } catch (ValidationException e) {
             throw new ServiceException("Erro de validação: " + e.getMessage());
         } catch (SQLException e) {
             throw new ServiceException(e.getMessage());

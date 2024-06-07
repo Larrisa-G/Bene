@@ -5,7 +5,7 @@ import com.app.entidades.endereco.Endereco;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Juridica;
 import com.app.entidades.usuario.Usuario;
-import com.app.exceptions.ValidationError;
+import com.app.exceptions.ValidationException;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
@@ -130,90 +130,90 @@ public class Validador {
         return !dataFimLocalDate.isBefore(dataInicioLocalDate);
     }
     
-    public static void validarPessoaFisica(Fisica fisica) throws ValidationError{
+    public static void validarPessoaFisica(Fisica fisica) throws ValidationException{
        
         if (isEmpty(fisica.getNome()) || fisica.getNome().length() > 255) {
-            throw new ValidationError("Nome não pode ser nulo ou vazio.");
+            throw new ValidationException("Nome não pode ser nulo ou vazio.");
         }
 
         if (isEmpty(fisica.getCpf()) || !fisica.getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}") || !validarCPF(fisica.getCpf())) {
-            throw new ValidationError("CPF inválido.");
+            throw new ValidationException("CPF inválido.");
         }
         
 
         if (isEmpty(fisica.getRg()) || !fisica.getRg().matches("\\d{2}\\.\\d{3}\\.\\d{3}-\\d{1}")) {
-            throw new ValidationError("RG inválido");
+            throw new ValidationException("RG inválido");
         }
 
         // Validação da data de nascimento
        if (!validarData(fisica.getDataNascimento())) {
-           throw new ValidationError("Data de nascimento inválida");
+           throw new ValidationException("Data de nascimento inválida");
        }
 
         if (isEmpty(fisica.getNacionalidade()) || fisica.getNacionalidade().length() > 255){
-            throw new ValidationError("Nacionalidade não pode ser nula ou vazia.");
+            throw new ValidationException("Nacionalidade não pode ser nula ou vazia.");
         }
 
         if (isEmpty(fisica.getProfissao()) || fisica.getNacionalidade().length() > 255) {
-            throw new ValidationError("Profissão não pode ser nula ou vazia.");
+            throw new ValidationException("Profissão não pode ser nula ou vazia.");
         }
     }
 
-    public static void validarEndereco(Endereco endereco) throws ValidationError{
+    public static void validarEndereco(Endereco endereco) throws ValidationException{
         
         
         
         if (isEmpty(endereco.getLogradouro()) || endereco.getLogradouro().length() > 255) {
-            throw new ValidationError("Logradouro inválido");
+            throw new ValidationException("Logradouro inválido");
         }
          
         if (endereco.getNumero() <= 0) {
-            throw new ValidationError("Número inválido");
+            throw new ValidationException("Número inválido");
         }
         
         
           
         if (isEmpty(endereco.getBairro()) || endereco.getBairro().length() > 255) {
-            throw new ValidationError("Bairro inválido");
+            throw new ValidationException("Bairro inválido");
         }
         
        validaCep(endereco.getCep());
   
         if (isEmpty(endereco.getCidade()) ||  endereco.getCidade().length() > 255) {
-            throw new ValidationError("Cidade inválida");
+            throw new ValidationException("Cidade inválida");
         }
   
 
         if (isEmpty(endereco.getEstado())|| endereco.getEstado().length() > 255) {
-            throw new ValidationError("Estado inválido");
+            throw new ValidationException("Estado inválido");
         }
        
     }
     
-    public static void validarPessoaJuridica(Juridica juridica) throws ValidationError {
+    public static void validarPessoaJuridica(Juridica juridica) throws ValidationException {
         if (isEmpty(juridica.getNomeFantasia()) || juridica.getNomeFantasia().length() > 255) {
-            throw new ValidationError("Nome fantasia deve ter no ");
+            throw new ValidationException("Nome fantasia deve ter no ");
         }
         
          if (isEmpty(juridica.getCadastroEstadual())) {
-            throw new ValidationError("Cadastro estadua não pode estar vazio");
+            throw new ValidationException("Cadastro estadua não pode estar vazio");
         }
          
           if (!validarCNPJ(juridica.getCnpj())) {
-            throw new ValidationError("CNPJ inválido");
+            throw new ValidationException("CNPJ inválido");
         }
           
            if (!validarCPF(juridica.getCpfDiretor())) {
-            throw new ValidationError("CPF inválido");
+            throw new ValidationException("CPF inválido");
         }
     }
     
-    public static void validarUsuario(Usuario usuario) throws ValidationError{
+    public static void validarUsuario(Usuario usuario) throws ValidationException{
         if(isEmpty(usuario.getNome()) || usuario.getNome().length() < 6 ){
-            throw new ValidationError("Campo Usuário deve ter pelo menos 6 caracters");
+            throw new ValidationException("Campo Usuário deve ter pelo menos 6 caracters");
         }
         if(isEmpty(usuario.getSenha()) || usuario.getSenha().length() < 8 ){
-            throw new ValidationError("Campo Senha deve ter pelo menos 8 caracters");
+            throw new ValidationException("Campo Senha deve ter pelo menos 8 caracters");
         }
         
     }

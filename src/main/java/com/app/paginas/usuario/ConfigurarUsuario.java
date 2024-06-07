@@ -4,7 +4,7 @@ package com.app.paginas.usuario;
 import com.app.controller.entidades.UsuarioController;
 import com.app.entidades.usuario.Usuario;
 import com.app.exceptions.ServiceException;
-import com.app.exceptions.ValidationError;
+import com.app.exceptions.ValidationException;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
@@ -253,7 +253,7 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
         
         try {
             if (!Arrays.equals(jtConfirmarSenha.getPassword(), jtNovaSenha.getPassword())) {
-                throw new ValidationError("As senhas são diferentes");
+                throw new ValidationException("As senhas são diferentes");
             }
             Usuario newUser = new Usuario(jtUsuario.getText(), 
                     jtConfirmarSenha.getPassword().length > 0 ? new String(jtConfirmarSenha.getPassword()): user.getSenha(),
@@ -264,7 +264,7 @@ public class ConfigurarUsuario extends javax.swing.JInternalFrame {
             limparSenha();
             habilitarInputs(false);
             habilitarBotoes(false);
-        } catch (ServiceException | ValidationError e) {
+        } catch (ServiceException | ValidationException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         

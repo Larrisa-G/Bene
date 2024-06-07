@@ -10,7 +10,7 @@ import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Juridica;
 import com.app.exceptions.ServiceException;
-import com.app.exceptions.ValidationError;
+import com.app.exceptions.ValidationException;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
 import com.app.util.ValoresEnum;
@@ -85,7 +85,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
         return num > 1 ? text+"s" : text;
     }
     
-    private void validarDadosContratante() throws ValidationError {
+    private void validarDadosContratante() throws ValidationException {
         try {
             Juridica juridica = new Juridica(
                     jpContratanteNomeEmpresa.getText(),jpContratanteCPF.getText(), 
@@ -107,16 +107,16 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 )                    
             );
             controller.validarContratanteContratada(juridica,fisica);
-        } catch(ValidationError e) {
-           throw new ValidationError("Erro nos campos do Contratante: "+e.getMessage());
+        } catch(ValidationException e) {
+           throw new ValidationException("Erro nos campos do Contratante: "+e.getMessage());
         } catch(NumberFormatException e) {
-           throw new ValidationError("Erro nos campos do Contratante: Número inválido ");
+           throw new ValidationException("Erro nos campos do Contratante: Número inválido ");
         } catch (IllegalArgumentException e) {
-            throw new ValidationError("Erro nos campos da Contratante: Estado Civil Inválido");
+            throw new ValidationException("Erro nos campos da Contratante: Estado Civil Inválido");
         }
     }
     
-    private void validarDadosContratada() throws ValidationError {
+    private void validarDadosContratada() throws ValidationException {
         try {
             Juridica juridica = new Juridica(
                     jpContratadaNomeEmpresa.getText(),jpContratadaCPF.getText(), 
@@ -138,26 +138,26 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
                 )                    
             );
             controller.validarContratanteContratada(juridica,fisica);
-        } catch(ValidationError e) {
-           throw new ValidationError("Erro nos campos da Contratada: "+e.getMessage());
+        } catch(ValidationException e) {
+           throw new ValidationException("Erro nos campos da Contratada: "+e.getMessage());
         } catch(NumberFormatException e) {
-           throw new ValidationError("Erro nos campos da Contratada: Número inválido ");
+           throw new ValidationException("Erro nos campos da Contratada: Número inválido ");
         } catch (IllegalArgumentException e) {
-            throw new ValidationError("Erro nos campos da Contratada: Estado Civil Inválido");
+            throw new ValidationException("Erro nos campos da Contratada: Estado Civil Inválido");
         }
     }
     
-    private void validarClausulasPagamento() throws ValidationError {
+    private void validarClausulasPagamento() throws ValidationException {
         try {
             
             if (jtForroComarca.getText().isBlank()) {
-                throw new ValidationError("Erro no campo Comarca: Campo está vazio");
+                throw new ValidationException("Erro no campo Comarca: Campo está vazio");
             }
             if (jtPorcentagemMulta.getText().isBlank()) {
-                throw new ValidationError("Erro nos campos do Pagamento: campo Porcentagem está vazio");
+                throw new ValidationException("Erro nos campos do Pagamento: campo Porcentagem está vazio");
             }
         }catch(NumberFormatException e) {
-           throw new ValidationError("Erro nos campos  do Pagamento: Valor inválido ");
+           throw new ValidationException("Erro nos campos  do Pagamento: Valor inválido ");
         }
     }
     @SuppressWarnings("unchecked")
@@ -1462,7 +1462,7 @@ public class AssistenciaMedicaEmpresa extends javax.swing.JInternalFrame {
             wg.close();
             JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso");
         }
-         catch(IOException | ValidationError e) {
+         catch(IOException | ValidationException e) {
              JOptionPane.showMessageDialog(null, e.getMessage());
          }
     }//GEN-LAST:event_jbSalvarActionPerformed
