@@ -11,7 +11,7 @@ public class ValoresEnum {
             if(i == 0) {
                  valores[i] = "--Selecione--";
             } else {
-                valores[i] = enumConstants[i-1].name();
+                valores[i] = enumConstants[i-1].name().replace("_", " ");
             }
         }
         return valores;

@@ -1,9 +1,10 @@
 
 package com.app.entidades.pessoas;
-// Por todos os generos
 
 public enum Genero {
     MASCULINO,
     FEMININO,
-    OUTRO
+    HOMEM_TRANS,
+    MULHER_TRANS,
+    NAO_BINARIO
 }

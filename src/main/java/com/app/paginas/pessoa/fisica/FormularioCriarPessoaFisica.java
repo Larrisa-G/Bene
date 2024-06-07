@@ -562,6 +562,7 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
                 jcbEstadoCivil.setModel(new DefaultComboBoxModel(new String[] {"--Selecione--"}));
                 break;
             case "FEMININO":
+            case "MULHER_TRANS":
                  jcbEstadoCivil.setModel(new DefaultComboBoxModel(ValoresEnum.separarGenero(EstadoCivil.class,"a")));
                 break;
             default:
