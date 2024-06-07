@@ -9,8 +9,6 @@ import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Genero;
 import com.app.exceptions.ServiceException;
-import com.app.exceptions.ValidationError;
-import com.app.util.Validador;
 import com.app.util.ValoresEnum;
 import java.io.IOException;
 import javax.swing.DefaultComboBoxModel;
@@ -564,6 +562,7 @@ public class FormularioCriarPessoaFisica extends javax.swing.JInternalFrame {
                 jcbEstadoCivil.setModel(new DefaultComboBoxModel(new String[] {"--Selecione--"}));
                 break;
             case "FEMININO":
+            case "MULHER_TRANS":
                  jcbEstadoCivil.setModel(new DefaultComboBoxModel(ValoresEnum.separarGenero(EstadoCivil.class,"a")));
                 break;
             default:

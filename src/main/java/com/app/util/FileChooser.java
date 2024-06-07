@@ -1,13 +1,21 @@
 
 package com.app.util;
 
+import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
-import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-
 public class FileChooser {
-    
+    public static File getFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            return fileChooser.getSelectedFile();
+        }
+        return null;
+    }
+
     public static String getPath() throws IOException{
      JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -29,5 +37,4 @@ public class FileChooser {
                 throw new IOException("Caminho para salvar não especificado");
             }   
     }
-    
 }

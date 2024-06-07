@@ -10,7 +10,7 @@ import com.app.entidades.pessoas.EstadoCivil;
 import com.app.entidades.pessoas.Fisica;
 import com.app.entidades.pessoas.Juridica;
 import com.app.exceptions.ServiceException;
-import com.app.exceptions.ValidationError;
+import com.app.exceptions.ValidationException;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
 import com.app.util.ValoresEnum;
@@ -88,7 +88,7 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
     }   
     
     
-    private void validarDadosComodante() throws ValidationError {
+    private void validarDadosComodante() throws ValidationException {
         try {
             Juridica juridica = new Juridica(
                     jtComodanteNomeEmpresa.getText(),jtContratanteComodanteCPF.getText(), 
@@ -110,16 +110,16 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
                 )                    
             );
             controller.validarComodante(juridica,fisica);
-        } catch(ValidationError e) {
-           throw new ValidationError("Erro nos campos do Comodante: "+e.getMessage());
+        } catch(ValidationException e) {
+           throw new ValidationException("Erro nos campos do Comodante: "+e.getMessage());
         } catch(NumberFormatException e) {
-           throw new ValidationError("Erro nos campos do Comodante: Número inválido ");
+           throw new ValidationException("Erro nos campos do Comodante: Número inválido ");
         } catch (IllegalArgumentException e) {
-            throw new ValidationError("Erro nos campos da Comodante: Estado Civil Inválido");
+            throw new ValidationException("Erro nos campos da Comodante: Estado Civil Inválido");
         }
     }
     
-    private void validarDadosComodatario() throws ValidationError {
+    private void validarDadosComodatario() throws ValidationException {
         try {
             
                 
@@ -134,16 +134,16 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
                 )                    
             );
             controller.validarComodatario(fisica, jtComodatarioCarteiraTrabalho.getText(),jtComodatarioSerieCarteiraTrabalho.getText());
-        } catch(ValidationError e) {
-           throw new ValidationError("Erro nos campos do Comodatário: "+e.getMessage());
+        } catch(ValidationException e) {
+           throw new ValidationException("Erro nos campos do Comodatário: "+e.getMessage());
         } catch(NumberFormatException e) {
-           throw new ValidationError("Erro nos campos do Comodatário: Número inválido ");
+           throw new ValidationException("Erro nos campos do Comodatário: Número inválido ");
         } catch (IllegalArgumentException e) {
-            throw new ValidationError("Erro nos campos do Comodatário: Estado Civil Inválido");
+            throw new ValidationException("Erro nos campos do Comodatário: Estado Civil Inválido");
         }
     }
     
-    private void validarObjContrato() throws ValidationError {
+    private void validarObjContrato() throws ValidationException {
         try {
             Endereco endereco = new Endereco(
                     jtPropriedadeRua.getText(), Integer.parseInt(jtPropriedadeNumero.getText()), "",
@@ -152,10 +152,10 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
             );
             
             controller.validarObjContrato(endereco, jtPropriedadeCartorio.getText(), jtPropriedadeRegistro.getText());
-        }catch(ValidationError e) {
-           throw new ValidationError("Erro nos campos do Objeto de contrato: "+e.getMessage());
+        }catch(ValidationException e) {
+           throw new ValidationException("Erro nos campos do Objeto de contrato: "+e.getMessage());
         } catch(NumberFormatException e) {
-           throw new ValidationError("Erro nos campos do Objeto de contrato: Número inválido ");
+           throw new ValidationException("Erro nos campos do Objeto de contrato: Número inválido ");
         } 
     }
     
@@ -1239,7 +1239,7 @@ public class ComodatoImovel extends javax.swing.JInternalFrame {
             wg.close();
             JOptionPane.showMessageDialog(null, "Contrato gerado com sucesso");
         }
-        catch(IOException | ValidationError e) {
+        catch(IOException | ValidationException e) {
              JOptionPane.showMessageDialog(null, e.getMessage());
          }
     }//GEN-LAST:event_jbSalvarActionPerformed

@@ -2,7 +2,7 @@
 package com.app.paginas.contratos;
 
 import com.app.controller.contratos.PerdaCartaoController;
-import com.app.exceptions.ValidationError;
+import com.app.exceptions.ValidationException;
 import com.app.word.WordGenerator;
 import com.app.util.DateUtilFormarter;
 import com.app.util.FileChooser;
@@ -235,7 +235,7 @@ public class PerdaCartao extends javax.swing.JInternalFrame {
             
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-        } catch (ValidationError e) {
+        } catch (ValidationException e) {
             JOptionPane.showMessageDialog(null, "Erro de validação: "+e.getMessage());
         }
         

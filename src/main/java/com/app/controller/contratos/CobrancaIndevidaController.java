@@ -1,6 +1,6 @@
 
 package com.app.controller.contratos;
-import com.app.exceptions.ValidationError;
+import com.app.exceptions.ValidationException;
 import com.app.util.Validador;
 
 public class CobrancaIndevidaController {
@@ -9,32 +9,32 @@ public class CobrancaIndevidaController {
             String contratante, String contratada, String prazoDevolucao,
             String dataAssino, String dataPerda
             ) 
-            throws ValidationError {
+            throws ValidationException {
         
         if(Validador.isEmpty(contratante)) {
-            throw new ValidationError("Campo Contratantante vazio");
+            throw new ValidationException("Campo Contratantante vazio");
         }
         if(Validador.isEmpty(contratada)) {
-            throw new ValidationError("Campo Contratada vazio");
+            throw new ValidationException("Campo Contratada vazio");
         }
         if(Validador.isEmpty(prazoDevolucao)) {
-            throw new ValidationError("Campo Prazo devolução vazio");
+            throw new ValidationException("Campo Prazo devolução vazio");
         }
         
         
         if(Validador.isEmpty(dataAssino)) {
-            throw new ValidationError("Campo Data assino cartão");
+            throw new ValidationException("Campo Data assino cartão");
         }
         if(Validador.isEmpty(dataPerda)) {
-            throw new ValidationError("Campo Data perda cartão");
+            throw new ValidationException("Campo Data perda cartão");
         }
         
         if (!Validador.validarData(dataAssino) || !Validador.validarData(dataPerda)) {
-            throw new ValidationError("Data inválida");
+            throw new ValidationException("Data inválida");
         }
         
         if (!Validador.validarDataTermino(dataAssino, dataPerda)) {
-            throw new ValidationError("Data de cobrança deve ser postorior a data de cotratação");
+            throw new ValidationException("Data de cobrança deve ser postorior a data de cotratação");
         }        
     }
 }

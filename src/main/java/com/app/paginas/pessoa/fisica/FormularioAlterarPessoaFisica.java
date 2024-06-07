@@ -471,14 +471,16 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
         
         try {
             Fisica fisica = new FisicaController().buscarUm(jtCPF.getText());
+            
             fisica.setNome(jtNome.getText());
             fisica.setProfissao(jtProfissao.getText());
             if (!"--Selecione--".equals((String)jcbEstadoCivil.getSelectedItem())) {
                 fisica.setEstadoCivil(EstadoCivil.valueOf((String)jcbEstadoCivil.getSelectedItem()));
-            } 
+            }
+            
 
             if(!"--Selecione--".equals((String)jcbGenero.getSelectedItem())) {
-                fisica.setGenero(Genero.valueOf((String)jcbGenero.getSelectedItem()));
+                fisica.setGenero(Genero.valueOf(jcbGenero.getSelectedItem().toString().replace(" ", "_")));
             } 
             
             
@@ -498,7 +500,7 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
             limparInpunts();
             habilitarBotoes(false);
             habilitarInputs(false);
-            JOptionPane.showMessageDialog(null, "alterado com sucesso");
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso");
         } catch(IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Gênro ou Estado civil incorretos");
         }  catch (ServiceException e) {
@@ -522,7 +524,6 @@ public class FormularioAlterarPessoaFisica extends javax.swing.JInternalFrame {
             }
             jtCPF.setEnabled(false);
             jtNome.setText(fisica.getNome());
-
             jtProfissao.setText(fisica.getProfissao());
             jtCEP.setText(fisica.getEndereco().getCep());
 

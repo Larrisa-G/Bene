@@ -4,7 +4,7 @@ package com.app.controller.entidades;
 import com.app.Banco.FisicaDAO;
 import com.app.entidades.pessoas.Fisica;
 import com.app.exceptions.ServiceException;
-import com.app.exceptions.ValidationError;
+import com.app.exceptions.ValidationException;
 import com.app.util.Validador;
 import java.sql.SQLException;
 import java.util.List;
@@ -20,13 +20,13 @@ public class FisicaController implements ControllersInterface<Fisica>{
             Validador.validarEndereco(fisica.getEndereco());
             Validador.validarPessoaFisica(fisica);
             if(buscarUm(fisica.getCpf()) != null) {           
-               throw new ValidationError("Cliente já cadastrado");
+               throw new ValidationException("Cliente já cadastrado");
             }    
             
             dao.inserir(fisica);
         } catch (SQLException e){
             throw new ServiceException(e.getMessage());
-        } catch (ValidationError e){
+        } catch (ValidationException e){
             throw new ServiceException("Erro de validação: "+e.getMessage());
         }
     }
@@ -45,13 +45,13 @@ public class FisicaController implements ControllersInterface<Fisica>{
     public void alterar(Fisica fisica) throws ServiceException{
         try {
             if(Validador.isEmpty(fisica.getNome()) || Validador.isEmpty(fisica.getProfissao())) {
-                throw new ValidationError("Alguns dados pessoais estão vazios");
+                throw new ValidationException("Alguns dados pessoais estão vazios");
             }
             Validador.validarEndereco(fisica.getEndereco());
             dao.alterar(fisica);
         } catch(SQLException e) {
             throw new ServiceException(e.getMessage());
-        }  catch (ValidationError e){
+        }  catch (ValidationException e){
             throw new ServiceException("Erro de validação: "+e.getMessage());
         }
     } 
