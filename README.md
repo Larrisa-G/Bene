@@ -11,7 +11,7 @@ Este projeto teve a contribuição de:
 -  <a href="https://github.com/gabrielssconceicao" target="_blank">Gabriel Conceição</a>
 -  <a href="https://github.com/Larrisa-G" target="_blank">Larrisa-G
 </a>
--  <a href="https://github.com/EricEdu" target="_blank">EricEdu</a>
+- <a href="https://github.com/EricEdu" target="_blank">EricEdu</a>
 
 ## Visão Geral
 Este projeto tem como objetivo desenvolver um sistema em Java para a criação e gerenciamento de contratos. Ele permite aos usuários criar, visualizar, editar e deletar contratos, além de fornecer funcionalidades para a validação e armazenamento seguro dos mesmos.
